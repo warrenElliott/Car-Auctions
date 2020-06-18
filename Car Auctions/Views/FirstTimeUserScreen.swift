@@ -67,7 +67,7 @@ struct ContentView: View {
                             .cornerRadius(15)
                     }
 
-                    Button(action: {self.isActive = true}) {
+                    Button(action: {self.signInUser(email: self.userEmail, password: self.userPassword);}) {
                         Text("Sign In")
                             .foregroundColor(Color.white)
                             .frame(width: 100, height: 40)
@@ -108,7 +108,6 @@ extension ContentView{
         
         else{
             if email.contains("@"){
-                print (email, password)
                 Auth.auth().createUser(withEmail: self.userEmail, password: self.userPassword) { authResult, error in
                     if let e = error{
                         print (e.localizedDescription)
@@ -118,16 +117,45 @@ extension ContentView{
                     }
                 }
                 
-                
             }
             else{
                 print("Enter a valid email")
             }
             
         }
+    }
+    
+    func signInUser(email: String, password: String){
         
-
+        if email == "" {
+    
+            print ("Enter a valid email")
+            
+        }
         
+        if password == "" {
+            
+            print ("Enter a valid password")
+            
+        }
+        
+        else{
+            if email.contains("@"){
+                Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                    if let e = error{
+                        print (e.localizedDescription)
+                    }
+                    else{
+                        self.isActive = true
+                    }
+                }
+            }
+                
+            else{
+                print("Enter a valid email")
+            }
+            
+        }
     }
     
 }
