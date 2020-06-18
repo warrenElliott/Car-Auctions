@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30F1C57653DFBB975908C299 /* Pods_Car_Auctions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393C6E9F17E21F7A86A424A /* Pods_Car_Auctions.framework */; };
 		80330A6B249A21C40074E23E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6A249A21C40074E23E /* AppDelegate.swift */; };
 		80330A6D249A21C40074E23E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6C249A21C40074E23E /* SceneDelegate.swift */; };
 		80330A6F249A21C40074E23E /* FirstTimeUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6E249A21C40074E23E /* FirstTimeUserScreen.swift */; };
 		80330A71249A21C70074E23E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80330A70249A21C70074E23E /* Assets.xcassets */; };
 		80330A74249A21C70074E23E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80330A73249A21C70074E23E /* Preview Assets.xcassets */; };
 		80330A77249A21C70074E23E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80330A75249A21C70074E23E /* LaunchScreen.storyboard */; };
+		80483499249B612D005CACAF /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80483498249B612D005CACAF /* MainScreen.swift */; };
+		8048349B249B8D27005CACAF /* AuctionSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349A249B8D27005CACAF /* AuctionSale.swift */; };
+		8048349E249B8F41005CACAF /* AuctionSaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */; };
+		804834A0249B938B005CACAF /* SaleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349F249B938B005CACAF /* SaleData.swift */; };
+		804834A3249BB34A005CACAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 804834A2249BB34A005CACAF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6393C6E9F17E21F7A86A424A /* Pods_Car_Auctions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Car_Auctions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D7077A06FE5E23D3EDD33C9 /* Pods-Car Auctions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car Auctions.debug.xcconfig"; path = "Target Support Files/Pods-Car Auctions/Pods-Car Auctions.debug.xcconfig"; sourceTree = "<group>"; };
 		80330A67249A21C40074E23E /* Car Auctions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Car Auctions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80330A6A249A21C40074E23E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80330A6C249A21C40074E23E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +32,12 @@
 		80330A73249A21C70074E23E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		80330A76249A21C70074E23E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80330A78249A21C70074E23E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80483498249B612D005CACAF /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		8048349A249B8D27005CACAF /* AuctionSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionSale.swift; sourceTree = "<group>"; };
+		8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionSaleViewModel.swift; sourceTree = "<group>"; };
+		8048349F249B938B005CACAF /* SaleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleData.swift; sourceTree = "<group>"; };
+		804834A2249BB34A005CACAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E38021D614B17E05567C4AD /* Pods-Car Auctions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car Auctions.release.xcconfig"; path = "Target Support Files/Pods-Car Auctions/Pods-Car Auctions.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +45,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F1C57653DFBB975908C299 /* Pods_Car_Auctions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49C150C219A0F205B4830B5F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7D7077A06FE5E23D3EDD33C9 /* Pods-Car Auctions.debug.xcconfig */,
+				9E38021D614B17E05567C4AD /* Pods-Car Auctions.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		60FA030805F928663AD882A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6393C6E9F17E21F7A86A424A /* Pods_Car_Auctions.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		80330A5E249A21C40074E23E = {
 			isa = PBXGroup;
 			children = (
 				80330A69249A21C40074E23E /* Car Auctions */,
 				80330A68249A21C40074E23E /* Products */,
+				49C150C219A0F205B4830B5F /* Pods */,
+				60FA030805F928663AD882A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +91,14 @@
 		80330A69249A21C40074E23E /* Car Auctions */ = {
 			isa = PBXGroup;
 			children = (
+				804834A1249BB07D005CACAF /* Views */,
+				8048349C249B8F30005CACAF /* Models */,
 				80330A6A249A21C40074E23E /* AppDelegate.swift */,
 				80330A6C249A21C40074E23E /* SceneDelegate.swift */,
-				80330A6E249A21C40074E23E /* FirstTimeUserScreen.swift */,
 				80330A70249A21C70074E23E /* Assets.xcassets */,
 				80330A75249A21C70074E23E /* LaunchScreen.storyboard */,
 				80330A78249A21C70074E23E /* Info.plist */,
+				804834A2249BB34A005CACAF /* GoogleService-Info.plist */,
 				80330A72249A21C70074E23E /* Preview Content */,
 			);
 			path = "Car Auctions";
@@ -75,6 +112,25 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		8048349C249B8F30005CACAF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */,
+				8048349F249B938B005CACAF /* SaleData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		804834A1249BB07D005CACAF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80330A6E249A21C40074E23E /* FirstTimeUserScreen.swift */,
+				80483498249B612D005CACAF /* MainScreen.swift */,
+				8048349A249B8D27005CACAF /* AuctionSale.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,9 +138,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80330A7B249A21C70074E23E /* Build configuration list for PBXNativeTarget "Car Auctions" */;
 			buildPhases = (
+				9B44E19081F7EECE3E991424 /* [CP] Check Pods Manifest.lock */,
 				80330A63249A21C40074E23E /* Sources */,
 				80330A64249A21C40074E23E /* Frameworks */,
 				80330A65249A21C40074E23E /* Resources */,
+				A232BA5B261999599433BC14 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80330A77249A21C70074E23E /* LaunchScreen.storyboard in Resources */,
+				804834A3249BB34A005CACAF /* GoogleService-Info.plist in Resources */,
 				80330A74249A21C70074E23E /* Preview Assets.xcassets in Resources */,
 				80330A71249A21C70074E23E /* Assets.xcassets in Resources */,
 			);
@@ -141,13 +200,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9B44E19081F7EECE3E991424 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Car Auctions-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A232BA5B261999599433BC14 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		80330A63249A21C40074E23E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80483499249B612D005CACAF /* MainScreen.swift in Sources */,
 				80330A6B249A21C40074E23E /* AppDelegate.swift in Sources */,
 				80330A6D249A21C40074E23E /* SceneDelegate.swift in Sources */,
+				804834A0249B938B005CACAF /* SaleData.swift in Sources */,
+				8048349E249B8F41005CACAF /* AuctionSaleViewModel.swift in Sources */,
+				8048349B249B8D27005CACAF /* AuctionSale.swift in Sources */,
 				80330A6F249A21C40074E23E /* FirstTimeUserScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +387,7 @@
 		};
 		80330A7C249A21C70074E23E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D7077A06FE5E23D3EDD33C9 /* Pods-Car Auctions.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +408,7 @@
 		};
 		80330A7D249A21C70074E23E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E38021D614B17E05567C4AD /* Pods-Car Auctions.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
