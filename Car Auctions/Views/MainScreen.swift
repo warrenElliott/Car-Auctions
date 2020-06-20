@@ -15,18 +15,18 @@ struct MainScreen: View{
         NavigationView{
             ZStack{
                 Color(red: 0.11, green: 0.82, blue: 0.63, opacity: 1.00).edgesIgnoringSafeArea(.all)
-                Text("View Latest Car Auctions")
-                .offset(x: 0, y: -270)
+                Text("Browse auctions ending today")
+                .offset(x: 0, y: -250)
             }.navigationBarTitle("Car Auctions UK", displayMode: .inline)
+                .navigationBarHidden(false)
             .background(NavigationConfigurator { nc in
                 nc.navigationBar.barTintColor = UIColor(red: 0.11, green: 0.82, blue: 0.63, alpha: 1.00)
                 nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white,  NSAttributedString.Key.font: UIFont(name: "Arial", size: 30)!]
             })
         }.navigationViewStyle(StackNavigationViewStyle())
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
-        
+        //.navigationBarTitle("")
+        //.navigationBarHidden(true)
+        //.navigationBarBackButtonHidden(true)
         
     }
     

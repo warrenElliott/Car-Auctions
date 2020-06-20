@@ -10,11 +10,13 @@ import SwiftUI
 
 struct AuctionSaleViewModel{
     
-    var id: String
+    var adId: String
     var adName: String
-    var saleDescription: String
-    var location: String
+    var adDescription: String
+    var adBid: String
+    var adTimeRemaining: String
+    var adAuthor: String
+    var adLocation: String
     var adImage: Image
-    var currentPrice: String
     
 }

@@ -8,4 +8,4 @@
 
 import SwiftUI
 
-var saleData: [AuctionSaleViewModel] = [AuctionSaleViewModel(id: "1", adName: "Peugeot 206", saleDescription: "Used, 3 owners, MOT expired", location: "Ascot", adImage: Image("pug"), currentPrice: "£100")]
+var saleData: [AuctionSaleViewModel] = [AuctionSaleViewModel(adId: "1", adName: "Peugeot 206", adDescription: "68000 Miles, 3 Previous Owners, MOT expired, Good Condition for age", adBid: "100", adTimeRemaining: "3 days, 3 hours, 45 minutes", adAuthor: "me@me.com", adLocation: "Slough, Berkshire", adImage: Image("pug"))]

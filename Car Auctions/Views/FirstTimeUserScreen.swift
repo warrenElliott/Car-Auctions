@@ -39,23 +39,25 @@ struct ContentView: View {
                         .frame(width: 300, height: nil)
                         .cornerRadius(10)
                         .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 3))
+                        .stroke(Color.black, lineWidth: 3))
                     
                     SecureField("Enter a password", text: $userPassword)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(width: 300, height: nil)
                         .cornerRadius(10)
                         .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 3))
+                        .stroke(Color.black, lineWidth: 3))
                     
                 }
                 .offset(x: 0, y: -10)
                 
                 VStack(spacing: 10){
                     
-                    NavigationLink(destination: MainScreen(), isActive: self.$isActive) {
+                    NavigationLink(destination: TabBarView(), isActive: self.$isActive) {
                         Text("")
-                    }
+                    }.navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
                     
                     Button(action: {
                         self.registerUser(email: self.userEmail, password: self.userPassword);

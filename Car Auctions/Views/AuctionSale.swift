@@ -18,10 +18,10 @@ struct AuctionSale: View{
                 .resizable()
                 .frame(width: 170, height: 120)
             VStack(spacing: 5){
-                Text(sale.adName)
+                Text(sale.adName).bold()
                     
-                Text(sale.saleDescription)
-                Text("Bidding at: " + sale.currentPrice)
+                Text(sale.adTimeRemaining)
+                Text("Bidding at: £" + sale.adBid)
             }.offset(x: 0, y: 0)
             
             Spacer()
