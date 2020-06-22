@@ -24,9 +24,9 @@ struct MainScreen: View{
                 nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white,  NSAttributedString.Key.font: UIFont(name: "Arial", size: 30)!]
             })
         }.navigationViewStyle(StackNavigationViewStyle())
-        //.navigationBarTitle("")
-        //.navigationBarHidden(true)
-        //.navigationBarBackButtonHidden(true)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         
     }
     

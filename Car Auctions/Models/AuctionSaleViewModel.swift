@@ -17,6 +17,6 @@ struct AuctionSaleViewModel{
     var adTimeRemaining: String
     var adAuthor: String
     var adLocation: String
-    var adImage: Image
+    var adImages: [UIImage?]
     
 }

@@ -11,8 +11,8 @@ import Firebase
 
 struct ContentView: View {
     
-    @State private var userEmail = ""
-    @State private var userPassword = ""
+    @State private var userEmail = "warren@email.com"
+    @State private var userPassword = "123456"
     @State private var isActive: Bool = false
 
     var body: some View {

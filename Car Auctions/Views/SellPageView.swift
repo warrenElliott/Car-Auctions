@@ -15,6 +15,7 @@ import Photos
 struct SellPageView: View{
     
     @State var isShowingImagePicker = false
+    @State var ad = AuctionSaleViewModel(adId: "", adName: "", adDescription: "", adBid: "", adTimeRemaining: "", adAuthor: "", adLocation: "", adImages: [UIImage?](repeating: nil, count: 6))
     
     var body: some View {
         
@@ -31,46 +32,68 @@ struct SellPageView: View{
                     Image(uiImage: UIImage())
                         Button(action: {
                             self.isShowingImagePicker.toggle()
+                            print (self.ad)
                         }, label: {Image(systemName: "plus")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(.white)
                         })
                             .sheet(isPresented: $isShowingImagePicker, content: {
-                                ImagePick(isPresented: self.$isShowingImagePicker)
-                                
+                                ImagePick(isPresented: self.$isShowingImagePicker, ad: self.$ad)
                             })
-                            
+                    .frame(width: 100, height: 100)
+                    .border(Color.black, width: 1)
+                                     
+                    Image(uiImage: ad.adImages[0] ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
                         .frame(width: 100, height: 100)
-                        .border(Color.black, width: 1)
-                                        
-                    Image(uiImage: UIImage())
-                        .frame(width: 100, height: 100)
-                        .border(Color.black, width: 1)
+                        .border(Color.black, width: 3)
+                        .clipped()
+
                     
-                    Image(uiImage: UIImage())
+                    Image(uiImage: ad.adImages[1] ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
                         .frame(width: 100, height: 100)
-                        .border(Color.black, width: 1)
+                        .border(Color.black, width: 3)
+                        .clipped()
                     
                 }.offset(x: -4, y: -110)
                 
-
-                
                 HStack{
                     
-                    Image(uiImage: UIImage())
+                    Image(uiImage: ad.adImages[2] ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
                         .frame(width: 100, height: 100)
-                        .border(Color.black, width: 1)
+                        .border(Color.black, width: 3)
+                        .clipped()
                     
-                    Image(uiImage: UIImage())
+                    Image(uiImage: ad.adImages[3] ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
                         .frame(width: 100, height: 100)
-                        .border(Color.black, width: 1)
+                        .border(Color.black, width: 3)
+                        .clipped()
                     
-                    Image(uiImage: UIImage())
+                    Image(uiImage: ad.adImages[4] ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
                         .frame(width: 100, height: 100)
-                        .border(Color.black, width: 1)
+                        .border(Color.black, width: 3)
+                        .clipped()
                     
                 }.offset(x: 0, y: 0)
+                
+                HStack{
+                    Image(uiImage: ad.adImages[5] ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .border(Color.black, width: 3)
+                        .clipped()
+                }.offset(x: -80, y: 110)
                 
                 
                 
@@ -97,18 +120,18 @@ struct SellPageView_Previews: PreviewProvider {
 }
 
 struct ImagePick: UIViewControllerRepresentable{
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    @Binding var isPresented: Bool
-    
     public typealias UIViewControllerType = ImagePickerController
+    
+    @Binding var isPresented: Bool
+    @Binding var ad: AuctionSaleViewModel
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(self)
     }
     
     func makeUIViewController(context: Context) -> ImagePickerController {
+        
         let imagePicker = ImagePickerController()
 
         imagePicker.settings.selection.max = 6
@@ -116,54 +139,86 @@ struct ImagePick: UIViewControllerRepresentable{
         imagePicker.settings.selection.unselectOnReachingMax = false
         
         imagePicker.imagePickerDelegate = context.coordinator
+        
         return imagePicker
     }
     
 
     class Coordinator: NSObject, ImagePickerControllerDelegate, UINavigationControllerDelegate{
         
-        private let parent: ImagePick
+        //@Binding var ad: AuctionSaleViewModel
+        let parent: ImagePick
+        public var adImages = [UIImage]()
         
         public init(_ parent: ImagePick) {
             self.parent = parent
-        }
 
+
+        }
+        
         func imagePicker(_ imagePicker: ImagePickerController, didSelectAsset asset: PHAsset) {
             
-
-            
-            print (asset.burstIdentifier as Any)
-            
-            PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: nil) { (image, info) in
-                print ("Selected")
-            }
+            print ("Asset Selected")
             
         }
 
         func imagePicker(_ imagePicker: ImagePickerController, didDeselectAsset asset: PHAsset) {
-            print ("Selected")
+            print ("Asset Deselected")
 
         }
 
         func imagePicker(_ imagePicker: ImagePickerController, didFinishWithAssets assets: [PHAsset]) {
-            print ("Selected")
+            
+            var counter = 0
+            
+            self.parent.ad.adImages = [UIImage?](repeating: nil, count: 6)
+            
+            for asset in assets{
+                
+                self.parent.ad.adImages[counter] = phAssetToImageConverter(asset: asset) ?? UIImage()
+                
+                counter += 1
+                
+            }
+            
+            self.parent.isPresented = false
 
         }
 
         func imagePicker(_ imagePicker: ImagePickerController, didCancelWithAssets assets: [PHAsset]) {
+            
+            print ("Session Cancelled")
 
         }
 
         func imagePicker(_ imagePicker: ImagePickerController, didReachSelectionLimit count: Int) {
             
-            print ("too many here")
+            print ("Too much Selection Here")
 
+        }
+        
+        func phAssetToImageConverter(asset: PHAsset) -> UIImage?{
+            
+            let manager = PHImageManager.default()
+            var imageOutput = UIImage()
+            
+            manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: nil) { (image, info) in
+                imageOutput = image ?? UIImage()
+            }
+            
+            return imageOutput
+    
         }
     }
         
     func updateUIViewController(_ uiViewController: ImagePick.UIViewControllerType, context: UIViewControllerRepresentableContext<ImagePick>) {
+
         
     }
     
 }
+
+
+
+
 

@@ -14,9 +14,9 @@ struct AuctionSale: View{
 
     var body: some View {
         HStack {
-            sale.adImage
+            Image(uiImage: sale.adImages[0]!)
                 .resizable()
-                .frame(width: 170, height: 120)
+                .frame(width: 170, height: 120) as! Image
             VStack(spacing: 5){
                 Text(sale.adName).bold()
                     
