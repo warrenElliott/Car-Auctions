@@ -46,15 +46,16 @@ struct SellPageView: View{
                                      
                     Image(uiImage: ad.adImages[0] ?? UIImage())
                         .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
+                        .scaledToFill()
+                        .frame(width: 100, height: 100, alignment: .center)
                         .border(Color.black, width: 3)
                         .clipped()
+                        
 
                     
                     Image(uiImage: ad.adImages[1] ?? UIImage())
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(width: 100, height: 100)
                         .border(Color.black, width: 3)
                         .clipped()
@@ -65,21 +66,21 @@ struct SellPageView: View{
                     
                     Image(uiImage: ad.adImages[2] ?? UIImage())
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(width: 100, height: 100)
                         .border(Color.black, width: 3)
                         .clipped()
                     
                     Image(uiImage: ad.adImages[3] ?? UIImage())
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(width: 100, height: 100)
                         .border(Color.black, width: 3)
                         .clipped()
                     
                     Image(uiImage: ad.adImages[4] ?? UIImage())
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(width: 100, height: 100)
                         .border(Color.black, width: 3)
                         .clipped()
@@ -89,7 +90,7 @@ struct SellPageView: View{
                 HStack{
                     Image(uiImage: ad.adImages[5] ?? UIImage())
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(width: 100, height: 100)
                         .border(Color.black, width: 3)
                         .clipped()
@@ -202,10 +203,17 @@ struct ImagePick: UIViewControllerRepresentable{
             let manager = PHImageManager.default()
             var imageOutput = UIImage()
             
-            manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: nil) { (image, info) in
+            let options = PHImageRequestOptions()
+            options.isSynchronous = true
+
+            
+            manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: options) { (image, info) in
                 imageOutput = image ?? UIImage()
             }
             
+            
+            
+            print (imageOutput)
             return imageOutput
     
         }
