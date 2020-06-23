@@ -18,18 +18,25 @@ struct SellPageView: View{
     @State var ad = AuctionSaleViewModel(adId: "", adName: "", adDescription: "", adBid: "", adTimeRemaining: "", adAuthor: "", adLocation: "", adImages: [UIImage?](repeating: nil, count: 6))
     
     var body: some View {
-        
+
         NavigationView{
+            
             ZStack{
                 Color(red: 0.11, green: 0.82, blue: 0.63, opacity: 1.00).edgesIgnoringSafeArea(.all)
-                Text("List your car for Auction Sale Here")
-                    .offset(x: 0, y: -250)
-                Text ("1. Select up to 6 images")
-                    .offset(x: -80, y: -200)
-
-                HStack{
+                
+                VStack(alignment: .center){
                     
-                    Image(uiImage: UIImage())
+                    Text("List your car for Auction Sale Here")
+                        .padding(10)
+                        .frame(width: 350, alignment: .center)
+                    
+                    
+                    Text ("1. Select up to 6 images")
+                        .frame(width: 350, alignment: .leading)
+                    
+                    HStack(){
+                        
+                        Image(uiImage: UIImage())
                         Button(action: {
                             self.isShowingImagePicker.toggle()
                             print (self.ad)
@@ -41,73 +48,82 @@ struct SellPageView: View{
                             .sheet(isPresented: $isShowingImagePicker, content: {
                                 ImagePick(isPresented: self.$isShowingImagePicker, ad: self.$ad)
                             })
-                    .frame(width: 100, height: 100)
-                    .border(Color.black, width: 1)
-                                     
-                    Image(uiImage: ad.adImages[0] ?? UIImage())
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100, alignment: .center)
-                        .border(Color.black, width: 3)
-                        .clipped()
+                            .frame(width: 110, height: 110)
+                            .border(Color.black, width: 3)
                         
-
+                        Image(uiImage: ad.adImages[0] ?? UIImage())
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 110, height: 110)
+                            .border(Color.black, width: 3)
+                            .clipped()
+                        
+                        Image(uiImage: ad.adImages[1] ?? UIImage())
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 110, height: 110)
+                            .border(Color.black, width: 3)
+                            .clipped()
+                    }.offset(x: -4, y: 0)
                     
-                    Image(uiImage: ad.adImages[1] ?? UIImage())
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)
-                        .border(Color.black, width: 3)
-                        .clipped()
+                    HStack{
+                        
+                        Image(uiImage: ad.adImages[2] ?? UIImage())
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 110, height: 110)
+                            .border(Color.black, width: 3)
+                            .clipped()
+                        
+                        Image(uiImage: ad.adImages[3] ?? UIImage())
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 110, height: 110)
+                            .border(Color.black, width: 3)
+                            .clipped()
+                        
+                        Image(uiImage: ad.adImages[4] ?? UIImage())
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 110, height: 110)
+                            .border(Color.black, width: 3)
+                            .clipped()
+                        
+                    }
                     
-                }.offset(x: -4, y: -110)
-                
-                HStack{
+                    HStack{
+                        Image(uiImage: ad.adImages[5] ?? UIImage())
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 110, height: 110, alignment: .leading)
+                            .border(Color.black, width: 3)
+                            .clipped()
+                    }.frame(width: 345, alignment: .leading)
                     
-                    Image(uiImage: ad.adImages[2] ?? UIImage())
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)
-                        .border(Color.black, width: 3)
-                        .clipped()
+                    Text ("2. Your ad title").padding(.top)
+                        .frame(width: 350, alignment: .leading)
                     
-                    Image(uiImage: ad.adImages[3] ?? UIImage())
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)
-                        .border(Color.black, width: 3)
-                        .clipped()
+                    TextField("Enter an Ad Title", text: $ad.adName)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .frame(width: 370, height: nil)
+                        .cornerRadius(10)
+                        .overlay(RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 3))
                     
-                    Image(uiImage: ad.adImages[4] ?? UIImage())
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)
-                        .border(Color.black, width: 3)
-                        .clipped()
                     
-                }.offset(x: 0, y: 0)
-                
-                HStack{
-                    Image(uiImage: ad.adImages[5] ?? UIImage())
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)
-                        .border(Color.black, width: 3)
-                        .clipped()
-                }.offset(x: -80, y: 110)
-                
-                
-                
-            }.navigationBarTitle("Sell", displayMode: .inline)
-                .navigationBarHidden(false)
-                .background(NavigationConfigurator { nc in
-                    nc.navigationBar.barTintColor = UIColor(red: 0.11, green: 0.82, blue: 0.63, alpha: 1.00)
-                    nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white,  NSAttributedString.Key.font: UIFont(name: "Arial", size: 30)!]
-                })
+                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+    
+                }.navigationBarTitle("Sell", displayMode: .inline)
+                    .navigationBarHidden(false)
+                    .background(NavigationConfigurator { nc in
+                        nc.navigationBar.barTintColor = UIColor(red: 0.11, green: 0.82, blue: 0.63, alpha: 1.00)
+                        nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white,  NSAttributedString.Key.font: UIFont(name: "Arial", size: 30)!]
+                    })
         }.navigationViewStyle(StackNavigationViewStyle())
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+      
         
     }
 
