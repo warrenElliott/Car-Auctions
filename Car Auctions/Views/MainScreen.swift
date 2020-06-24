@@ -12,7 +12,7 @@ struct MainScreen: View{
        
     var body: some View {
         
-        NavigationView{
+       NavigationView{
             ZStack{
                 Color(red: 0.11, green: 0.82, blue: 0.63, opacity: 1.00).edgesIgnoringSafeArea(.all)
                 Text("Browse auctions ending today")
@@ -23,12 +23,13 @@ struct MainScreen: View{
                 nc.navigationBar.barTintColor = UIColor(red: 0.11, green: 0.82, blue: 0.63, alpha: 1.00)
                 nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white,  NSAttributedString.Key.font: UIFont(name: "Arial", size: 30)!]
             })
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        
     }
+        
     
 }
 

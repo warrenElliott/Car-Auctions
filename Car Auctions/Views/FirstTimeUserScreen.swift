@@ -5,7 +5,6 @@
 //  Created by Warren Elliott on 17/06/2020.
 //  Copyright © 2020 Warren Elliott. All rights reserved.
 //
-
 import SwiftUI
 import Firebase
 
@@ -56,7 +55,7 @@ struct ContentView: View {
                     NavigationLink(destination: TabBarView(), isActive: self.$isActive) {
                         Text("")
                     }.navigationBarTitle("")
-                    .navigationBarHidden(true)
+                    .navigationBarHidden(false)
                     .navigationBarBackButtonHidden(true)
                     
                     Button(action: {

@@ -131,9 +131,9 @@
 			isa = PBXGroup;
 			children = (
 				80330A6E249A21C40074E23E /* FirstTimeUserScreen.swift */,
+				809D1991249CC78700D3D0AE /* TabBarView.swift */,
 				80483498249B612D005CACAF /* MainScreen.swift */,
 				8048349A249B8D27005CACAF /* AuctionSale.swift */,
-				809D1991249CC78700D3D0AE /* TabBarView.swift */,
 				80E0C030249E186100559261 /* SellPageView.swift */,
 			);
 			path = Views;
