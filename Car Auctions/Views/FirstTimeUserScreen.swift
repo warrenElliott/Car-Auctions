@@ -54,9 +54,11 @@ struct ContentView: View {
                     
                     NavigationLink(destination: TabBarView(), isActive: self.$isActive) {
                         Text("")
+        
                     }.navigationBarTitle("")
-                    .navigationBarHidden(false)
+                    .navigationBarHidden(true)
                     .navigationBarBackButtonHidden(true)
+
                     
                     Button(action: {
                         self.registerUser(email: self.userEmail, password: self.userPassword);

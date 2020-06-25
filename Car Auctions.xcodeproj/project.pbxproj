@@ -20,6 +20,7 @@
 		804834A0249B938B005CACAF /* SaleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349F249B938B005CACAF /* SaleData.swift */; };
 		804834A3249BB34A005CACAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 804834A2249BB34A005CACAF /* GoogleService-Info.plist */; };
 		809D1992249CC78700D3D0AE /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D1991249CC78700D3D0AE /* TabBarView.swift */; };
+		80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA162B24A3AA1900E258E3 /* SearchPageView.swift */; };
 		80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */; };
 		80E0C031249E186100559261 /* SellPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C030249E186100559261 /* SellPageView.swift */; };
 /* End PBXBuildFile section */
@@ -41,6 +42,7 @@
 		8048349F249B938B005CACAF /* SaleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleData.swift; sourceTree = "<group>"; };
 		804834A2249BB34A005CACAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		809D1991249CC78700D3D0AE /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		80AA162B24A3AA1900E258E3 /* SearchPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageView.swift; sourceTree = "<group>"; };
 		80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTimeRemaining.swift; sourceTree = "<group>"; };
 		80E0C030249E186100559261 /* SellPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellPageView.swift; sourceTree = "<group>"; };
 		9E38021D614B17E05567C4AD /* Pods-Car Auctions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car Auctions.release.xcconfig"; path = "Target Support Files/Pods-Car Auctions/Pods-Car Auctions.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				80483498249B612D005CACAF /* MainScreen.swift */,
 				8048349A249B8D27005CACAF /* AuctionSale.swift */,
 				80E0C030249E186100559261 /* SellPageView.swift */,
+				80AA162B24A3AA1900E258E3 /* SearchPageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				80330A6D249A21C40074E23E /* SceneDelegate.swift in Sources */,
 				804834A0249B938B005CACAF /* SaleData.swift in Sources */,
 				80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */,
+				80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */,
 				8048349E249B8F41005CACAF /* AuctionSaleViewModel.swift in Sources */,
 				8048349B249B8D27005CACAF /* AuctionSale.swift in Sources */,
 				80330A6F249A21C40074E23E /* FirstTimeUserScreen.swift in Sources */,
