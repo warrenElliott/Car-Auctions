@@ -14,9 +14,11 @@ struct AuctionSaleViewModel{
     var adName: String
     var adDescription: String
     var adBid: String
-    var adTimeRemaining: String
+    var adEnding: String
     var adAuthor: String
     var adLocation: String
     var adImages: [UIImage?]
+    var datePosted: Date
+    var isDraft: Bool
     
 }

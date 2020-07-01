@@ -20,7 +20,7 @@ struct AuctionSale: View{
             VStack(spacing: 5){
                 Text(sale.adName).bold()
                     
-                Text(sale.adTimeRemaining)
+                Text("3 days, 4.32.16")
                 Text("Bidding at: £" + sale.adBid)
             }.offset(x: 0, y: 0)
             
