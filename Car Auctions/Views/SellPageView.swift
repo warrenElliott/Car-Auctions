@@ -10,11 +10,12 @@ import SwiftUI
 import UIKit
 import BSImagePicker
 import Photos
+import Firebase
 
 struct SellPageView: View{
     
     @State var isShowingImagePicker = false
-    @State var ad = AuctionSaleViewModel(adId: "", adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: "", adLocation: "", adImages: [], datePosted: Date(), isDraft: false)
+    @State var ad = AuctionSaleViewModel(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], datePosted: "", isDraft: true)
     @State var isEditing = false
     @State var counter = 6
     @State var dateForAd = Date()
@@ -36,15 +37,7 @@ struct SellPageView: View{
         return formatter
     }
     
-    static func converter(_ dateString:String) -> Date{
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        let updatedAt = dateFormatter.date(from: dateString)!
-        
-        return updatedAt
+    func uploadImage(){
         
     }
     
@@ -192,11 +185,11 @@ struct SellPageView: View{
                         VStack{
                             
                             Button(action: {
-                                self.ad.adEnding = self.dateFormatterISO
-                                print (self.ad.adEnding)
-                                print (SellPageView.converter(self.ad.adEnding))
+                                
+                                self.ad.adEnding = TimeManager().dateToIsoString(self.dateForAd)
+
                                 }) {
-                                Text("Publish")
+                                Text("Preview Ad")
                                 .frame(width: 300, alignment: .center)
                                 .padding()
                                 .foregroundColor(.white)
@@ -208,23 +201,38 @@ struct SellPageView: View{
                                 }) {
                                 Text("Delete")
                                     .alert(isPresented: $showAlert, content: {
-                                        Alert(title: Text("Permanently Delete Add?"), message: Text( "This action cannot be undone"), primaryButton: .default(Text("Got it!")), secondaryButton: .cancel())
+                                        Alert(title: Text("Permanently Delete Add?"), message: Text( "This action cannot be undone"), primaryButton: .default(Text("Got it!")){
+                                            
+                                            self.ad = AuctionSaleViewModel(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], datePosted: "", isDraft: true)
+                                            
+                                            self.dateForAd = Date()
+                                            
+                                            }, secondaryButton: .cancel())
+                                        
                                     })
+                                    
                                 .frame(width: 300, alignment: .center)
                                 .padding()
                                 .foregroundColor(.white)
                                 .background(Color.red)
+                                    
                             }
                             
                             Button(action: {
-                                print(self.ad.adEnding)
+
+                                self.ad.adEnding = self.dateFormatterISO
+                                AdManager().uploadAd(self.ad)
+                                
                                 }) {
+                                    
                                 Text("Save to Drafts")
                                 .frame(width: 300, alignment: .center)
                                 .padding()
                                 .foregroundColor(.white)
                                 .background(Color.yellow)
+                                    
                             }.padding(.top)
+                            
                         }.padding()
 
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -239,13 +247,7 @@ struct SellPageView: View{
     }
 }
 
-//MARK
-
-
-
-
-
-
+//MARK ----------------------------------------------------------------------------------------------------------
 
 
 

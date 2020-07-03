@@ -1,0 +1,6 @@
+framework module Pods_Car_Auctions {
+  umbrella header "Pods-Car Auctions-umbrella.h"
+
+  export *
+  module * { export * }
+}

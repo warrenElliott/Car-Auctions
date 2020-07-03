@@ -7,6 +7,7 @@
 //
 import SwiftUI
 import Firebase
+import FirebaseFirestore
 
 struct ContentView: View {
     
@@ -62,6 +63,7 @@ struct ContentView: View {
                     
                     Button(action: {
                         self.registerUser(email: self.userEmail, password: self.userPassword);
+                        StoreUserDetails.save(self.userEmail, self.userPassword)
                     }) {
                         Text("Register")
                             .foregroundColor(Color.white)
@@ -70,7 +72,10 @@ struct ContentView: View {
                             .cornerRadius(15)
                     }
 
-                    Button(action: {self.signInUser(email: self.userEmail, password: self.userPassword);}) {
+                    Button(action: {
+                        self.signInUser(email: self.userEmail, password: self.userPassword);
+                        StoreUserDetails.save(self.userEmail, self.userPassword)
+                    }) {
                         Text("Sign In")
                             .foregroundColor(Color.white)
                             .frame(width: 100, height: 40)

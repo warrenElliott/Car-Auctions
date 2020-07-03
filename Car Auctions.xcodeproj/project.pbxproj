@@ -14,6 +14,9 @@
 		80330A71249A21C70074E23E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80330A70249A21C70074E23E /* Assets.xcassets */; };
 		80330A74249A21C70074E23E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80330A73249A21C70074E23E /* Preview Assets.xcassets */; };
 		80330A77249A21C70074E23E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80330A75249A21C70074E23E /* LaunchScreen.storyboard */; };
+		804451EF24ADF7D000CFFEB4 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804451EE24ADF7D000CFFEB4 /* TimeManager.swift */; };
+		804451F124AE829300CFFEB4 /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804451F024AE829300CFFEB4 /* AdManager.swift */; };
+		804451F324AF25FD00CFFEB4 /* StoreUserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804451F224AF25FD00CFFEB4 /* StoreUserDetails.swift */; };
 		80483499249B612D005CACAF /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80483498249B612D005CACAF /* MainScreen.swift */; };
 		8048349B249B8D27005CACAF /* AuctionSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349A249B8D27005CACAF /* AuctionSale.swift */; };
 		8048349E249B8F41005CACAF /* AuctionSaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */; };
@@ -36,6 +39,9 @@
 		80330A73249A21C70074E23E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		80330A76249A21C70074E23E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80330A78249A21C70074E23E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		804451EE24ADF7D000CFFEB4 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
+		804451F024AE829300CFFEB4 /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
+		804451F224AF25FD00CFFEB4 /* StoreUserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreUserDetails.swift; sourceTree = "<group>"; };
 		80483498249B612D005CACAF /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		8048349A249B8D27005CACAF /* AuctionSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionSale.swift; sourceTree = "<group>"; };
 		8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionSaleViewModel.swift; sourceTree = "<group>"; };
@@ -122,9 +128,12 @@
 		8048349C249B8F30005CACAF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */,
 				8048349F249B938B005CACAF /* SaleData.swift */,
+				8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */,
 				80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */,
+				804451EE24ADF7D000CFFEB4 /* TimeManager.swift */,
+				804451F024AE829300CFFEB4 /* AdManager.swift */,
+				804451F224AF25FD00CFFEB4 /* StoreUserDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -261,9 +270,12 @@
 				80483499249B612D005CACAF /* MainScreen.swift in Sources */,
 				80E0C031249E186100559261 /* SellPageView.swift in Sources */,
 				80330A6B249A21C40074E23E /* AppDelegate.swift in Sources */,
+				804451F124AE829300CFFEB4 /* AdManager.swift in Sources */,
 				809D1992249CC78700D3D0AE /* TabBarView.swift in Sources */,
 				80330A6D249A21C40074E23E /* SceneDelegate.swift in Sources */,
 				804834A0249B938B005CACAF /* SaleData.swift in Sources */,
+				804451F324AF25FD00CFFEB4 /* StoreUserDetails.swift in Sources */,
+				804451EF24ADF7D000CFFEB4 /* TimeManager.swift in Sources */,
 				80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */,
 				80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */,
 				8048349E249B8F41005CACAF /* AuctionSaleViewModel.swift in Sources */,
