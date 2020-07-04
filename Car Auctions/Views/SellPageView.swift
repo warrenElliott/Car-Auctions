@@ -15,11 +15,12 @@ import Firebase
 struct SellPageView: View{
     
     @State var isShowingImagePicker = false
-    @State var ad = AuctionSaleViewModel(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], datePosted: "", isDraft: true)
+    @State var ad = AuctionSaleViewModel(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], datePosted: "", isDraft: true)
     @State var isEditing = false
     @State var counter = 6
     @State var dateForAd = Date()
     @State var showAlert = false
+    @State private var previewActive: Bool = false
     
     var dateFormatterISO: String {
         let formatter = DateFormatter()
@@ -43,8 +44,10 @@ struct SellPageView: View{
     
     var body: some View {
         
+        NavigationView{
+        
         ZStack{
-            Color(red: 0.11, green: 0.82, blue: 0.63, opacity: 1.00).edgesIgnoringSafeArea(.all)
+            Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
             
             VStack{
                 Text("Sell Your Car")
@@ -58,6 +61,7 @@ struct SellPageView: View{
                     
             
                 ScrollView{
+                    
                     
                     VStack(alignment: .center){
                         
@@ -184,9 +188,14 @@ struct SellPageView: View{
                         
                         VStack{
                             
+                            NavigationLink(destination: AdDetailView(adPreview: self.$ad), isActive: self.$previewActive) {
+                                Text("")
+                            }                            
+                            
                             Button(action: {
                                 
                                 self.ad.adEnding = TimeManager().dateToIsoString(self.dateForAd)
+                                self.previewActive = true
 
                                 }) {
                                 Text("Preview Ad")
@@ -214,7 +223,7 @@ struct SellPageView: View{
                                 .frame(width: 300, alignment: .center)
                                 .padding()
                                 .foregroundColor(.white)
-                                .background(Color.red)
+                                    .background(Color(red: 0.96, green: 0.25, blue: 0.42, opacity: 1.0))
                                     
                             }
                             
@@ -229,7 +238,7 @@ struct SellPageView: View{
                                 .frame(width: 300, alignment: .center)
                                 .padding()
                                 .foregroundColor(.white)
-                                .background(Color.yellow)
+                                    .background(Colours().grey)
                                     
                             }.padding(.top)
                             
@@ -245,18 +254,10 @@ struct SellPageView: View{
         .navigationBarHidden(true)
         
     }
+    }
 }
 
 //MARK ----------------------------------------------------------------------------------------------------------
-
-
-
-
-struct SellPageView_Previews: PreviewProvider {
-    static var previews: some View {
-        SellPageView()
-    }
-}
 
 struct ImagePick: UIViewControllerRepresentable{
 
@@ -412,5 +413,8 @@ struct TextView: UIViewRepresentable {
 }
 
 
-
-
+struct SellPageView_Previews: PreviewProvider {
+    static var previews: some View {
+        SellPageView()
+    }
+}

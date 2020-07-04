@@ -22,6 +22,8 @@
 		8048349E249B8F41005CACAF /* AuctionSaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */; };
 		804834A0249B938B005CACAF /* SaleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349F249B938B005CACAF /* SaleData.swift */; };
 		804834A3249BB34A005CACAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 804834A2249BB34A005CACAF /* GoogleService-Info.plist */; };
+		8095A6EB24AF5CFB00DD59BE /* AdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */; };
+		8095A6ED24B081C000DD59BE /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095A6EC24B081C000DD59BE /* Colours.swift */; };
 		809D1992249CC78700D3D0AE /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D1991249CC78700D3D0AE /* TabBarView.swift */; };
 		80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA162B24A3AA1900E258E3 /* SearchPageView.swift */; };
 		80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */; };
@@ -47,6 +49,8 @@
 		8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionSaleViewModel.swift; sourceTree = "<group>"; };
 		8048349F249B938B005CACAF /* SaleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleData.swift; sourceTree = "<group>"; };
 		804834A2249BB34A005CACAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDetailView.swift; sourceTree = "<group>"; };
+		8095A6EC24B081C000DD59BE /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		809D1991249CC78700D3D0AE /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		80AA162B24A3AA1900E258E3 /* SearchPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageView.swift; sourceTree = "<group>"; };
 		80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTimeRemaining.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 				804451EE24ADF7D000CFFEB4 /* TimeManager.swift */,
 				804451F024AE829300CFFEB4 /* AdManager.swift */,
 				804451F224AF25FD00CFFEB4 /* StoreUserDetails.swift */,
+				8095A6EC24B081C000DD59BE /* Colours.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				8048349A249B8D27005CACAF /* AuctionSale.swift */,
 				80E0C030249E186100559261 /* SellPageView.swift */,
 				80AA162B24A3AA1900E258E3 /* SearchPageView.swift */,
+				8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,6 +280,7 @@
 				809D1992249CC78700D3D0AE /* TabBarView.swift in Sources */,
 				80330A6D249A21C40074E23E /* SceneDelegate.swift in Sources */,
 				804834A0249B938B005CACAF /* SaleData.swift in Sources */,
+				8095A6EB24AF5CFB00DD59BE /* AdDetailView.swift in Sources */,
 				804451F324AF25FD00CFFEB4 /* StoreUserDetails.swift in Sources */,
 				804451EF24ADF7D000CFFEB4 /* TimeManager.swift in Sources */,
 				80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */,
@@ -281,6 +288,7 @@
 				8048349E249B8F41005CACAF /* AuctionSaleViewModel.swift in Sources */,
 				8048349B249B8D27005CACAF /* AuctionSale.swift in Sources */,
 				80330A6F249A21C40074E23E /* FirstTimeUserScreen.swift in Sources */,
+				8095A6ED24B081C000DD59BE /* Colours.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
