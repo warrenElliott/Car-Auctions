@@ -19,9 +19,10 @@
 		804451F324AF25FD00CFFEB4 /* StoreUserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804451F224AF25FD00CFFEB4 /* StoreUserDetails.swift */; };
 		80483499249B612D005CACAF /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80483498249B612D005CACAF /* MainScreen.swift */; };
 		8048349B249B8D27005CACAF /* AuctionSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349A249B8D27005CACAF /* AuctionSale.swift */; };
-		8048349E249B8F41005CACAF /* AuctionSaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */; };
+		8048349E249B8F41005CACAF /* AuctionSaleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349D249B8F41005CACAF /* AuctionSaleData.swift */; };
 		804834A0249B938B005CACAF /* SaleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349F249B938B005CACAF /* SaleData.swift */; };
 		804834A3249BB34A005CACAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 804834A2249BB34A005CACAF /* GoogleService-Info.plist */; };
+		804B19DB24B4B1B200EA8ED7 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804B19DA24B4B1B200EA8ED7 /* PagingView.swift */; };
 		8095A6EB24AF5CFB00DD59BE /* AdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */; };
 		8095A6ED24B081C000DD59BE /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095A6EC24B081C000DD59BE /* Colours.swift */; };
 		809D1992249CC78700D3D0AE /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D1991249CC78700D3D0AE /* TabBarView.swift */; };
@@ -46,9 +47,10 @@
 		804451F224AF25FD00CFFEB4 /* StoreUserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreUserDetails.swift; sourceTree = "<group>"; };
 		80483498249B612D005CACAF /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		8048349A249B8D27005CACAF /* AuctionSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionSale.swift; sourceTree = "<group>"; };
-		8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionSaleViewModel.swift; sourceTree = "<group>"; };
+		8048349D249B8F41005CACAF /* AuctionSaleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuctionSaleData.swift; sourceTree = "<group>"; };
 		8048349F249B938B005CACAF /* SaleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleData.swift; sourceTree = "<group>"; };
 		804834A2249BB34A005CACAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		804B19DA24B4B1B200EA8ED7 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDetailView.swift; sourceTree = "<group>"; };
 		8095A6EC24B081C000DD59BE /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		809D1991249CC78700D3D0AE /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -133,7 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				8048349F249B938B005CACAF /* SaleData.swift */,
-				8048349D249B8F41005CACAF /* AuctionSaleViewModel.swift */,
+				8048349D249B8F41005CACAF /* AuctionSaleData.swift */,
 				80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */,
 				804451EE24ADF7D000CFFEB4 /* TimeManager.swift */,
 				804451F024AE829300CFFEB4 /* AdManager.swift */,
@@ -150,9 +152,10 @@
 				809D1991249CC78700D3D0AE /* TabBarView.swift */,
 				80483498249B612D005CACAF /* MainScreen.swift */,
 				8048349A249B8D27005CACAF /* AuctionSale.swift */,
-				80E0C030249E186100559261 /* SellPageView.swift */,
 				80AA162B24A3AA1900E258E3 /* SearchPageView.swift */,
+				80E0C030249E186100559261 /* SellPageView.swift */,
 				8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */,
+				804B19DA24B4B1B200EA8ED7 /* PagingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,10 +285,11 @@
 				804834A0249B938B005CACAF /* SaleData.swift in Sources */,
 				8095A6EB24AF5CFB00DD59BE /* AdDetailView.swift in Sources */,
 				804451F324AF25FD00CFFEB4 /* StoreUserDetails.swift in Sources */,
+				804B19DB24B4B1B200EA8ED7 /* PagingView.swift in Sources */,
 				804451EF24ADF7D000CFFEB4 /* TimeManager.swift in Sources */,
 				80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */,
 				80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */,
-				8048349E249B8F41005CACAF /* AuctionSaleViewModel.swift in Sources */,
+				8048349E249B8F41005CACAF /* AuctionSaleData.swift in Sources */,
 				8048349B249B8D27005CACAF /* AuctionSale.swift in Sources */,
 				80330A6F249A21C40074E23E /* FirstTimeUserScreen.swift in Sources */,
 				8095A6ED24B081C000DD59BE /* Colours.swift in Sources */,

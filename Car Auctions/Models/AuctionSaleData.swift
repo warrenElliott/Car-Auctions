@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AuctionSaleViewModel{
+struct AuctionSaleData{
     
     var adId: String
     var adName: String
@@ -20,5 +20,6 @@ struct AuctionSaleViewModel{
     var adImages: [UIImage?]
     var datePosted: String
     var isDraft: Bool
+    var bidCount: Int
     
 }

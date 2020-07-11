@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AuctionSale: View{
     
-    var sale: AuctionSaleViewModel
+    var sale: AuctionSaleData
 
     var body: some View {
         HStack {

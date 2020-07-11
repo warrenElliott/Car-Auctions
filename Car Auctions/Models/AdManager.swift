@@ -14,11 +14,14 @@ class AdManager{
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
-    func uploadAd(_ ad: AuctionSaleViewModel){
+    func uploadDatabaseDestination(_ draft: Bool) -> String{
         
-        let adImagesStorage = self.storage.reference()
-        let adImageRef = adImagesStorage.child("UserUploadedImagesDraft/adImages \(UUID().uuidString)")
-        let detailsReference = self.db.collection("AllUserAds").document("adNo__\(ad.adId)")
+        let destination = (draft ? "DraftsDatabase" : "LiveDatabase")
+        return destination
+        
+    }
+    
+    func uploadAd(_ ad: AuctionSaleData){
         
         let detailsData = [
             "adID" : ad.adId,
@@ -28,8 +31,13 @@ class AdManager{
             "adBid" : ad.adBid,
             "adEnding" : ad.adEnding,
             "adPosted" : ad.datePosted,
-            "isDraft" : ad.isDraft
+            "isDraft" : ad.isDraft,
+            "bidCount" : ad.bidCount
             ] as [String : Any]
+        
+        let adImagesStorage = self.storage.reference()
+        let adImageRef = adImagesStorage.child("UserUploadedImagesDraft/adImages \(UUID().uuidString)")
+        let detailsReference = self.db.collection(uploadDatabaseDestination(ad.isDraft)).document("adNo__\(ad.adId)")
         
         detailsReference.setData(detailsData, completion: { (error) in
             if let err = error{
@@ -60,7 +68,7 @@ class AdManager{
                             }
                             
                             let urlString = url.absoluteString
-                            let dataReference = self.db.collection("AllUserAds").document("adNo__\(ad.adId)").collection("AdImages").document()
+                            let dataReference = self.db.collection(self.uploadDatabaseDestination(ad.isDraft)).document("adNo__\(ad.adId)").collection("AdImages").document()
                             let documentUID = dataReference.documentID
                             let data = ["UID": documentUID, "URL": urlString]
                             

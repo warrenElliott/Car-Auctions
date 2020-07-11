@@ -15,7 +15,7 @@ import Firebase
 struct SellPageView: View{
     
     @State var isShowingImagePicker = false
-    @State var ad = AuctionSaleViewModel(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], datePosted: "", isDraft: true)
+    @State var ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], datePosted: "", isDraft: true, bidCount: 0)
     @State var isEditing = false
     @State var counter = 6
     @State var dateForAd = Date()
@@ -121,7 +121,7 @@ struct SellPageView: View{
 
                             }
                         
-                        Text ("2. Your ad title").padding(.top)
+                        Text ("2. Your ad title*").padding(.top)
                             .frame(width: 350, alignment: .leading)
                         
                         TextField("Enter an Ad Title", text: $ad.adName)
@@ -162,7 +162,7 @@ struct SellPageView: View{
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     
                     VStack{
-                        Text ("5. Your Ad Location")
+                        Text ("5. Your Ad Location*")
                             .padding(.top)
                             .frame(width: 350, alignment: .leading)
                         
@@ -212,7 +212,7 @@ struct SellPageView: View{
                                     .alert(isPresented: $showAlert, content: {
                                         Alert(title: Text("Permanently Delete Add?"), message: Text( "This action cannot be undone"), primaryButton: .default(Text("Got it!")){
                                             
-                                            self.ad = AuctionSaleViewModel(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], datePosted: "", isDraft: true)
+                                            self.ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], datePosted: "", isDraft: true, bidCount: 0)
                                             
                                             self.dateForAd = Date()
                                             
@@ -253,7 +253,7 @@ struct SellPageView: View{
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
         
-    }
+        }
     }
 }
 
@@ -264,7 +264,7 @@ struct ImagePick: UIViewControllerRepresentable{
     public typealias UIViewControllerType = ImagePickerController
     
     @Binding var isPresented: Bool
-    @Binding var ad: AuctionSaleViewModel
+    @Binding var ad: AuctionSaleData
     @Binding var counter: Int
     
     
