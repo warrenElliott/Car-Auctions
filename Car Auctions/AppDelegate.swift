@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print (db)
         print(storage)
+        
+        GMSPlacesClient.provideAPIKey("AIzaSyDnm0pJJLiNu6g2v0WZiJBwwFkvgssmLfM")
+        
+        
         return true
     }
 

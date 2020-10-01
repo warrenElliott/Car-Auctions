@@ -11,6 +11,7 @@ import SwiftUI
 struct TabBarView: View {
     
     @State var selectedView = 1
+    @ObservedObject var loadContent = LoadContent()
     
     var body: some View {
         
@@ -19,7 +20,7 @@ struct TabBarView: View {
                 .tabItem {
                     Image(systemName: "car.fill")
                 }.tag(0)
-
+            
             SearchPageView()
                 .tabItem{
                     Image(systemName: "magnifyingglass.circle.fill")

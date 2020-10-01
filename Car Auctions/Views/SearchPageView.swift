@@ -11,12 +11,51 @@ import SwiftUI
 
 struct SearchPageView: View{
     
+    @State var searchText = ""
+    
     var body: some View {
         
         ZStack{
-            Color(red: 0.11, green: 0.82, blue: 0.63, opacity: 1.00).edgesIgnoringSafeArea(.all)
-            Text("Browse all auctions here")
-                .offset(x: 0, y: -250)
+            Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
+            
+            VStack{
+                 Text("Search")
+                     .font(.custom("Arial", size: 40))
+                     .bold()
+                     .foregroundColor(.white)
+                     .frame(width: 350, alignment: .bottomLeading)
+                     .padding(.top, 25)
+                     .padding(.bottom, -25)
+                 
+                 Divider()
+                
+                Text ("Search for a particular car: e.g Audi A3")
+                    .padding(.top)
+                
+                TextField("Search here", text: $searchText)
+                    .background(Color.clear)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .cornerRadius(10)
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.black, lineWidth: 3))
+                    .frame(width: 350, height: nil, alignment: .center)
+                    .padding()
+                
+                Button(action: {
+                    }) {
+                    Text("Search")
+                    .frame(width: 300, alignment: .center)
+                    .padding()
+                    .foregroundColor(.white)
+                        .background(Color(red: 0.96, green: 0.25, blue: 0.42, opacity: 1.0))
+                        
+                }
+                
+            
+
+                
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            
         }
         
     }

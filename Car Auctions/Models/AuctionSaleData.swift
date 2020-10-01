@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct AuctionSaleData{
-    
     var adId: String
     var adName: String
     var adDescription: String
     var adBid: String
-    var adEnding: String
+    var adEndingTime: String
+    var adEndingDate: String
     var adAuthor: String
     var adLocation: String
     var adImages: [UIImage?]

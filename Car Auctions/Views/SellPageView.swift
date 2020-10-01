@@ -11,24 +11,37 @@ import UIKit
 import BSImagePicker
 import Photos
 import Firebase
+import GooglePlaces
 
 struct SellPageView: View{
     
     @State var isShowingImagePicker = false
-    @State var ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], datePosted: "", isDraft: true, bidCount: 0)
+    @State var isShowingSuggestions = false
+    @State var ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], datePosted: "", isDraft: true, bidCount: 0) //blank ad struct where the ad will be stored before being placed on the database
     @State var isEditing = false
-    @State var counter = 6
-    @State var dateForAd = Date()
+    @State var counter = 6 //max images that can be uploaded
+    @State var dateForAd = Date() //gives today's date
     @State var showAlert = false
-    @State private var previewActive: Bool = false
+    @State private var previewActive: Bool = false //state for ad preview
     
-    var dateFormatterISO: String {
+    
+    var dateFormatter: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = TimeZone.current
         let output = formatter.string(from: dateForAd)
         return output
-    }
+    } //converts date to the selected format yyyy-mm-dd
+    
+    var timeFormatter: String{
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        formatter.timeZone = TimeZone.current
+        let output = formatter.string(from: dateForAd)
+        return output
+        
+    } //converts time to the selected format hhmmss
     
     var visualFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -36,18 +49,15 @@ struct SellPageView: View{
         formatter.timeStyle = .short
         formatter.timeZone = TimeZone.current
         return formatter
-    }
-    
-    func uploadImage(){
-        
-    }
+    } //how time remaining will be displayed
     
     var body: some View {
+        
         
         NavigationView{
         
         ZStack{
-            Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
+            Colours().paleSpringBud.edgesIgnoringSafeArea(.all)
             
             VStack{
                 Text("Sell Your Car")
@@ -74,13 +84,13 @@ struct SellPageView: View{
                             .frame(width: 350, alignment: .leading)
                         
                         ScrollView(.horizontal, showsIndicators: false){
-                            HStack(){
+                            HStack(){ //shows uploaded images
                                 Image(uiImage: UIImage())
                                 Button(action: {
                                     if self.ad.adImages.count < 6{
-                                        self.isShowingImagePicker.toggle()
+                                        self.isShowingImagePicker.toggle() //toggles the state of the image picker (true if showing)
                                     }else{
-                                        self.isShowingImagePicker = false
+                                        self.isShowingImagePicker = false //if the image count is greater than 5, don't allow to upload any more images
                                     }
                                 }, label: {Image(systemName: "plus")
                                     .resizable()
@@ -88,15 +98,15 @@ struct SellPageView: View{
                                     .foregroundColor(.white)
                                 })
                                     .sheet(isPresented: $isShowingImagePicker, content: {
-                                        ImagePick(isPresented: self.$isShowingImagePicker, ad: self.$ad, counter: self.$counter)
+                                        ImagePick(isPresented: self.$isShowingImagePicker, ad: self.$ad, counter: self.$counter) //shows image picker Cocoapod
                                     })
                                     .frame(width: 110, height: 110)
                                     .border(Color.black, width: 3)
                                 
                                 
-                                ForEach (ad.adImages.indices, id: \.self){ i in
+                                ForEach (ad.adImages.indices, id: \.self){ i in // 'i' points to each image
                                     
-                                    Image(uiImage: self.ad.adImages[i]!)
+                                    Image(uiImage: self.ad.adImages[i]!) //display uploaded images
                                         
                                         .resizable()
                                         .scaledToFill()
@@ -105,8 +115,8 @@ struct SellPageView: View{
                                         .clipped()
                                     .overlay(
                                         Button(action: {
-                                            self.ad.adImages.remove(at: i)
-                                            self.counter += 1
+                                            self.ad.adImages.remove(at: i) //remove where pointed
+                                            self.counter += 1 //when removed, increase the counter of pictures that can be uploaded by 1
                                         }, label: {
                                     Image(systemName: "minus.circle.fill")
                                     .resizable()
@@ -120,6 +130,8 @@ struct SellPageView: View{
                             }
 
                             }
+                        
+                        //form creator below
                         
                         Text ("2. Your ad title*").padding(.top)
                             .frame(width: 350, alignment: .leading)
@@ -135,7 +147,7 @@ struct SellPageView: View{
                         Text ("3. Your ad description").padding(.top)
                             .frame(width: 350, alignment: .leading)
                         
-                        TextView(text: $ad.adDescription)
+                        TextView(text: $ad.adDescription) //custom textbox with multiple lines
                             .frame(width: 370, height: 140)
                             .background(Color.white)
                             .cornerRadius(10)
@@ -162,11 +174,17 @@ struct SellPageView: View{
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     
                     VStack{
-                        Text ("5. Your Ad Location*")
+                        Text ("5. Your Ad Location")
                             .padding(.top)
                             .frame(width: 350, alignment: .leading)
-                        
+
                         TextField("Enter your ad location here", text: $ad.adLocation)
+                            .simultaneousGesture(TapGesture().onEnded {
+                                self.isShowingSuggestions.toggle()
+                            })
+                            .sheet(isPresented: $isShowingSuggestions, content: {
+                                PlacePicker(address: self.$ad.adLocation)
+                            }) //place picker powered by Google API
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 370, height: nil)
                             .background(Color.white)
@@ -181,7 +199,6 @@ struct SellPageView: View{
                         DatePicker("", selection: $dateForAd, in: Date()..., displayedComponents: [.date, .hourAndMinute])
                         .labelsHidden()
                             
-                        
                         Text ("Your auction will end on \(dateForAd, formatter: visualFormatter)")
                             .padding(.top)
                             .frame(width: 350, height: 60, alignment: .center)
@@ -189,13 +206,14 @@ struct SellPageView: View{
                         VStack{
                             
                             NavigationLink(destination: AdDetailView(adPreview: self.$ad), isActive: self.$previewActive) {
-                                Text("")
+                                Text("") //SwiftUI navigator to the ad preview page.
                             }                            
                             
                             Button(action: {
                                 
-                                self.ad.adEnding = TimeManager().dateToIsoString(self.dateForAd)
-                                self.previewActive = true
+                                self.ad.adEndingDate = TimeManager().dateToIsoString(self.dateForAd)
+                                self.ad.adEndingTime = TimeManager().timeToIsoString(self.dateForAd)
+                                self.previewActive = true //sets the timer for the ad and displays the preview by triggering the state of previewactive
 
                                 }) {
                                 Text("Preview Ad")
@@ -212,7 +230,7 @@ struct SellPageView: View{
                                     .alert(isPresented: $showAlert, content: {
                                         Alert(title: Text("Permanently Delete Add?"), message: Text( "This action cannot be undone"), primaryButton: .default(Text("Got it!")){
                                             
-                                            self.ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEnding: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], datePosted: "", isDraft: true, bidCount: 0)
+                                            self.ad = AuctionSaleData(adId: "", adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], datePosted: "", isDraft: true, bidCount: 0)
                                             
                                             self.dateForAd = Date()
                                             
@@ -229,8 +247,11 @@ struct SellPageView: View{
                             
                             Button(action: {
 
-                                self.ad.adEnding = self.dateFormatterISO
+                                self.ad.adEndingTime = self.dateFormatter
+                                self.ad.adEndingDate = self.timeFormatter
                                 AdManager().uploadAd(self.ad)
+ 
+                                self.ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], datePosted: "", isDraft: true, bidCount: 0)
                                 
                                 }) {
                                     
@@ -310,8 +331,6 @@ struct ImagePick: UIViewControllerRepresentable{
         }
 
         func imagePicker(_ imagePicker: ImagePickerController, didFinishWithAssets assets: [PHAsset]) {
-            
-            //self.parent.ad.adImages = []
 
             for asset in assets{
 
@@ -418,3 +437,5 @@ struct SellPageView_Previews: PreviewProvider {
         SellPageView()
     }
 }
+
+

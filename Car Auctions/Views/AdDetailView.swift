@@ -1,7 +1,7 @@
 //
 //  AdDetailView.swift
 //  Car Auctions
-//
+//  Code for the Ad detail view where users find more information about the Ad.
 //  Created by Warren Elliott on 03/07/2020.
 //  Copyright © 2020 Warren Elliott. All rights reserved.
 //
@@ -12,13 +12,12 @@ import UIKit
 
 struct AdDetailView: View{
     
-    @Binding var adPreview : AuctionSaleData
-    @State var isActive = true
+    @Binding var adPreview : AuctionSaleData //data taken from the SellPageView form the user created
+    @State var isActive = true //toggles between ad detail and bidding history subviews
     @State var isShowingPlaceBidButton = true
     @State var showPublishAlert = false
     @State var index = 0
-    
-    @State var nowDate = Date()
+    @State var nowDate = Date() //grabs actual time when user clicked on the ad to generate the timer
     
     var timer: Timer {
         
@@ -42,7 +41,7 @@ struct AdDetailView: View{
                     
                     VStack(spacing: 0){
                         
-                        if self.adPreview.adImages == []{
+                        if self.adPreview.adImages.count == 0{
                             
                             Image("StockAdPhoto")
                                 .resizable()
@@ -50,7 +49,7 @@ struct AdDetailView: View{
                                 .clipped()
                             
                         }else{
-                            PagingView(index: $index.animation(), maxIndex: adPreview.adImages.count - 1) {
+                            PagingView(index: $index.animation(), maxIndex: adPreview.adImages.count - 1) { //carousel images view with dots, where user swipes for the next pic
                                 ForEach(self.adPreview.adImages.indices, id: \.self) { imageName in
                                     Image(uiImage: self.adPreview.adImages[imageName]!)
                                         .resizable()
@@ -65,7 +64,7 @@ struct AdDetailView: View{
                                 Text("Bid Closes In")
                                     .foregroundColor(.white)
                                 
-                                Text(TimeManager().countDownDate(self.adPreview.adEnding, self.nowDate))
+                                Text(TimeManager().countDownDate(date: self.adPreview.adEndingDate, time: self.adPreview.adEndingTime, nowDate))
                                     .bold()
                                     .foregroundColor(.white)
                                     .onAppear(perform: {
@@ -211,6 +210,14 @@ struct AdDetailView: View{
         HStack {
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
+                
+                if self.adPreview.isDraft == false{
+                    
+                    self.adPreview = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], datePosted: "", isDraft: true, bidCount: 0)
+                    
+                    //if the ad's been published, empty the binded ad struct which was created in SellPageView
+                }
+                
             }) {
                 Text ("Back")
                 .foregroundColor(.black)
@@ -232,7 +239,7 @@ struct AdDetailView: View{
                         self.adPreview.datePosted = TimeManager().dateToIsoString(Date())
                         AdManager().uploadAd(self.adPreview)
                         print(self.adPreview)
-                        
+
                     }
                     
                 }) {

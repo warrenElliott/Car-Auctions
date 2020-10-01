@@ -7,15 +7,58 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct MainScreen: View{
+    
+    @ObservedObject var loadContent = LoadContent()
+    
+    let db = Firestore.firestore()
+    let currentDate = Date()
        
     var body: some View {
         
         ZStack{
-            Color(red: 0.11, green: 0.82, blue: 0.63, opacity: 1.00).edgesIgnoringSafeArea(.all)
-            Text("Browse auctions ending today")
-                .offset(x: 0, y: -250)
+            Colours().paleSpringBud.edgesIgnoringSafeArea(.all)
+            
+            VStack{
+                Text("Ending Today")
+                    .font(.custom("Arial", size: 40))
+                    .bold()
+                    .foregroundColor(.white)
+                    .frame(width: 350, alignment: .bottomLeading)
+                    .padding(.top, 25)
+                    .padding(.bottom, -25)
+                
+                Divider()
+                
+                ScrollView{
+                    
+                    if loadContent.content.count > 0{
+                        
+                        ForEach (loadContent.content.indices, id: \.self){ i in
+                            
+                            VStack{
+                        
+                            AuctionSale(sale: self.loadContent.content[i])
+                            Divider()
+                                
+                            }
+
+                        }
+                        
+                    }
+                    
+                }
+                
+        }
+
+        }.onAppear() {
+            
+            self.loadContent.fetchData(query: self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate)))
+            
+            
+            
         }
     }
     
@@ -25,6 +68,7 @@ struct MainScreen: View{
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         MainScreen()
+        
     }
 }
 

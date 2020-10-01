@@ -14,21 +14,43 @@ public class TimeManager{
     
     func dateToIsoString(_ date: Date) -> String{
         
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = TimeZone.current
         let output = formatter.string(from: date)
         return output
         
     }
+
+    func timeToIsoString(_ time: Date) -> String{
+        
+        formatter.dateFormat = "HH:mm:ssZ"
+        formatter.timeZone = TimeZone.current
+        let output = formatter.string(from: time)
+        return output
+        
+    }
     
-    func countDownDate(_ inputDate: String, _ nowdate: Date) -> String {
+    func dateSlicer (_ input: String) -> String{
+        
+        
+        let index = input.firstIndex(of: "T")!
+        let newStr = input[..<index]
+        
+        return String(newStr)
+
+        
+    }
+    
+    func countDownDate(date inputDate: String?, time inputTime: String?, _ nowdate: Date) -> String {
+        
+        let stringBuilder = inputDate! + "T" + inputTime!
 
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" //date format as stored in Firebase db
         formatter.timeZone = TimeZone(abbreviation: "GMT+0:00") //added current timezone
-        let deadlineDate = formatter.date(from: inputDate) //according to date format your date string
+        guard let deadlineDate = formatter.date(from: stringBuilder) else { return "" } //according to date format your date string
         
         let calendar = Calendar.current
-        let outputDateComponents = calendar.dateComponents([.day, .hour, .minute, .second], from: nowdate, to: deadlineDate!)
+        let outputDateComponents = calendar.dateComponents([.day, .hour, .minute, .second], from: nowdate, to: deadlineDate)
 
         
         let dayText = String(describing: outputDateComponents.day!) + "d "
@@ -58,6 +80,13 @@ public class TimeManager{
             return output
             
         }
+            
+        if dayText == "0d " && hourText == "0h " && minuteText == "0m " && secondsText == "0s "{
+            
+            output = "Auction Finished"
+            return output
+            
+        }
         
         else{
             
@@ -67,8 +96,6 @@ public class TimeManager{
             
         }
         
-        
-        //output = dayText + hourText + String(describing: outputDateComponents.minute!) + "m " + String(describing: outputDateComponents.second!) + "s"
     }
     
     

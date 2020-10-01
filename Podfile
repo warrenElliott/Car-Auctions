@@ -9,7 +9,6 @@ target 'Car Auctions' do
   pod 'Firebase/Firestore'
   pod "BSImagePicker", "~> 3.1"
   pod 'Firebase/Storage'
-
-  # Pods for Car Auctions
+  pod 'GooglePlaces'
 
 end
