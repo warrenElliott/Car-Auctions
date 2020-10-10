@@ -9,7 +9,7 @@
 import SwiftUI
 import Firebase
 
-struct MainScreen: View{
+struct EndingTodayView: View{
     
     @ObservedObject var loadContent = LoadContent()
     
@@ -67,7 +67,7 @@ struct MainScreen: View{
 
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreen()
+        EndingTodayView()
         
     }
 }

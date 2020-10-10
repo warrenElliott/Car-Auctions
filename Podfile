@@ -10,5 +10,7 @@ target 'Car Auctions' do
   pod "BSImagePicker", "~> 3.1"
   pod 'Firebase/Storage'
   pod 'GooglePlaces'
+  pod 'Kingfisher', '~> 5.15'
+  pod 'Kingfisher/SwiftUI'
 
 end

@@ -17,7 +17,8 @@ struct AuctionSaleData{
     var adEndingDate: String
     var adAuthor: String
     var adLocation: String
-    var adImages: [UIImage?]
+    var adImages: [UIImage?];
+    var imageLinks: [String?];
     var datePosted: String
     var isDraft: Bool
     var bidCount: Int

@@ -5,8 +5,10 @@
 //  Created by Warren Elliott on 18/06/2020.
 //  Copyright © 2020 Warren Elliott. All rights reserved.
 //
-
+import Foundation
 import SwiftUI
+import struct Kingfisher.KFImage
+import UIKit
 
 struct AuctionSale: View{
     
@@ -17,7 +19,7 @@ struct AuctionSale: View{
     var timer: Timer {
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.nowDate = Date()
+            self.nowDate = Date() //get current time and date and start timer
         }
         
     }
@@ -26,10 +28,23 @@ struct AuctionSale: View{
         
         HStack {
             
-            Image("pug") //When we get the sale type AuctionSaleData, no images are in the array...
+            if sale.imageLinks == []{
+                
+                Image("StockAdPhoto")
+                    .resizable()
+                    .frame(width: 170, height: 120, alignment: .leading)
+                    .padding(.leading)
+                
+            }else{
+                
+                KFImage(URL(string: sale.imageLinks[0]!))
                 .resizable()
                 .frame(width: 170, height: 120, alignment: .leading)
                 .padding(.leading)
+                
+                
+                
+            }
             
             VStack(spacing: 5){
                 
@@ -56,14 +71,18 @@ struct AuctionSale: View{
                 Text("Location: \((String(sale.adLocation)))")
                     .frame(width: 170, alignment: .topLeading)
                     .font(.custom("Arial", size: 12))
+            
                 
-                //Text("Countdown")
-                Text(TimeManager().countDownDate(date: sale.adEndingDate, time: sale.adEndingTime, nowDate))
+                Text(
+                    TimeManager().countDownDate(date: sale.adEndingDate, time: sale.adEndingTime, nowDate))
                     .bold()
-                    .frame(width: 170, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.custom("Arial", size: 14))
                     .onAppear(perform: {
+                        
                         self.timer
+
+                        
                     })
                 
             }.frame(width: 170, height: 110, alignment: .topLeading)
@@ -72,7 +91,7 @@ struct AuctionSale: View{
             
         }.frame(maxWidth: .infinity)
             .onAppear {
-                print (self.sale)
+                
         }
         
        

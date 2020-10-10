@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import UIKit
+import struct Kingfisher.KFImage
 
 struct AdDetailView: View{
     
@@ -41,7 +42,7 @@ struct AdDetailView: View{
                     
                     VStack(spacing: 0){
                         
-                        if self.adPreview.adImages.count == 0{
+                        if self.adPreview.adImages.count == 0 && self.adPreview.imageLinks.count == 0{
                             
                             Image("StockAdPhoto")
                                 .resizable()
@@ -49,14 +50,34 @@ struct AdDetailView: View{
                                 .clipped()
                             
                         }else{
-                            PagingView(index: $index.animation(), maxIndex: adPreview.adImages.count - 1) { //carousel images view with dots, where user swipes for the next pic
-                                ForEach(self.adPreview.adImages.indices, id: \.self) { imageName in
-                                    Image(uiImage: self.adPreview.adImages[imageName]!)
-                                        .resizable()
-                                        .scaledToFill()
-                                }
+                            
+                            if self.adPreview.imageLinks.count > 0 && self.adPreview.adImages.count == 0{
+                                
+                                PagingView(index: $index.animation(), maxIndex: adPreview.imageLinks.count - 1) {
+                                    
+                                    ForEach(self.adPreview.imageLinks.indices, id: \.self) { link in
+                                        
+                                        KFImage(URL(string: self.adPreview.imageLinks[link]!))
+                                            .resizable()
+                                            .scaledToFill()
+                                        
+                                    }
+                                    
+                                }.frame(width: UIScreen.main.bounds.width, height: 250)
                             }
-                            .frame(width: UIScreen.main.bounds.width, height: 250)
+                                
+                            else{
+                                
+                                PagingView(index: $index.animation(), maxIndex: adPreview.adImages.count - 1) { //carousel images view with dots, where user swipes for the next pic
+                                    ForEach(self.adPreview.adImages.indices, id: \.self) { imageName in
+                                        Image(uiImage: self.adPreview.adImages[imageName]!)
+                                            .resizable()
+                                            .scaledToFill()
+                                    }
+                                    
+                                }.frame(width: UIScreen.main.bounds.width, height: 250)
+                            }
+                            
                         }
                         
                         HStack(spacing: 40){
@@ -83,6 +104,8 @@ struct AdDetailView: View{
                                     .bold()
                                     .foregroundColor(.white)
                                 
+                            }.onAppear {
+                                print (self.adPreview.imageLinks)
                             }
                             
                             VStack(alignment: .leading){
@@ -213,7 +236,7 @@ struct AdDetailView: View{
                 
                 if self.adPreview.isDraft == false{
                     
-                    self.adPreview = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], datePosted: "", isDraft: true, bidCount: 0)
+                    self.adPreview = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
                     
                     //if the ad's been published, empty the binded ad struct which was created in SellPageView
                 }
@@ -238,7 +261,6 @@ struct AdDetailView: View{
                         self.adPreview.isDraft = false
                         self.adPreview.datePosted = TimeManager().dateToIsoString(Date())
                         AdManager().uploadAd(self.adPreview)
-                        print(self.adPreview)
 
                     }
                     

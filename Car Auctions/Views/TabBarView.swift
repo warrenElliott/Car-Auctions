@@ -16,7 +16,7 @@ struct TabBarView: View {
     var body: some View {
         
         TabView(selection: $selectedView) {
-            MainScreen()
+            EndingTodayView()
                 .tabItem {
                     Image(systemName: "car.fill")
                 }.tag(0)

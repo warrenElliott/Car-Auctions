@@ -13,31 +13,37 @@ class LoadContent: ObservableObject{
     
     @Published var content = [AuctionSaleData]()
     
-    let db = Firestore.firestore()
-    let storage = Storage.storage()
+
     
-    func fetchData(query: Query){
+    let db = Firestore.firestore() //reference to the database
+    let storage = Storage.storage() //reference to the storage
+    
+    func fetchData(dataQuery: Query){
         
-        query.addSnapshotListener { (querySnapshot, error) in
+        dataQuery.addSnapshotListener { (querySnapshot, error) in
             
-            var pageContent = [AuctionSaleData]()
+            
 
             if let e = error{
 
-                print (e)
+                print (e.localizedDescription)
 
             }
 
             else{
+                
+                var pageContent = [AuctionSaleData]()
+                
 
-                if let snapshotDocs = querySnapshot?.documents{
+                if let snapshotDocs = querySnapshot?.documents{ //tap into the query documents
 
-                    for doc in snapshotDocs{
+                    for doc in snapshotDocs{ //for each entry in this document
 
-                        let data = doc.data()
-                        var imageURLs = [String]()
+                        let data = doc.data() //the data present inside each doc
+                        let adID = data["adID"] as! String
+                        //self.fetchImageURLs(id: adID)
                         
-                        let instance = AuctionSaleData(adId: data["adID"] as! String,
+                        let instance = AuctionSaleData(adId: adID,
                                                        adName: data["adName"] as! String,
                                                        adDescription: data["adDescription"] as! String,
                                                        adBid: data["adBid"] as! String,
@@ -45,48 +51,16 @@ class LoadContent: ObservableObject{
                                                        adEndingDate: data["adEndingDate"] as? String ?? "",
                                                        adAuthor: data["adAuthor"] as! String,
                                                        adLocation: data["adLocation"] as! String,
-                                                       adImages: [UIImage()],
+                                                       adImages: [],
+                                                       imageLinks: data["imageURLs"] as? [String] ?? [],
                                                        datePosted: data["adPosted"] as! String,
                                                        isDraft: data["isDraft"] as! Bool,
-                                                       bidCount: data["bidCount"] as! Int)
+                                                       bidCount: data["bidCount"] as! Int) //this creates a blank instance where data will be stored internally
                                                 
-                        let imageDataReference = self.db.collection("LiveDatabase").document("adNo__\(instance.adId)").collection("AdImages")
+
                         
-                        imageDataReference.getDocuments { (query, error) in
-                            
-                            if let e = error{
-
-                                print (e)
-
-                            }
-                            
-                            else{
-                                
-                                if let adImageData = query?.documents{
-                                    
-                                    for entry in adImageData{
-                                        
-                                        if let link = entry.data()["URL"]{
-                                            imageURLs.append(link as! String)
-                                        }
-                                        
-                                    }
-                                    
-                                }
-                                
-                            }
-                            
-                            print (imageURLs.count)
-                            print (imageURLs)
-                            
-                            
-                            
-                            
-                            
-                        }
-            
-
                         pageContent.append(instance)
+                        
                     }
                     
                     self.content = pageContent
@@ -96,5 +70,43 @@ class LoadContent: ObservableObject{
         }
     }
     
-    
+//    func fetchImageURLs(id: String) -> [String]{
+//
+//        var pageURLs = [String]()
+//
+//        let imageDataReference = self.db.collection("LiveDatabase").document("adNo__\(id)").collection("AdImages") //tap into the above ad's image URLS here
+//
+//        imageDataReference.getDocuments { (query, error) in
+//
+//            if let e = error{
+//
+//                print (e.localizedDescription)
+//
+//            }
+//
+//            else{
+//
+//                if let adImageData = query?.documents{
+//
+//                    for entry in adImageData{
+//
+//                        if let link = entry.data()["URL"]{
+//
+//                            print (link)
+//
+//                            pageURLs.append(link as! String)
+//
+//
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//        return pageURLs
+//    }
 }

@@ -44,6 +44,8 @@ public class TimeManager{
     func countDownDate(date inputDate: String?, time inputTime: String?, _ nowdate: Date) -> String {
         
         let stringBuilder = inputDate! + "T" + inputTime!
+        
+        var output = String()
 
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" //date format as stored in Firebase db
         formatter.timeZone = TimeZone(abbreviation: "GMT+0:00") //added current timezone
@@ -53,52 +55,51 @@ public class TimeManager{
         let outputDateComponents = calendar.dateComponents([.day, .hour, .minute, .second], from: nowdate, to: deadlineDate)
 
         
-        let dayText = String(describing: outputDateComponents.day!) + "d "
-        let hourText = String(describing: outputDateComponents.hour!) + "h "
-        let minuteText = String(describing: outputDateComponents.minute!) + "m "
-        let secondsText = String(describing: outputDateComponents.second!) + "s "
-        
-        var output = String()
-        
-        if dayText == "0d "{
+        if deadlineDate > nowdate{
             
-            output = hourText + minuteText
-            return output
+            let dayText = String(describing: outputDateComponents.day!) + "d "
+            let hourText = String(describing: outputDateComponents.hour!) + "h "
+            let minuteText = String(describing: outputDateComponents.minute!) + "m "
+            let secondsText = String(describing: outputDateComponents.second!) + "s "
             
-        }
-        
-        if dayText == "0d " && hourText == "0h "{
+            if dayText == "0d " && hourText == "0h "{
+                
+                output = minuteText + secondsText
+                return output
+                
+            }else if dayText == "0d " && hourText == "0h " && minuteText == "0m "{
+                
+                output = secondsText
+                return output
+                
+            }else if dayText == "0d " && hourText == "0h " && minuteText == "0m " && secondsText == "0s "{
+                
+                output = "Auction Finished"
+                return output
+                
+            }else{
+                
+                output = dayText + hourText + minuteText
+                return output
+                
+            }
             
-            output = minuteText + secondsText
-            return output
-            
-        }
-            
-        if dayText == "0d " && hourText == "0h " && minuteText == "0m "{
-            
-            output = secondsText
-            return output
-            
-        }
-            
-        if dayText == "0d " && hourText == "0h " && minuteText == "0m " && secondsText == "0s "{
-            
-            output = "Auction Finished"
-            return output
             
         }
         
         else{
-            
-            output = dayText + hourText + minuteText
+            output = "Auction Finished"
             return output
-            
-            
         }
-        
     }
     
     
 }
 
 
+//        if dayText == "0d "{
+//
+//            output = hourText + minuteText
+//            return output
+//
+//        }else

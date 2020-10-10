@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 import UIKit
 
+
 struct PagingView<Content>: View where Content: View {
 
     @Binding var index: Int
@@ -38,11 +39,15 @@ struct PagingView<Content>: View where Content: View {
                 .content.offset(x: self.offset(in: geometry), y: 0) // position of images
                 .frame(width: geometry.size.width, alignment: .leading)
                 .gesture(
-                    DragGesture().onChanged { value in
+                    DragGesture()
+//                        .onChanged { value in
+//                        self.dragging = true
+//                        self.offset = -CGFloat(self.index) * geometry.size.width + value.translation.width
+//                    }
+                    .onEnded { value in
+                        
                         self.dragging = true
                         self.offset = -CGFloat(self.index) * geometry.size.width + value.translation.width
-                    }
-                    .onEnded { value in
                         let predictedEndOffset = -CGFloat(self.index) * geometry.size.width + value.predictedEndTranslation.width
                         let predictedIndex = Int(round(predictedEndOffset / -geometry.size.width))
                         self.index = self.clampedIndex(from: predictedIndex)
