@@ -81,7 +81,7 @@ class AdManager{
                             let urlString = url.absoluteString
                             urlStrings.append(urlString)
                             //let dataReference = self.db.collection(self.uploadDatabaseDestination(ad.isDraft)).document("adNo__\(ad.adId)").collection("AdImages").document() //uploads the ad in the correct databse
-                            let dataReference = self.db.collection(self.uploadDatabaseDestination(ad.isDraft)).document("adNo__\(ad.adId)") //uploads the ad in the correct databse
+                            //let dataReference = self.db.collection(self.uploadDatabaseDestination(ad.isDraft)).document("adNo__\(ad.adId)") //uploads the ad in the correct databse
 //                            let documentUID = dataReference.documentID
 //                            let data = ["UID": documentUID, "URL": urlString]
                             

@@ -15,6 +15,7 @@ struct Colours{
     let paleSpringBud = Color(red: 0.87, green: 0.88, blue: 0.74, opacity: 1.00)
     let carribeanGreen = Color(red: 0.11, green: 0.82, blue: 0.63, opacity: 1.00)
     let lightBlue1 = Color(red: 0.78, green: 0.84, blue: 0.90, opacity: 1.00)
+    let white = Color(red: 1.00, green: 1.00, blue: 1.00, opacity: 1.00)
     
     
     

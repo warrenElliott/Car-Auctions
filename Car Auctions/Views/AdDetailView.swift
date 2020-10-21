@@ -248,6 +248,7 @@ struct AdDetailView: View{
                     
             }
         }, trailing:
+            
         HStack {
             
             if self.adPreview.isDraft == true{

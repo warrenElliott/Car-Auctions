@@ -13,10 +13,12 @@ struct ContentView: View {
     
     @State private var userEmail = "warren@email.com"
     @State private var userPassword = "123456"
-    @State private var isActive: Bool = false
+    @State private var signInSuccess: Bool = false
 
     var body: some View {
+        
         NavigationView{
+            
             ZStack{
                 
                 Image("bg2").opacity(1)
@@ -52,14 +54,12 @@ struct ContentView: View {
                 .offset(x: 0, y: -10)
                 
                 VStack(spacing: 10){
+                
+                    link(label: "", destination: TabBarView(), state: self.$signInSuccess)
+                        .navigationBarTitle("")
+                        .navigationBarBackButtonHidden(true)
+                        .navigationBarHidden(true)
                     
-                    NavigationLink(destination: TabBarView(), isActive: self.$isActive) {
-                        Text("")
-        
-                    }.navigationBarTitle("")
-                    .navigationBarHidden(true)
-                    .navigationBarBackButtonHidden(true)
-
                     
                     Button(action: {
                         self.registerUser(email: self.userEmail, password: self.userPassword);
@@ -84,13 +84,23 @@ struct ContentView: View {
                     }
                     
                     
-                }.offset(x: 0, y: 100)
+                }.offset(x: 0, y: 100)                              //VStack
+            }
+        }                                                           //NavigationView
+        
+    }                                                               //var body
+    
+    private func link<Destination: View>(label: String, destination: Destination, state: Binding<Bool>) -> some View {
+        return NavigationLink(destination: destination, isActive: state, label: {
+                        HStack {
+                Text(label)
                 
             }
-        }
-        
+        })
     }
-}
+    
+    
+}                                                                   //struct
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -121,7 +131,7 @@ extension ContentView{
                         print (e.localizedDescription)
                     }
                     else{
-                        self.isActive = true
+                        self.signInSuccess = true
                     }
                 }
                 
@@ -154,7 +164,7 @@ extension ContentView{
                         print (e.localizedDescription)
                     }
                     else{
-                        self.isActive = true
+                        self.signInSuccess = true
                     }
                 }
             }
