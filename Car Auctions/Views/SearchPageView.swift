@@ -55,7 +55,7 @@ struct SearchPageView: View{
                     
 //                    link(label: "", destination: ResultsView(isNavBarHidden: self.$isNavigationBarHidden, pageTitle: self.$pageTitle), state: self.$adViewActive)
                     
-                    link(label: "", destination: TestView(isNavigationBarHidden: self.$isNavigationBarHidden), state: self.$adViewActive)
+                    link(label: "", destination: SearchResultsView(isNavigationBarHidden: self.$isNavigationBarHidden), state: self.$adViewActive)
 
                     Button(action: {
                         

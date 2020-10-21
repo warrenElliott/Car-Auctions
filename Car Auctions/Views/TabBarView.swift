@@ -23,7 +23,7 @@ struct TabBarView: View {
             
             TabView(selection: $selectedView) {
                 
-                ResultsView(isNavBarHidden: $navBarWillBeHidden, pageTitle: $pageTitle)
+                FeaturedView(isNavBarHidden: $navBarWillBeHidden)
                     .tabItem {
                         Image(systemName: "car.fill")
                 }.tag(0)

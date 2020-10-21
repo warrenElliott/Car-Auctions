@@ -10,7 +10,7 @@ import SwiftUI
 import Firebase
 import Combine
 
-struct ResultsView: View{
+struct FeaturedView: View{
     
     @Binding var isNavBarHidden : Bool
     @Binding var pageTitle: String
@@ -90,7 +90,7 @@ struct ResultsView: View{
 
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ResultsView(isNavBarHidden: .constant(false), pageTitle: .constant("TestPage"))
+        FeaturedView(isNavBarHidden: .constant(false), pageTitle: .constant("TestPage"))
         
     }
 }
