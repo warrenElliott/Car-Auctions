@@ -8,14 +8,19 @@
 
 import Foundation
 import SwiftUI
+import Firebase
 
 
 struct AdListContentView: View {
     
+    
     @ObservedObject var loadContent: LoadContent
     @Binding var adViewActive: Bool
     @Binding var emptyListMessage: String
-    @Binding var pageTitle: String
+    //@Binding var pageTitle: String
+    @Binding var query: Query
+    
+    @State var chosenIndex: AuctionSaleData = AuctionSaleData(adId: "", adName: "", adDescription: "", adBid: "", adEndingTime: "", adEndingDate: "", adAuthor: "", adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
     
     var body: some View {
         
@@ -23,30 +28,25 @@ struct AdListContentView: View {
             
             ScrollView{
                 
-                Text(self.pageTitle)
-                    .font(.custom("Arial", size: 40))
-                    .bold()
-                    .foregroundColor(.black)
-                    .frame(width: 350, alignment: .bottomLeading)
-                    .padding(.top, 25)
-                    .padding(.bottom, -25)
                 Divider()
                 
                 
-                if loadContent.content.count > 0{
+                if loadContent.content != []{
                     
-                    ForEach (loadContent.content.indices, id: \.self){ i in
+                    ForEach (loadContent.content, id: \.self){ i in
                         
                         VStack{
                             
-                            NavigationLink(destination: AdDetailView(adPreview: self.$loadContent.content[i]), isActive: self.$adViewActive) {
+                            AuctionSale(sale: i)
+                                .onTapGesture {
+                                    self.chosenIndex = i
+                                    self.adViewActive = true
+                            }
+                            
+                            NavigationLink(destination: AdDetailView(adPreview: .constant(chosenIndex)), isActive: self.$adViewActive) {
                                 Text("") //SwiftUI navigator to the ad preview page.
                             }
                             
-                            AuctionSale(sale: self.loadContent.content[i])
-                                .onTapGesture {
-                                    self.adViewActive = true
-                            }
                             Divider()
                         }
                         
@@ -61,8 +61,20 @@ struct AdListContentView: View {
                 }
                 
             }
+                
+            }.onAppear(){
+            
+            self.loadContent.fetchData(dataQuery: self.query)
             
         }
     }
     
 }
+
+//                Text(self.pageTitle)
+//                    .font(.custom("Arial", size: 40))
+//                    .bold()
+//                    .foregroundColor(.black)
+//                    .frame(width: 350, alignment: .bottomLeading)
+//                    .padding(.top, 25)
+//                    .padding(.bottom, 25)

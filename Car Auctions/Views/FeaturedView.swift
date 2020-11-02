@@ -24,25 +24,26 @@ struct FeaturedView: View{
     
     var body: some View {
         
-        ZStack{
+        NavigationView{
             
-            Colours().white.edgesIgnoringSafeArea(.all)
-            
-            VStack{
+            ZStack{
                 
-                AdListContentView(loadContent: self.loadContent, adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, pageTitle: self.$pageTitle)
+                Colours().white.edgesIgnoringSafeArea(.all)
+                
+                VStack{
+                    
+                    AdListContentView(loadContent: self.loadContent, adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
+                    
+                }
+                .navigationBarTitle("Featured")
+                .navigationBarHidden(self.isNavBarHidden)
                 
             }
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarBackButtonHidden(isNavBarHidden)
-            .navigationBarHidden(isNavBarHidden)
-            
-        }.onAppear() {
-            
-            self.loadContent.fetchData(dataQuery: self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate)))
-            
-            self.isNavBarHidden = true
-            
+            .onAppear() {
+                
+                self.isNavBarHidden = false
+                
+            }
         }
     }
     
@@ -51,7 +52,10 @@ struct FeaturedView: View{
 
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedView(isNavBarHidden: .constant(false))
+        Group {
+            FeaturedView(isNavBarHidden: .constant(false))
+            FeaturedView(isNavBarHidden: .constant(false))
+        }
         
     }
 }

@@ -80,24 +80,12 @@ class AdManager{
                             
                             let urlString = url.absoluteString
                             urlStrings.append(urlString)
-                            //let dataReference = self.db.collection(self.uploadDatabaseDestination(ad.isDraft)).document("adNo__\(ad.adId)").collection("AdImages").document() //uploads the ad in the correct databse
-                            //let dataReference = self.db.collection(self.uploadDatabaseDestination(ad.isDraft)).document("adNo__\(ad.adId)") //uploads the ad in the correct databse
-//                            let documentUID = dataReference.documentID
-//                            let data = ["UID": documentUID, "URL": urlString]
-                            
-                            
                             
                             detailsReference.updateData(["imageURLs" : urlStrings]) { (error) in
                                 if let err = error{
                                     print (err.localizedDescription)
                                 }
                             }
-                            
-//                            dataReference.setData(data, completion: { (error  ) in
-//                                if let err = error{
-//                                    print (err.localizedDescription)
-//                                }
-//                            })
                         }
                     }
                 }
@@ -105,5 +93,23 @@ class AdManager{
         }
         
     }
+    
+    func increaseBid(_ adID: String, editValue: String){
+        
+        let bidReference = self.db.collection("LiveDatabase").document("adNo__\(adID)")
+        
+        bidReference.updateData([
+            "adBid": "\(editValue)"
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        
+    }
+    
 }
 

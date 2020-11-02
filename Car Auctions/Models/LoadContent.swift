@@ -12,17 +12,13 @@ import Firebase
 class LoadContent: ObservableObject{
     
     @Published var content = [AuctionSaleData]()
-    
 
-    
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage
     
     func fetchData(dataQuery: Query){
         
         dataQuery.addSnapshotListener { (querySnapshot, error) in
-            
-            
 
             if let e = error{
 
@@ -56,8 +52,6 @@ class LoadContent: ObservableObject{
                                                        datePosted: data["adPosted"] as! String,
                                                        isDraft: data["isDraft"] as! Bool,
                                                        bidCount: data["bidCount"] as! Int) //this creates a blank instance where data will be stored internally
-                                                
-
                         
                         pageContent.append(instance)
                         
@@ -69,7 +63,8 @@ class LoadContent: ObservableObject{
             }
         }
     }
-    
+}
+
 //    func fetchImageURLs(id: String) -> [String]{
 //
 //        var pageURLs = [String]()
@@ -109,4 +104,3 @@ class LoadContent: ObservableObject{
 //
 //        return pageURLs
 //    }
-}

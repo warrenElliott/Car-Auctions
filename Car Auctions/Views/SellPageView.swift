@@ -53,26 +53,17 @@ struct SellPageView: View{
     
     var body: some View {
         
-        
         NavigationView{
             
             ZStack{
                 Colours().paleSpringBud.edgesIgnoringSafeArea(.all)
                 
                 VStack{
-                    Text("Sell Your Car")
-                        .font(.custom("Arial", size: 40))
-                        .bold()
-                        .foregroundColor(.white)
-                        .frame(width: 350, alignment: .bottomLeading)
-                        .padding(.top, 25)
-                        .padding(.bottom, -25)
-                    Divider()
-                    
-                    
+
                     ScrollView{
                         
-                        
+                        Divider()
+
                         VStack(alignment: .center){
                             
                             Text("Selling made easy")
@@ -125,8 +116,7 @@ struct SellPageView: View{
                                                 })
                                                     .offset(x: 40, y: -40))
                                     }
-                                    
-                                    
+
                                 }
                                 
                             }
@@ -268,11 +258,11 @@ struct SellPageView: View{
                         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                         
                     }
-                }
-                
-            }.navigationBarTitle("")
+                }.navigationBarTitle("Sell Your Car")
                 .navigationBarBackButtonHidden(true)
-                .navigationBarHidden(true)
+                .navigationBarHidden(false)
+                
+            }
             
         }
     }
@@ -439,3 +429,10 @@ struct SellPageView_Previews: PreviewProvider {
 }
 
 
+//                    Text("Sell Your Car")
+//                        .font(.custom("Arial", size: 40))
+//                        .bold()
+//                        .foregroundColor(.white)
+//                        .frame(width: 350, alignment: .bottomLeading)
+//                        .padding(.top, 25)
+//                        .padding(.bottom, -25)

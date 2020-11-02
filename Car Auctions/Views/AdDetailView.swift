@@ -5,7 +5,6 @@
 //  Created by Warren Elliott on 03/07/2020.
 //  Copyright © 2020 Warren Elliott. All rights reserved.
 //
-
 import Foundation
 import SwiftUI
 import UIKit
@@ -19,6 +18,8 @@ struct AdDetailView: View{
     @State var showPublishAlert = false
     @State var index = 0
     @State var nowDate = Date() //grabs actual time when user clicked on the ad to generate the timer
+    
+    @State var bidView = false
     
     var timer: Timer {
         
@@ -35,6 +36,7 @@ struct AdDetailView: View{
         ZStack{
 
             Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
+            PlaceBidView(show: self.$bidView, adID: self.$adPreview.adId, currentBid: self.$adPreview.adBid).zIndex(1)
             
             VStack(spacing: 0){
                 
@@ -214,10 +216,16 @@ struct AdDetailView: View{
                         Text("")
                     }
                     else{
-                        Text("Place bid")
+                        
+                        Button(action: {
+                            
+                            self.bidView = true
+                    
+                        }, label: {Text("Place bid")
                             .padding()
                             .frame(width: 300)
                             .background(Colours().lightBlue1)
+                        })
                         
                     }
                 }
@@ -294,3 +302,4 @@ struct AdDetailView_Previews: PreviewProvider {
         SellPageView()
     }
 }
+

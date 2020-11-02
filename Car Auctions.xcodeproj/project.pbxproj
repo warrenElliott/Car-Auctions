@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30F1C57653DFBB975908C299 /* Pods_Car_Auctions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393C6E9F17E21F7A86A424A /* Pods_Car_Auctions.framework */; };
 		80047DB7253F527600EF78AB /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80047DB6253F527600EF78AB /* SearchResultsView.swift */; };
 		80047DB92540C8A100EF78AB /* AdListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80047DB82540C8A100EF78AB /* AdListContentView.swift */; };
 		80330A6B249A21C40074E23E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6A249A21C40074E23E /* AppDelegate.swift */; };
@@ -27,17 +26,20 @@
 		804B19DB24B4B1B200EA8ED7 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804B19DA24B4B1B200EA8ED7 /* PagingView.swift */; };
 		804E2DB124BF74F000891202 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E2DB024BF74F000891202 /* LocationTextField.swift */; };
 		804E2DB324C32F1700891202 /* LoadContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E2DB224C32F1700891202 /* LoadContent.swift */; };
+		8090B75825495095009C2E61 /* PlaceBidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8090B75725495095009C2E61 /* PlaceBidView.swift */; };
 		8095A6EB24AF5CFB00DD59BE /* AdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */; };
 		8095A6ED24B081C000DD59BE /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095A6EC24B081C000DD59BE /* Colours.swift */; };
 		809D1992249CC78700D3D0AE /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D1991249CC78700D3D0AE /* TabBarView.swift */; };
 		80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA162B24A3AA1900E258E3 /* SearchPageView.swift */; };
 		80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */; };
 		80E0C031249E186100559261 /* SellPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C030249E186100559261 /* SellPageView.swift */; };
+		BC2512E0619610D194765827 /* Pods_Car_Auctions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144FFB826B1372E3A9830BFF /* Pods_Car_Auctions.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6393C6E9F17E21F7A86A424A /* Pods_Car_Auctions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Car_Auctions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7D7077A06FE5E23D3EDD33C9 /* Pods-Car Auctions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car Auctions.debug.xcconfig"; path = "Target Support Files/Pods-Car Auctions/Pods-Car Auctions.debug.xcconfig"; sourceTree = "<group>"; };
+		11F867A9A7E9CE3E73345864 /* Pods-Car Auctions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car Auctions.release.xcconfig"; path = "Target Support Files/Pods-Car Auctions/Pods-Car Auctions.release.xcconfig"; sourceTree = "<group>"; };
+		144FFB826B1372E3A9830BFF /* Pods_Car_Auctions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Car_Auctions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16726E7519CE0F1928A3D6B3 /* Pods-Car Auctions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car Auctions.debug.xcconfig"; path = "Target Support Files/Pods-Car Auctions/Pods-Car Auctions.debug.xcconfig"; sourceTree = "<group>"; };
 		80047DB6253F527600EF78AB /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		80047DB82540C8A100EF78AB /* AdListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdListContentView.swift; sourceTree = "<group>"; };
 		80330A67249A21C40074E23E /* Car Auctions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Car Auctions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,13 +61,13 @@
 		804B19DA24B4B1B200EA8ED7 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		804E2DB024BF74F000891202 /* LocationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTextField.swift; sourceTree = "<group>"; };
 		804E2DB224C32F1700891202 /* LoadContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadContent.swift; sourceTree = "<group>"; };
+		8090B75725495095009C2E61 /* PlaceBidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceBidView.swift; sourceTree = "<group>"; };
 		8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDetailView.swift; sourceTree = "<group>"; };
 		8095A6EC24B081C000DD59BE /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		809D1991249CC78700D3D0AE /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		80AA162B24A3AA1900E258E3 /* SearchPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageView.swift; sourceTree = "<group>"; };
 		80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTimeRemaining.swift; sourceTree = "<group>"; };
 		80E0C030249E186100559261 /* SellPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellPageView.swift; sourceTree = "<group>"; };
-		9E38021D614B17E05567C4AD /* Pods-Car Auctions.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car Auctions.release.xcconfig"; path = "Target Support Files/Pods-Car Auctions/Pods-Car Auctions.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30F1C57653DFBB975908C299 /* Pods_Car_Auctions.framework in Frameworks */,
+				BC2512E0619610D194765827 /* Pods_Car_Auctions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,18 +85,10 @@
 		49C150C219A0F205B4830B5F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7D7077A06FE5E23D3EDD33C9 /* Pods-Car Auctions.debug.xcconfig */,
-				9E38021D614B17E05567C4AD /* Pods-Car Auctions.release.xcconfig */,
+				16726E7519CE0F1928A3D6B3 /* Pods-Car Auctions.debug.xcconfig */,
+				11F867A9A7E9CE3E73345864 /* Pods-Car Auctions.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		60FA030805F928663AD882A8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6393C6E9F17E21F7A86A424A /* Pods_Car_Auctions.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		80330A5E249A21C40074E23E = {
@@ -103,7 +97,7 @@
 				80330A69249A21C40074E23E /* Car Auctions */,
 				80330A68249A21C40074E23E /* Products */,
 				49C150C219A0F205B4830B5F /* Pods */,
-				60FA030805F928663AD882A8 /* Frameworks */,
+				C86A602677F8A51BF6ECC24D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,14 +156,23 @@
 				80483498249B612D005CACAF /* FeaturedView.swift */,
 				8048349A249B8D27005CACAF /* AuctionSale.swift */,
 				80AA162B24A3AA1900E258E3 /* SearchPageView.swift */,
+				80047DB6253F527600EF78AB /* SearchResultsView.swift */,
 				80E0C030249E186100559261 /* SellPageView.swift */,
 				8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */,
 				804E2DB024BF74F000891202 /* LocationTextField.swift */,
 				804B19DA24B4B1B200EA8ED7 /* PagingView.swift */,
-				80047DB6253F527600EF78AB /* SearchResultsView.swift */,
 				80047DB82540C8A100EF78AB /* AdListContentView.swift */,
+				8090B75725495095009C2E61 /* PlaceBidView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C86A602677F8A51BF6ECC24D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				144FFB826B1372E3A9830BFF /* Pods_Car_Auctions.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,12 +182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80330A7B249A21C70074E23E /* Build configuration list for PBXNativeTarget "Car Auctions" */;
 			buildPhases = (
-				9B44E19081F7EECE3E991424 /* [CP] Check Pods Manifest.lock */,
+				C2A1C59CB7C686379C277815 /* [CP] Check Pods Manifest.lock */,
 				80330A63249A21C40074E23E /* Sources */,
 				80330A64249A21C40074E23E /* Frameworks */,
 				80330A65249A21C40074E23E /* Resources */,
-				A232BA5B261999599433BC14 /* [CP] Embed Pods Frameworks */,
-				8518F7748B7361EB71358E07 /* [CP] Copy Pods Resources */,
+				4E1AA991CA0345B6F57030A7 /* [CP] Embed Pods Frameworks */,
+				AF291C3D2FD34E96AE49F693 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,7 +205,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "Warren Elliott";
 				TargetAttributes = {
 					80330A66249A21C40074E23E = {
@@ -243,7 +246,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8518F7748B7361EB71358E07 /* [CP] Copy Pods Resources */ = {
+		4E1AA991CA0345B6F57030A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF291C3D2FD34E96AE49F693 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -260,7 +280,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9B44E19081F7EECE3E991424 /* [CP] Check Pods Manifest.lock */ = {
+		C2A1C59CB7C686379C277815 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -280,23 +300,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A232BA5B261999599433BC14 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Car Auctions/Pods-Car Auctions-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -320,6 +323,7 @@
 				804E2DB124BF74F000891202 /* LocationTextField.swift in Sources */,
 				804451F324AF25FD00CFFEB4 /* StoreUserDetails.swift in Sources */,
 				804B19DB24B4B1B200EA8ED7 /* PagingView.swift in Sources */,
+				8090B75825495095009C2E61 /* PlaceBidView.swift in Sources */,
 				804451EF24ADF7D000CFFEB4 /* TimeManager.swift in Sources */,
 				80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */,
 				80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */,
@@ -370,6 +374,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -401,6 +406,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SUPPRESS_WARNINGS = YES;
 			};
 			name = Debug;
 		};
@@ -430,6 +436,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -454,13 +461,14 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SUPPRESS_WARNINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		80330A7C249A21C70074E23E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D7077A06FE5E23D3EDD33C9 /* Pods-Car Auctions.debug.xcconfig */;
+			baseConfigurationReference = 16726E7519CE0F1928A3D6B3 /* Pods-Car Auctions.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -481,7 +489,7 @@
 		};
 		80330A7D249A21C70074E23E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E38021D614B17E05567C4AD /* Pods-Car Auctions.release.xcconfig */;
+			baseConfigurationReference = 11F867A9A7E9CE3E73345864 /* Pods-Car Auctions.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

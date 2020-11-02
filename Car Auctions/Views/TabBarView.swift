@@ -11,15 +11,14 @@ import SwiftUI
 struct TabBarView: View {
     
     @State var selectedView = 1 //initial View
-    
-    @State var navBarWillBeHidden = true // Result View's Tabbar visibility state
+    @State var navBarWillBeHidden = true 
     @State var pageTitle = "Featured"
-    
     @ObservedObject var loadContent = LoadContent()
+    @State var isNavBarHidden = true
     
     var body: some View {
         
-        NavigationView{
+        //NavigationView{
             
             TabView(selection: $selectedView) {
                 
@@ -27,9 +26,9 @@ struct TabBarView: View {
                     .tabItem {
                         Image(systemName: "car.fill")
                 }.tag(0)
-//                    .navigationBarTitle("")
-//                    .navigationBarBackButtonHidden(navBarWillBeHidden) //tab bar will be hidden when going into this view
-//                    .navigationBarHidden(navBarWillBeHidden)
+                    .navigationBarTitle("", displayMode: .inline)
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(true)
                 
                 
                 
@@ -49,7 +48,7 @@ struct TabBarView: View {
                         Image(systemName: "plus.circle.fill")
                         Text("Sell")
                 }.tag(2)
-                    .navigationBarTitle("")
+                    .navigationBarTitle("", displayMode: .inline)
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 
@@ -77,13 +76,16 @@ struct TabBarView: View {
                     .navigationBarHidden(true)
                 
             }
-            .navigationBarTitle("")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
-            
+            .onAppear() {
+                
+                self.isNavBarHidden = true
+                
+            }
+//            .navigationBarTitle("")
+//            .navigationBarBackButtonHidden(self.isNavBarHidden)
+//            .navigationBarHidden(self.isNavBarHidden)
         
-        
-        }
+        //}
         
         
     }

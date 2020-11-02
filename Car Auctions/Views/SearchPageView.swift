@@ -14,9 +14,9 @@ import Combine
 struct SearchPageView: View{
     
     @State var pageTitle = "Search Results"
-    @State var isNavigationBarHidden: Bool = true
+    @State var isNavigationBarHidden: Bool = false
     @ObservedObject var loadContent = LoadContent()
-    @State private var adViewActive: Bool = false //state for ad preview
+    @State private var adViewActive: Bool = false //state for ad preview false = not showing
     let db = Firestore.firestore()
     let currentDate = Date()
     
@@ -29,58 +29,54 @@ struct SearchPageView: View{
             ZStack{
                 Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
                 
-                VStack{
-                    
-                    Text("Search")
-                        .font(.custom("Arial", size: 40))
-                        .bold()
-                        .foregroundColor(.white)
-                        .frame(width: 350, alignment: .bottomLeading)
-                        .padding(.top, 25)
-                        .padding(.bottom, -25)
-                    
-                    Divider()
-                    
-                    Text ("Search for a particular car: e.g Audi A3")
-                        .padding(.top)
-                    
-                    TextField("Search here", text: $searchText)
-                        .background(Color.clear)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .cornerRadius(10)
-                        .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.black, lineWidth: 3))
-                        .frame(width: 350, height: nil, alignment: .center)
-                        .padding()
-                    
-//                    link(label: "", destination: ResultsView(isNavBarHidden: self.$isNavigationBarHidden, pageTitle: self.$pageTitle), state: self.$adViewActive)
-                    
-                    link(label: "", destination: SearchResultsView(isNavigationBarHidden: self.$isNavigationBarHidden), state: self.$adViewActive)
-
-                    Button(action: {
+                if #available(iOS 14.0, *) {
+                    VStack{
+                                                
+                        Divider()
                         
-                        self.adViewActive = true
+                        Text ("Search for a particular car: e.g Audi A3")
+                            .padding(.top)
                         
-                    }) {
-                        Text("Search")
-                            .frame(width: 300, alignment: .center)
+                        TextField("Search here", text: $searchText)
+                            .background(Color.clear)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .cornerRadius(10)
+                            .overlay(RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.black, lineWidth: 3))
+                            .frame(width: 350, height: nil, alignment: .center)
                             .padding()
-                            .foregroundColor(.white)
-                            .background(Color(red: 0.96, green: 0.25, blue: 0.42, opacity: 1.0))
                         
-                    }
-                    
-                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            
-            }.navigationBarTitle("Back")
-            .navigationBarHidden(self.isNavigationBarHidden)
-            .onAppear {
-                
-                self.isNavigationBarHidden = true
-                
+                        link(label: "", destination: SearchResultsView(isNavigationBarHidden: self.$isNavigationBarHidden, searchText: self.$searchText), state: self.$adViewActive)
+                        
+                        Button(action: {
+                            
+                            self.adViewActive = true
+                            
+                        }) {
+                            Text("Search")
+                                .frame(width: 300, alignment: .center)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color(red: 0.96, green: 0.25, blue: 0.42, opacity: 1.0))
+                            
+                        }
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .navigationBarTitle("Search")
+//                    .toolbar {
+//                        ToolbarItem(placement: .principal) {
+//                            VStack {
+//                                Text("Title").font(.headline)
+//                            }
+//                        }
+//                    }
+                    .navigationBarHidden(self.isNavigationBarHidden)
+                }
+                else {
+                    // Fallback on earlier versions
+                }
             }
+
         }
-        
     }
     
     private func link<Destination: View>(label: String, destination: Destination, state: Binding<Bool>) -> some View {
@@ -99,3 +95,18 @@ struct SearchPageView_Previews: PreviewProvider {
         SearchPageView()
     }
 }
+
+
+//                    Text("Search")
+//                        .font(.custom("Arial", size: 40))
+//                        .bold()
+//                        .foregroundColor(.white)
+//                        .frame(width: 350, alignment: .bottomLeading)
+//                        .padding(.top, 25)
+//                        .padding(.bottom, -25)
+
+//            .onAppear {
+//
+//                self.isNavigationBarHidden = true
+//
+//            }
