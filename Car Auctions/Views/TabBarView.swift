@@ -52,9 +52,6 @@ struct TabBarView: View {
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 
-                
-                
-                
                 Text("Fourth View")
                     .tabItem{
                         Image(systemName: "sterlingsign.circle.fill")

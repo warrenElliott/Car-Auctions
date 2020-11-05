@@ -12,9 +12,15 @@ import Firebase
 
 struct PlaceBidView: View{
     
+    let db = Firestore.firestore() //reference to the database
+    let storage = Storage.storage() //reference to the storage
+    
+    @ObservedObject var loadContent =  LoadContent()
+    
     @Binding var show : Bool
-    @Binding var adID: String
-    @Binding var currentBid: String
+    @Binding var adPreview: AuctionSaleData
+    
+    @State var currentBid: String
     @State var editBidValue = 0
     @State var minusButtonDisabled = false
     
@@ -70,8 +76,13 @@ struct PlaceBidView: View{
                 
                 Button(action: {
                     
-                    AdManager().increaseBid(adID, editValue: String(editBidValue))
-
+                    loadContent.increaseBid(forAd: adPreview, editValue: String(editBidValue))
+                        show.toggle()
+                    
+                    DispatchQueue.main.async {
+                        self.loadContent.fetchData(dataQuery: self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(Date())))
+                    }
+                    
                     
                 }, label: {
                     
@@ -112,7 +123,7 @@ struct PlaceBidView: View{
 struct PlaceBidView_Previews: PreviewProvider {
     static var previews: some View {
         
-        PlaceBidView(show: .constant(true), adID: .constant("f"), currentBid: .constant("5000"))
+        PlaceBidView(loadContent: LoadContent(), show: .constant(true), adPreview: .constant(saleData[0]), currentBid: "5000")
         
     }
 }

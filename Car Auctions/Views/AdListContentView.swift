@@ -9,12 +9,11 @@
 import Foundation
 import SwiftUI
 import Firebase
-
+import Combine
 
 struct AdListContentView: View {
     
-    
-    @ObservedObject var loadContent: LoadContent
+    @ObservedObject var loadContent = LoadContent()
     @Binding var adViewActive: Bool
     @Binding var emptyListMessage: String
     //@Binding var pageTitle: String
@@ -41,9 +40,10 @@ struct AdListContentView: View {
                                 .onTapGesture {
                                     self.chosenIndex = i
                                     self.adViewActive = true
+                                    
                             }
                             
-                            NavigationLink(destination: AdDetailView(adPreview: .constant(chosenIndex)), isActive: self.$adViewActive) {
+                            NavigationLink(destination: AdDetailView(adPreview: self.$chosenIndex), isActive: self.$adViewActive) {
                                 Text("") //SwiftUI navigator to the ad preview page.
                             }
                             
@@ -64,7 +64,9 @@ struct AdListContentView: View {
                 
             }.onAppear(){
             
-            self.loadContent.fetchData(dataQuery: self.query)
+                self.loadContent.fetchData(dataQuery: self.query)
+                
+                
             
         }
     }

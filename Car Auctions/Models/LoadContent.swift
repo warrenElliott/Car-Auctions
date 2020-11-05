@@ -8,10 +8,12 @@
 
 import Foundation
 import Firebase
+import Combine
 
 class LoadContent: ObservableObject{
     
     @Published var content = [AuctionSaleData]()
+
 
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage
@@ -39,7 +41,7 @@ class LoadContent: ObservableObject{
                         let adID = data["adID"] as! String
                         //self.fetchImageURLs(id: adID)
                         
-                        let instance = AuctionSaleData(adId: adID,
+                        var instance = AuctionSaleData(adId: adID,
                                                        adName: data["adName"] as! String,
                                                        adDescription: data["adDescription"] as! String,
                                                        adBid: data["adBid"] as! String,
@@ -58,49 +60,29 @@ class LoadContent: ObservableObject{
                     }
                     
                     self.content = pageContent
+                    print ("triggered")
                     
                 }
             }
         }
     }
+    
+    
+    func increaseBid(forAd adSummary: AuctionSaleData, editValue: String){
+        
+        let bidReference = self.db.collection("LiveDatabase").document("adNo__\(adSummary.adId)")
+        
+        bidReference.updateData([
+            "adBid": "\(editValue)"
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    
+    
 }
-
-//    func fetchImageURLs(id: String) -> [String]{
-//
-//        var pageURLs = [String]()
-//
-//        let imageDataReference = self.db.collection("LiveDatabase").document("adNo__\(id)").collection("AdImages") //tap into the above ad's image URLS here
-//
-//        imageDataReference.getDocuments { (query, error) in
-//
-//            if let e = error{
-//
-//                print (e.localizedDescription)
-//
-//            }
-//
-//            else{
-//
-//                if let adImageData = query?.documents{
-//
-//                    for entry in adImageData{
-//
-//                        if let link = entry.data()["URL"]{
-//
-//                            print (link)
-//
-//                            pageURLs.append(link as! String)
-//
-//
-//                        }
-//
-//                    }
-//
-//                }
-//
-//            }
-//
-//        }
-//
-//        return pageURLs
-//    }

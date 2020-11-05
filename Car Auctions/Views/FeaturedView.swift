@@ -14,7 +14,7 @@ struct FeaturedView: View{
     
     @Binding var isNavBarHidden : Bool
     
-    @ObservedObject var loadContent = LoadContent()
+    
     @State private var adViewActive: Bool = false //state for ad preview
     @State private var emptyListMessage = "Hmm Nothing Ending Today...Tap on Search to find new auctions!"
     @State private var pageTitle = "Featured"
@@ -32,7 +32,7 @@ struct FeaturedView: View{
                 
                 VStack{
                     
-                    AdListContentView(loadContent: self.loadContent, adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
+                    AdListContentView(adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
                     
                 }
                 .navigationBarTitle("Featured")

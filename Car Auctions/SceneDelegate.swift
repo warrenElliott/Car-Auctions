@@ -13,6 +13,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     @State var isNavigationBarHidden : Bool = true
+    
+    public static var loadContent = LoadContent()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -22,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         
-        let contentView = ContentView()
+        let contentView = ContentView().environmentObject(SceneDelegate.loadContent)
         //let contentView = PlaceBidView(show: .constant(true), currentBid: .constant("5000"))
 
         // Use a UIHostingController as window root view controller.

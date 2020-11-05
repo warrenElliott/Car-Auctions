@@ -13,6 +13,7 @@ import struct Kingfisher.KFImage
 struct AdDetailView: View{
     
     @Binding var adPreview : AuctionSaleData //data taken from the SellPageView form the user created
+    
     @State var isActive = true //toggles between ad detail and bidding history subviews
     @State var isShowingPlaceBidButton = true
     @State var showPublishAlert = false
@@ -29,14 +30,16 @@ struct AdDetailView: View{
         
     }
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    //@Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
     
+        
         ZStack{
 
             Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
-            PlaceBidView(show: self.$bidView, adID: self.$adPreview.adId, currentBid: self.$adPreview.adBid).zIndex(1)
+            
+            //PlaceBidView(show: self.$bidView, adPreview: $adPreview, currentBid: self.adPreview.adBid).zIndex(2)
             
             VStack(spacing: 0){
                 
@@ -106,8 +109,6 @@ struct AdDetailView: View{
                                     .bold()
                                     .foregroundColor(.white)
                                 
-                            }.onAppear {
-                                print (self.adPreview.imageLinks)
                             }
                             
                             VStack(alignment: .leading){
@@ -220,6 +221,7 @@ struct AdDetailView: View{
                         Button(action: {
                             
                             self.bidView = true
+
                     
                         }, label: {Text("Place bid")
                             .padding()
@@ -234,28 +236,30 @@ struct AdDetailView: View{
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 
+        }.navigationBarItems(
             
-
-        }.navigationBarItems(leading:
-            
-        HStack {
-            Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-                
-                if self.adPreview.isDraft == false{
-                    
-                    self.adPreview = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
-                    
-                    //if the ad's been published, empty the binded ad struct which was created in SellPageView
-                }
-                
-            }) {
-                Text ("Back")
-                .foregroundColor(.black)
-                .bold()
-                    
-            }
-        }, trailing:
+//            leading:
+//            
+//        HStack {
+//            Button(action: {
+//                //self.presentationMode.wrappedValue.dismiss()
+//                
+//                if self.adPreview.isDraft == false{
+//                    
+//                    self.adPreview = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
+//                    
+//                    //if the ad's been published, empty the binded ad struct which was created in SellPageView
+//                }
+//                
+//            }) {
+//                Text ("Back")
+//                .foregroundColor(.black)
+//                .bold()
+//                    
+//            }
+//        },
+                             
+        trailing:
             
         HStack {
             
@@ -288,12 +292,10 @@ struct AdDetailView: View{
             })
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(false)
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(false)
+
         
     }
-    
-    
-    
 }
 
 
