@@ -12,8 +12,7 @@ import UIKit
 
 struct AuctionSale: View{
     
-    var sale: AuctionSaleData
-    
+    @State var sale: AuctionSaleData
     @State var nowDate = Date()
     
     var timer: Timer {

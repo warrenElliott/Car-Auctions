@@ -21,6 +21,8 @@ struct AdListContentView: View {
     
     @State var chosenIndex: AuctionSaleData = AuctionSaleData(adId: "", adName: "", adDescription: "", adBid: "", adEndingTime: "", adEndingDate: "", adAuthor: "", adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
     
+    @State var chosenRow: MutableSaleData = MutableSaleData(adId: "", adName: "", adDescription: "", adBid: "", adEndingTime: "", adEndingDate: "", adAuthor: "", adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
+    
     var body: some View {
         
         VStack{
@@ -41,9 +43,11 @@ struct AdListContentView: View {
                                     self.chosenIndex = i
                                     self.adViewActive = true
                                     
+                                    chosenRow = MutableSaleData(adId: chosenIndex.adId, adName: chosenIndex.adName, adDescription: chosenIndex.adDescription, adBid: chosenIndex.adBid, adEndingTime: chosenIndex.adEndingTime, adEndingDate: chosenIndex.adEndingDate, adAuthor: chosenIndex.adAuthor, adLocation: chosenIndex.adLocation, adImages: chosenIndex.adImages, imageLinks: chosenIndex.imageLinks, datePosted: chosenIndex.datePosted, isDraft: chosenIndex.isDraft, bidCount: chosenIndex.bidCount)
+                                    
                             }
                             
-                            NavigationLink(destination: AdDetailView(adPreview: self.$chosenIndex), isActive: self.$adViewActive) {
+                            NavigationLink(destination: MutableAdDetailView(mutableAdPreview: self.chosenRow), isActive: self.$adViewActive) {
                                 Text("") //SwiftUI navigator to the ad preview page.
                             }
                             

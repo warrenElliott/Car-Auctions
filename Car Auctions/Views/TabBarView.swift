@@ -18,20 +18,20 @@ struct TabBarView: View {
     
     var body: some View {
         
-        //NavigationView{
+        NavigationView{
             
             TabView(selection: $selectedView) {
+                
                 
                 FeaturedView(isNavBarHidden: $navBarWillBeHidden)
                     .tabItem {
                         Image(systemName: "car.fill")
-                }.tag(0)
+                    }.tag(0)
                     .navigationBarTitle("", displayMode: .inline)
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 
-                
-                
+
                 SearchPageView()
                     .tabItem{
                         Image(systemName: "magnifyingglass.circle.fill")
@@ -82,7 +82,7 @@ struct TabBarView: View {
 //            .navigationBarBackButtonHidden(self.isNavBarHidden)
 //            .navigationBarHidden(self.isNavBarHidden)
         
-        //}
+        }
         
         
     }

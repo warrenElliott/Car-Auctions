@@ -60,7 +60,6 @@ class LoadContent: ObservableObject{
                     }
                     
                     self.content = pageContent
-                    print ("triggered")
                     
                 }
             }
@@ -68,7 +67,7 @@ class LoadContent: ObservableObject{
     }
     
     
-    func increaseBid(forAd adSummary: AuctionSaleData, editValue: String){
+    func increaseBid(forAd adSummary: MutableSaleData, editValue: String){
         
         let bidReference = self.db.collection("LiveDatabase").document("adNo__\(adSummary.adId)")
         

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		80047DB7253F527600EF78AB /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80047DB6253F527600EF78AB /* SearchResultsView.swift */; };
 		80047DB92540C8A100EF78AB /* AdListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80047DB82540C8A100EF78AB /* AdListContentView.swift */; };
+		800A1E332554C05C0087EC60 /* MutableAdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800A1E322554C05C0087EC60 /* MutableAdDetailView.swift */; };
 		80330A6B249A21C40074E23E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6A249A21C40074E23E /* AppDelegate.swift */; };
 		80330A6D249A21C40074E23E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6C249A21C40074E23E /* SceneDelegate.swift */; };
 		80330A6F249A21C40074E23E /* FirstTimeUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6E249A21C40074E23E /* FirstTimeUserScreen.swift */; };
@@ -42,6 +43,7 @@
 		16726E7519CE0F1928A3D6B3 /* Pods-Car Auctions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car Auctions.debug.xcconfig"; path = "Target Support Files/Pods-Car Auctions/Pods-Car Auctions.debug.xcconfig"; sourceTree = "<group>"; };
 		80047DB6253F527600EF78AB /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		80047DB82540C8A100EF78AB /* AdListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdListContentView.swift; sourceTree = "<group>"; };
+		800A1E322554C05C0087EC60 /* MutableAdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableAdDetailView.swift; sourceTree = "<group>"; };
 		80330A67249A21C40074E23E /* Car Auctions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Car Auctions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80330A6A249A21C40074E23E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80330A6C249A21C40074E23E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				80047DB6253F527600EF78AB /* SearchResultsView.swift */,
 				80E0C030249E186100559261 /* SellPageView.swift */,
 				8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */,
+				800A1E322554C05C0087EC60 /* MutableAdDetailView.swift */,
 				804E2DB024BF74F000891202 /* LocationTextField.swift */,
 				804B19DA24B4B1B200EA8ED7 /* PagingView.swift */,
 				80047DB82540C8A100EF78AB /* AdListContentView.swift */,
@@ -320,6 +323,7 @@
 				80047DB92540C8A100EF78AB /* AdListContentView.swift in Sources */,
 				804E2DB324C32F1700891202 /* LoadContent.swift in Sources */,
 				8095A6EB24AF5CFB00DD59BE /* AdDetailView.swift in Sources */,
+				800A1E332554C05C0087EC60 /* MutableAdDetailView.swift in Sources */,
 				804E2DB124BF74F000891202 /* LocationTextField.swift in Sources */,
 				804451F324AF25FD00CFFEB4 /* StoreUserDetails.swift in Sources */,
 				804B19DB24B4B1B200EA8ED7 /* PagingView.swift in Sources */,

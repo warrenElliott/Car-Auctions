@@ -1,19 +1,19 @@
 //
-//  AdDetailView.swift
+//  MutableAdDetailView.swift
 //  Car Auctions
-//  Code for the Ad detail view where users find more information about the Ad.
-//  Created by Warren Elliott on 03/07/2020.
+//
+//  Created by Warren Elliott on 05/11/2020.
 //  Copyright © 2020 Warren Elliott. All rights reserved.
 //
+
 import Foundation
 import SwiftUI
 import UIKit
 import struct Kingfisher.KFImage
 
-struct AdDetailView: View{
+struct MutableAdDetailView: View{
     
-    @Binding var adPreview : AuctionSaleData //data taken from the SellPageView form the user created
-//    @ObservedObject var mutableAdPreview = MutableSaleData(adId: "", adName: "", adDescription: "", adBid: "", adEndingTime: "", adEndingDate: "", adAuthor: "", adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: false, bidCount: 0)
+    @ObservedObject var mutableAdPreview: MutableSaleData
     
     @State var isActive = true //toggles between ad detail and bidding history subviews
     @State var isShowingPlaceBidButton = true
@@ -40,7 +40,7 @@ struct AdDetailView: View{
 
             Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
             
-//            PlaceBidView(show: self.$bidView, adPreview: $adPreview, currentBid: self.adPreview.adBid).zIndex(2)
+            PlaceBidView(show: self.$bidView, adPreview: mutableAdPreview, currentBid: self.mutableAdPreview.adBid).zIndex(2)
             
             VStack(spacing: 0){
                 
@@ -48,7 +48,7 @@ struct AdDetailView: View{
                     
                     VStack(spacing: 0){
                         
-                        if self.adPreview.adImages.count == 0 && self.adPreview.imageLinks.count == 0{
+                        if self.mutableAdPreview.adImages.count == 0 && self.mutableAdPreview.imageLinks.count == 0{
                             
                             Image("StockAdPhoto")
                                 .resizable()
@@ -57,13 +57,13 @@ struct AdDetailView: View{
                             
                         }else{
                             
-                            if self.adPreview.imageLinks.count > 0 && self.adPreview.adImages.count == 0{
+                            if self.mutableAdPreview.imageLinks.count > 0 && self.mutableAdPreview.adImages.count == 0{
                                 
-                                PagingView(index: $index.animation(), maxIndex: adPreview.imageLinks.count - 1) {
+                                PagingView(index: $index.animation(), maxIndex: mutableAdPreview.imageLinks.count - 1) {
                                     
-                                    ForEach(self.adPreview.imageLinks.indices, id: \.self) { link in
+                                    ForEach(self.mutableAdPreview.imageLinks.indices, id: \.self) { link in
                                         
-                                        KFImage(URL(string: self.adPreview.imageLinks[link]!))
+                                        KFImage(URL(string: self.mutableAdPreview.imageLinks[link]!))
                                             .resizable()
                                             .scaledToFill()
                                         
@@ -74,9 +74,9 @@ struct AdDetailView: View{
                                 
                             else{
                                 
-                                PagingView(index: $index.animation(), maxIndex: adPreview.adImages.count - 1) { //carousel images view with dots, where user swipes for the next pic
-                                    ForEach(self.adPreview.adImages.indices, id: \.self) { imageName in
-                                        Image(uiImage: self.adPreview.adImages[imageName]!)
+                                PagingView(index: $index.animation(), maxIndex: mutableAdPreview.adImages.count - 1) { //carousel images view with dots, where user swipes for the next pic
+                                    ForEach(self.mutableAdPreview.adImages.indices, id: \.self) { imageName in
+                                        Image(uiImage: self.mutableAdPreview.adImages[imageName]!)
                                             .resizable()
                                             .scaledToFill()
                                     }
@@ -91,7 +91,7 @@ struct AdDetailView: View{
                                 Text("Bid Closes In")
                                     .foregroundColor(.white)
                                 
-                                Text(TimeManager().countDownDate(date: self.adPreview.adEndingDate, time: self.adPreview.adEndingTime, nowDate))
+                                Text(TimeManager().countDownDate(date: self.mutableAdPreview.adEndingDate, time: self.mutableAdPreview.adEndingTime, nowDate))
                                     .bold()
                                     .foregroundColor(.white)
                                     .onAppear(perform: {
@@ -106,7 +106,7 @@ struct AdDetailView: View{
                                 Text("Current Bid")
                                     .foregroundColor(.white)
                                 
-                                Text("£ \(self.adPreview.adBid)")
+                                Text("£ \(self.mutableAdPreview.adBid)")
                                     .bold()
                                     .foregroundColor(.white)
                                 
@@ -132,7 +132,7 @@ struct AdDetailView: View{
                             
                             Button(action: {
                                 self.isActive = true
-                                print (print (self.$adPreview.adDescription))
+                                print (print (self.mutableAdPreview.adDescription))
                             }) {
                                 Text("Ad Desciption")
                                     .frame(width: 150)
@@ -159,11 +159,11 @@ struct AdDetailView: View{
                         if isActive{
                             
                             
-                            Text(self.adPreview.adName)
+                            Text(self.mutableAdPreview.adName)
                                 .bold()
                                 .padding()
                             
-                            Text(self.adPreview.adDescription)
+                            Text(self.mutableAdPreview.adDescription)
                                 .frame(width: 350, alignment: .leading)
                                 .padding(.bottom)
                             
@@ -176,7 +176,7 @@ struct AdDetailView: View{
                                 .frame(width: UIScreen.main.bounds.width / 2, alignment: .leading)
                                 
                                 
-                                Text(self.adPreview.adLocation)
+                                Text(self.mutableAdPreview.adLocation)
                                 .padding()
                                 .frame(width: UIScreen.main.bounds.width / 2,alignment: .trailing)
                             }.frame(width: UIScreen.main.bounds.width, alignment: .leading)
@@ -214,7 +214,7 @@ struct AdDetailView: View{
                 
                 VStack{
                     
-                    if self.adPreview.isDraft == true{
+                    if self.mutableAdPreview.isDraft == true{
                         Text("")
                     }
                     else{
@@ -237,60 +237,40 @@ struct AdDetailView: View{
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 
-        }.navigationBarItems(
-            
-//            leading:
-//            
+        }
+//        .navigationBarItems(
+//
+//        trailing:
+//
 //        HStack {
-//            Button(action: {
-//                //self.presentationMode.wrappedValue.dismiss()
-//                
-//                if self.adPreview.isDraft == false{
-//                    
-//                    self.adPreview = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
-//                    
-//                    //if the ad's been published, empty the binded ad struct which was created in SellPageView
+//
+//            if self.mutableAdPreview.isDraft == true{
+//                Button(action: {
+//
+//                    if (self.mutableAdPreview.adName == "" || self.adPreview.adLocation == ""){
+//                        self.showPublishAlert = true
+//                    }
+//                    else{
+//
+//                        self.mutableAdPreview.isDraft = false
+//                        self.mutableAdPreview.datePosted = TimeManager().dateToIsoString(Date())
+//                        AdManager().uploadAd(self.mutableAdPreview)
+//
+//                    }
+//
+//                }) {
+//                    Text("Publish")
+//
+//                        .foregroundColor(.black)
+//                        .bold()
+//                        .alert(isPresented: self.$showPublishAlert, content: {
+//                        Alert(title: Text("Error"), message: Text("Ad Title or Location cannot be empty"), dismissButton: .default(Text("Ok")))
+//
+//                    })
 //                }
-//                
-//            }) {
-//                Text ("Back")
-//                .foregroundColor(.black)
-//                .bold()
-//                    
 //            }
-//        },
-                             
-        trailing:
-            
-        HStack {
-            
-            if self.adPreview.isDraft == true{
-                Button(action: {
-                    
-                    if (self.adPreview.adName == "" || self.adPreview.adLocation == ""){
-                        self.showPublishAlert = true
-                    }
-                    else{
-                        
-                        self.adPreview.isDraft = false
-                        self.adPreview.datePosted = TimeManager().dateToIsoString(Date())
-                        AdManager().uploadAd(self.adPreview)
-
-                    }
-                    
-                }) {
-                    Text("Publish")
-                        
-                        .foregroundColor(.black)
-                        .bold()
-                        .alert(isPresented: self.$showPublishAlert, content: {
-                        Alert(title: Text("Error"), message: Text("Ad Title or Location cannot be empty"), dismissButton: .default(Text("Ok")))
-                        
-                    })
-                }
-            }
-
-            })
+//
+//            })
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(false)
@@ -300,9 +280,9 @@ struct AdDetailView: View{
 }
 
 
-struct AdDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SellPageView()
-    }
-}
+//struct AdDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SellPageView()
+//    }
+//}
 

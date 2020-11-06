@@ -18,7 +18,7 @@ struct PlaceBidView: View{
     @ObservedObject var loadContent =  LoadContent()
     
     @Binding var show : Bool
-    @Binding var adPreview: AuctionSaleData
+    @ObservedObject var adPreview: MutableSaleData
     
     @State var currentBid: String
     @State var editBidValue = 0
@@ -76,12 +76,14 @@ struct PlaceBidView: View{
                 
                 Button(action: {
                     
-                    loadContent.increaseBid(forAd: adPreview, editValue: String(editBidValue))
-                        show.toggle()
                     
                     DispatchQueue.main.async {
-                        self.loadContent.fetchData(dataQuery: self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(Date())))
+                        loadContent.increaseBid(forAd: adPreview, editValue: String(editBidValue))
+                        adPreview.adBid = String(editBidValue)
                     }
+                    
+
+                    show.toggle()
                     
                     
                 }, label: {
@@ -120,10 +122,10 @@ struct PlaceBidView: View{
 
 }
 
-struct PlaceBidView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        PlaceBidView(loadContent: LoadContent(), show: .constant(true), adPreview: .constant(saleData[0]), currentBid: "5000")
-        
-    }
-}
+//struct PlaceBidView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        PlaceBidView(loadContent: LoadContent(), show: .constant(true), adPreview: .constant(saleData[0]), currentBid: "5000")
+//
+//    }
+//}
