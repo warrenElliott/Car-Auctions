@@ -67,7 +67,7 @@ class LoadContent: ObservableObject{
     }
     
     
-    func increaseBid(forAd adSummary: MutableSaleData, editValue: String){
+    func increaseBid(forAd adSummary: AuctionSaleData, editValue: String){
         
         let bidReference = self.db.collection("LiveDatabase").document("adNo__\(adSummary.adId)")
         

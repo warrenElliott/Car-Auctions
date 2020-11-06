@@ -8,8 +8,9 @@
 
 import SwiftUI
 
-struct AuctionSaleData: Hashable{
-
+struct AuctionSaleData: Hashable, Identifiable{
+    
+    var id = UUID()
     var adId: String
     var adName: String
     var adDescription: String
@@ -23,6 +24,8 @@ struct AuctionSaleData: Hashable{
     var datePosted: String
     var isDraft: Bool
     var bidCount: Int
+    
+    
 
 }
 

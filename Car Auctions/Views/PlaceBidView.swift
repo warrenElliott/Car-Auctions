@@ -5,7 +5,6 @@
 //  Created by Warren Elliott on 28/10/2020.
 //  Copyright © 2020 Warren Elliott. All rights reserved.
 //
-
 import Foundation
 import SwiftUI
 import Firebase
@@ -18,7 +17,7 @@ struct PlaceBidView: View{
     @ObservedObject var loadContent =  LoadContent()
     
     @Binding var show : Bool
-    @ObservedObject var adPreview: MutableSaleData
+    @Binding var adPreview: AuctionSaleData
     
     @State var currentBid: String
     @State var editBidValue = 0

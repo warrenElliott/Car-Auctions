@@ -13,8 +13,6 @@ import Combine
 struct FeaturedView: View{
     
     @Binding var isNavBarHidden : Bool
-    
-    
     @State private var adViewActive: Bool = false //state for ad preview
     @State private var emptyListMessage = "Hmm Nothing Ending Today...Tap on Search to find new auctions!"
     @State private var pageTitle = "Featured"
@@ -28,23 +26,22 @@ struct FeaturedView: View{
             
             ZStack{
                 
-                Colours().white.edgesIgnoringSafeArea(.all)
+                Color.white
                 
                 VStack{
-                    
-                    AdListContentView(adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
-                    
-                }
-                .navigationBarTitle("Featured")
-                .navigationBarHidden(self.isNavBarHidden)
                 
+                AdListContentView(adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
             }
-            .onAppear() {
-                
-                self.isNavBarHidden = false
-                
-            }
+            
         }
+            .navigationBarTitle("Featured")
+            .navigationBarHidden(self.isNavBarHidden)
+            .onAppear() {
+
+                self.isNavBarHidden = false
+
+            }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     

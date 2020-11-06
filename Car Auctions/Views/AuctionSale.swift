@@ -84,14 +84,13 @@ struct AuctionSale: View{
                         
                     })
                 
-            }.frame(width: 170, height: 110, alignment: .topLeading)
+            }
+            .frame(width: 170, height: 110, alignment: .topLeading)
 
-            Spacer()
+            //Spacer()
             
-        }.frame(maxWidth: .infinity)
-            .onAppear {
-                
         }
+        .frame(maxWidth: .infinity)
         
        
     }

@@ -17,19 +17,16 @@ struct TabBarView: View {
     @State var isNavBarHidden = true
     
     var body: some View {
-        
-        NavigationView{
             
             TabView(selection: $selectedView) {
-                
                 
                 FeaturedView(isNavBarHidden: $navBarWillBeHidden)
                     .tabItem {
                         Image(systemName: "car.fill")
                     }.tag(0)
-                    .navigationBarTitle("", displayMode: .inline)
+                    .navigationBarTitle("Featured", displayMode: .inline)
                     .navigationBarBackButtonHidden(true)
-                    .navigationBarHidden(true)
+                    .navigationBarHidden(false)
                 
 
                 SearchPageView()
@@ -78,13 +75,7 @@ struct TabBarView: View {
                 self.isNavBarHidden = true
                 
             }
-//            .navigationBarTitle("")
-//            .navigationBarBackButtonHidden(self.isNavBarHidden)
-//            .navigationBarHidden(self.isNavBarHidden)
-        
-        }
-        
-        
+
     }
 }
 
@@ -98,32 +89,6 @@ struct TabBarView: View {
 //
 //    }
 //}
-
-func tabBarTitle(_ tag: Int) -> String{
-    
-    var outputTitle = String()
-    
-    switch tag{
-        
-    case 0:
-        outputTitle = "Ending Soon"
-    case 1:
-        outputTitle = "Search"
-    case 2:
-        outputTitle = "List your car"
-    case 3:
-        outputTitle = "My Bids"
-    case 4:
-        outputTitle = "My Account"
-    default:
-        outputTitle = "Car Auctions UK"
-        
-        
-    }
-    
-    return outputTitle
-    
-}
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {

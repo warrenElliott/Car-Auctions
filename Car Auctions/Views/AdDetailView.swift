@@ -12,8 +12,7 @@ import struct Kingfisher.KFImage
 
 struct AdDetailView: View{
     
-    @Binding var adPreview : AuctionSaleData //data taken from the SellPageView form the user created
-//    @ObservedObject var mutableAdPreview = MutableSaleData(adId: "", adName: "", adDescription: "", adBid: "", adEndingTime: "", adEndingDate: "", adAuthor: "", adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: false, bidCount: 0)
+    @State var adPreview : AuctionSaleData //data taken from the SellPageView form the user created
     
     @State var isActive = true //toggles between ad detail and bidding history subviews
     @State var isShowingPlaceBidButton = true
@@ -40,7 +39,7 @@ struct AdDetailView: View{
 
             Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
             
-//            PlaceBidView(show: self.$bidView, adPreview: $adPreview, currentBid: self.adPreview.adBid).zIndex(2)
+            PlaceBidView(show: self.$bidView, adPreview: $adPreview, currentBid: self.adPreview.adBid).zIndex(2)
             
             VStack(spacing: 0){
                 
@@ -294,6 +293,7 @@ struct AdDetailView: View{
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(false)
+        
 
         
     }
