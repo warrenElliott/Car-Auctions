@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TabBarView: View {
     
-    @State var selectedView = 1 //initial View
+    @State var selectedView = 1 //init ial View
     @State var navBarWillBeHidden = true 
     @State var pageTitle = "Featured"
     @ObservedObject var loadContent = LoadContent()
@@ -26,7 +26,7 @@ struct TabBarView: View {
                     }.tag(0)
                     .navigationBarTitle("Featured", displayMode: .inline)
                     .navigationBarBackButtonHidden(true)
-                    .navigationBarHidden(false)
+                    .navigationBarHidden(true)
                 
 
                 SearchPageView()
@@ -79,19 +79,8 @@ struct TabBarView: View {
     }
 }
 
-//struct TabView_Previews: PreviewProvider {
-//
-//    var isNavigationBarHidden : Bool = true
-//
-//    static var previews: some View {
-//
-//        TabBarView(isNavigationBarHidden: self.$isNavigationBarHidden)
-//
-//    }
-//}
-
-struct TabBarView_Previews: PreviewProvider {
+struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        TabBarView(isNavBarHidden: true)
     }
 }

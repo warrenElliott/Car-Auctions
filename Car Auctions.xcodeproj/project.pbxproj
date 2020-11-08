@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		80047DB7253F527600EF78AB /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80047DB6253F527600EF78AB /* SearchResultsView.swift */; };
 		80047DB92540C8A100EF78AB /* AdListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80047DB82540C8A100EF78AB /* AdListContentView.swift */; };
+		800FDB6C2556B1C70093C76C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 800FDB6B2556B1C70093C76C /* Roboto-Regular.ttf */; };
+		800FDB8B2557E5E20093C76C /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 800FDB8A2557E5E20093C76C /* Roboto-Bold.ttf */; };
 		80330A6B249A21C40074E23E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6A249A21C40074E23E /* AppDelegate.swift */; };
 		80330A6D249A21C40074E23E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6C249A21C40074E23E /* SceneDelegate.swift */; };
 		80330A6F249A21C40074E23E /* FirstTimeUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80330A6E249A21C40074E23E /* FirstTimeUserScreen.swift */; };
@@ -42,6 +44,8 @@
 		16726E7519CE0F1928A3D6B3 /* Pods-Car Auctions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Car Auctions.debug.xcconfig"; path = "Target Support Files/Pods-Car Auctions/Pods-Car Auctions.debug.xcconfig"; sourceTree = "<group>"; };
 		80047DB6253F527600EF78AB /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		80047DB82540C8A100EF78AB /* AdListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdListContentView.swift; sourceTree = "<group>"; };
+		800FDB6B2556B1C70093C76C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		800FDB8A2557E5E20093C76C /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		80330A67249A21C40074E23E /* Car Auctions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Car Auctions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80330A6A249A21C40074E23E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80330A6C249A21C40074E23E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		800FDB6E2556B1E40093C76C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				800FDB8A2557E5E20093C76C /* Roboto-Bold.ttf */,
+				800FDB6B2556B1C70093C76C /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		80330A5E249A21C40074E23E = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +129,7 @@
 				8048349C249B8F30005CACAF /* Models */,
 				80330A6A249A21C40074E23E /* AppDelegate.swift */,
 				80330A6C249A21C40074E23E /* SceneDelegate.swift */,
+				800FDB6E2556B1E40093C76C /* Fonts */,
 				80330A70249A21C70074E23E /* Assets.xcassets */,
 				80330A75249A21C70074E23E /* LaunchScreen.storyboard */,
 				80330A78249A21C70074E23E /* Info.plist */,
@@ -238,6 +252,8 @@
 			files = (
 				80330A77249A21C70074E23E /* LaunchScreen.storyboard in Resources */,
 				804834A3249BB34A005CACAF /* GoogleService-Info.plist in Resources */,
+				800FDB8B2557E5E20093C76C /* Roboto-Bold.ttf in Resources */,
+				800FDB6C2556B1C70093C76C /* Roboto-Regular.ttf in Resources */,
 				80330A74249A21C70074E23E /* Preview Assets.xcassets in Resources */,
 				80330A71249A21C70074E23E /* Assets.xcassets in Resources */,
 			);

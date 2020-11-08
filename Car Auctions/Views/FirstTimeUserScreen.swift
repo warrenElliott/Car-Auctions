@@ -11,88 +11,131 @@ import FirebaseFirestore
 
 struct ContentView: View {
     
-    @State private var userEmail = "warren@email.com"
-    @State private var userPassword = "123456"
+    @State private var userEmail = ""
+    @State private var userPassword = ""
     @State private var signInSuccess: Bool = false
+    
+    init() { //editing the view of the navigation view bars for the app
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
 
+        appearance.largeTitleTextAttributes = [
+            NSAttributedString.Key.foregroundColor : UIColor.white
+        ]
+        
+        appearance.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor : UIColor.white
+        ]
+        
+        appearance.backgroundColor = Colours().headerColor
+        
+        //apply the customisation across the app
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().tintColor = .white
+        
+        UITableView.appearance().backgroundColor = Colours().backgroundColor
+        UITableView.appearance().separatorStyle = .none
+        
+    }
+    
     var body: some View {
         
         NavigationView{
             
             ZStack{
                 
-                Image("bg2").opacity(1)
+                GeometryReader { geo in
+                    Image("bg")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        
+                }.edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 10){
-                    Text("Car Auctions UK")
-                        .font(.custom("Hiragino Sans", size: 40))
-                        .bold()
-                        .foregroundColor(.white)
+                VStack{
+                    VStack(spacing: 10){
+                        Text("Car Auctions")
+                            .font(.custom("Roboto-Bold", size: 45))
+                            .bold()
+                            .foregroundColor(.white)
+                        
+                        Text("Car auctions across the country in one app")
+                            .font(.custom("Roboto-Regular", size: 14))
+                            .foregroundColor(.white)
+                        
+                    }.padding(.bottom)
                     
-                    Text("Car Auctions across the country in one app")
-                        .font(.custom("Hiragino Sans", size: 12))
-                }
-                .offset(x: 0, y: -140)
-                
-                VStack(spacing: 10){
-                    
-                    TextField("eMail Address", text: $userEmail)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(width: 300, height: nil)
-                        .cornerRadius(10)
-                        .overlay(RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black, lineWidth: 3))
-                    
-                    SecureField("Enter a password", text: $userPassword)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(width: 300, height: nil)
-                        .cornerRadius(10)
-                        .overlay(RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black, lineWidth: 3))
-                    
-                }
-                .offset(x: 0, y: -10)
-                
-                VStack(spacing: 10){
-                
-                    link(label: "", destination: TabBarView(), state: self.$signInSuccess)
-                        .navigationBarTitle("")
-                        .navigationBarBackButtonHidden(true)
-                        .navigationBarHidden(true)
-                    
-                    
-                    Button(action: {
-                        self.registerUser(email: self.userEmail, password: self.userPassword);
-                        StoreUserDetails.save(self.userEmail, self.userPassword)
-                    }) {
-                        Text("Register")
-                            .foregroundColor(Color.white)
-                            .frame(width: 100, height: 40)
-                            .background(Color.red)
-                            .cornerRadius(15)
-                    }
-
-                    Button(action: {
-                        self.signInUser(email: self.userEmail, password: self.userPassword);
-                        StoreUserDetails.save(self.userEmail, self.userPassword)
-                    }) {
-                        Text("Sign In")
-                            .foregroundColor(Color.white)
-                            .frame(width: 100, height: 40)
-                            .background(Color.red)
-                            .cornerRadius(15)
+                    VStack(spacing: 10){
+                        
+                        TextField("Email Address", text: $userEmail)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .frame(width: 300, height: nil)
+                            //.cornerRadius(5)
+                            .overlay(Rectangle()
+                                        .stroke(Color.black, lineWidth: 1))
+                        
+                        SecureField("Enter a password", text: $userPassword)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .frame(width: 300, height: nil)
+                            //.cornerRadius(5)
+                            .overlay(Rectangle()
+                                        .stroke(Color.black, lineWidth: 1))
+                        
                     }
                     
+                    VStack(spacing: 10){
+                        
+                        link(label: "", destination: TabBarView(), state: self.$signInSuccess)
+                            .navigationBarTitle("")
+                            .navigationBarBackButtonHidden(true)
+                            .navigationBarHidden(true)
+                        
+                        
+                        Button(action: {
+                            self.registerUser(email: self.userEmail, password: self.userPassword);
+                            StoreUserDetails.save(self.userEmail, self.userPassword)
+                        }) {
+                            Text("Register")
+                                .foregroundColor(Color.white)
+                                .frame(width: 280, height: 40)
+                                .background(Color.red)
+                                .cornerRadius(5)
+                        }
+                        
+                        Button(action: {
+                            self.signInUser(email: self.userEmail, password: self.userPassword);
+                            StoreUserDetails.save(self.userEmail, self.userPassword)
+                        }) {
+                            Text("Sign In")
+                                .foregroundColor(Color.white)
+                                .frame(width: 280, height: 40)
+                                .background(Color.red)
+                                .cornerRadius(5)
+                        }
+                        
+                        Button(action: {
+                            //needs implementation
+                        }) {
+                            Text("Forgot password?")
+                                .underline()
+                                .foregroundColor(Color.white)
+                                .frame(width: 280, height: 40)
+                        }
+                        
+                        
+                    }
                     
-                }.offset(x: 0, y: 100)                              //VStack
+                }.frame(width: 380, height: 500, alignment: .center)
             }
-        }                                                           //NavigationView
+        }
         
-    }                                                               //var body
+    }
     
     private func link<Destination: View>(label: String, destination: Destination, state: Binding<Bool>) -> some View {
         return NavigationLink(destination: destination, isActive: state, label: {
-                        HStack {
+            HStack {
                 Text(label)
                 
             }
@@ -100,7 +143,7 @@ struct ContentView: View {
     }
     
     
-}                                                                   //struct
+}//struct
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -113,7 +156,7 @@ extension ContentView{
     func registerUser(email: String, password: String){
         
         if email == "" {
-    
+            
             print ("Enter a valid email")
             
         }
@@ -146,7 +189,7 @@ extension ContentView{
     func signInUser(email: String, password: String){
         
         if email == "" {
-    
+            
             print ("Enter a valid email")
             
         }
@@ -168,7 +211,7 @@ extension ContentView{
                     }
                 }
             }
-                
+            
             else{
                 print("Enter a valid email")
             }

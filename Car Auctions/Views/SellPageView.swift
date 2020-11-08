@@ -56,7 +56,6 @@ struct SellPageView: View{
         NavigationView{
             
             ZStack{
-                Colours().paleSpringBud.edgesIgnoringSafeArea(.all)
                 
                 VStack{
 

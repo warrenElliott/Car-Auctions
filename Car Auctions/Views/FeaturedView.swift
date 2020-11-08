@@ -26,12 +26,14 @@ struct FeaturedView: View{
             
             ZStack{
                 
-                Color.white
+                Colours().bgColour
                 
                 VStack{
+                    
+                    Divider()
                 
-                AdListContentView(adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
-            }
+                    AdListContentView(adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
+                }
             
         }
             .navigationBarTitle("Featured")
@@ -50,7 +52,6 @@ struct FeaturedView: View{
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FeaturedView(isNavBarHidden: .constant(false))
             FeaturedView(isNavBarHidden: .constant(false))
         }
         

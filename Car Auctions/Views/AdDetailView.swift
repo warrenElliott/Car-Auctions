@@ -37,7 +37,7 @@ struct AdDetailView: View{
         
         ZStack{
 
-            Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
+            Colours().bgColour.edgesIgnoringSafeArea(.all)
             
             PlaceBidView(show: self.$bidView, adPreview: $adPreview, currentBid: self.adPreview.adBid).zIndex(2)
             
@@ -226,7 +226,7 @@ struct AdDetailView: View{
                         }, label: {Text("Place bid")
                             .padding()
                             .frame(width: 300)
-                            .background(Colours().lightBlue1)
+                            .background(Colours().carribeanGreen)
                         })
                         
                     }

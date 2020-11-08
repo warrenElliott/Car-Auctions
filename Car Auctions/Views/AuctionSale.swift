@@ -22,7 +22,7 @@ struct AuctionSale: View{
         }
         
     }
-
+    
     var body: some View {
         
         HStack {
@@ -37,9 +37,9 @@ struct AuctionSale: View{
             }else{
                 
                 KFImage(URL(string: sale.imageLinks[0]!))
-                .resizable()
-                .frame(width: 170, height: 120, alignment: .leading)
-                .padding(.leading)
+                    .resizable()
+                    .frame(width: 170, height: 120, alignment: .leading)
+                    .padding(.leading)
                 
                 
                 
@@ -70,7 +70,7 @@ struct AuctionSale: View{
                 Text("Location: \((String(sale.adLocation)))")
                     .frame(width: 170, alignment: .topLeading)
                     .font(.custom("Arial", size: 12))
-            
+                
                 
                 Text(
                     TimeManager().countDownDate(date: sale.adEndingDate, time: sale.adEndingTime, nowDate))
@@ -80,19 +80,21 @@ struct AuctionSale: View{
                     .onAppear(perform: {
                         
                         self.timer
-
+                        
                         
                     })
                 
             }
             .frame(width: 170, height: 110, alignment: .topLeading)
-
+            
             //Spacer()
             
         }
-        .frame(maxWidth: .infinity)
         
-       
+        //.frame(maxWidth: .infinity)
+        
+        
+        
     }
     
 }

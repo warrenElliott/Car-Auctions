@@ -27,7 +27,8 @@ struct SearchPageView: View{
         NavigationView{
         
             ZStack{
-                Colours().carribeanGreen.edgesIgnoringSafeArea(.all)
+                
+                Colours().bgColour
                 
                 if #available(iOS 14.0, *) {
                     VStack{
@@ -57,18 +58,11 @@ struct SearchPageView: View{
                                 .frame(width: 300, alignment: .center)
                                 .padding()
                                 .foregroundColor(.white)
-                                .background(Color(red: 0.96, green: 0.25, blue: 0.42, opacity: 1.0))
+                                .background(Colours().carribeanGreen)
                             
                         }
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     .navigationBarTitle("Search")
-//                    .toolbar {
-//                        ToolbarItem(placement: .principal) {
-//                            VStack {
-//                                Text("Title").font(.headline)
-//                            }
-//                        }
-//                    }
                     .navigationBarHidden(self.isNavigationBarHidden)
                 }
                 else {
