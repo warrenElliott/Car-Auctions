@@ -39,7 +39,7 @@ struct AdDetailView: View{
 
             Colours().bgColour.edgesIgnoringSafeArea(.all)
             
-            PlaceBidView(show: self.$bidView, adPreview: $adPreview, currentBid: self.adPreview.adBid).zIndex(2)
+            PlaceBidView(show: self.$bidView, adPreview: $adPreview, currentBid: self.adPreview.adBid, bidCount: String(self.adPreview.bidCount)).zIndex(2)
             
             VStack(spacing: 0){
                 
@@ -115,7 +115,7 @@ struct AdDetailView: View{
                                 Text("Total Bids")
                                     .foregroundColor(.white)
                                 
-                                Text("0")
+                                Text(self.adPreview.bidCount)
                                     .bold()
                                     .foregroundColor(.white)
                                 

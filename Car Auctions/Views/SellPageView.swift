@@ -17,7 +17,7 @@ struct SellPageView: View{
     
     @State var isShowingImagePicker = false
     @State var isShowingSuggestions = false
-    @State var ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0) //blank ad struct where the ad will be stored before being placed on the database
+    @State var ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: "0") //blank ad struct where the ad will be stored before being placed on the database
     @State var isEditing = false
     @State var counter = 6 //max images that can be uploaded
     @State var dateForAd = Date() //gives today's date
@@ -219,7 +219,7 @@ struct SellPageView: View{
                                         .alert(isPresented: $showAlert, content: {
                                             Alert(title: Text("Permanently Delete Add?"), message: Text( "This action cannot be undone"), primaryButton: .default(Text("Got it!")){
                                                 
-                                                self.ad = AuctionSaleData(adId: "", adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
+                                                self.ad = AuctionSaleData(adId: "", adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: "0")
                                                 
                                                 self.dateForAd = Date()
                                                 
@@ -240,7 +240,7 @@ struct SellPageView: View{
                                     self.ad.adEndingDate = self.timeFormatter
                                     AdManager().uploadAd(self.ad)
                                     
-                                    self.ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
+                                    self.ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: "0")
                                     
                                 }) {
                                     

@@ -53,7 +53,7 @@ class LoadContent: ObservableObject{
                                                        imageLinks: data["imageURLs"] as? [String] ?? [],
                                                        datePosted: data["adPosted"] as! String,
                                                        isDraft: data["isDraft"] as! Bool,
-                                                       bidCount: data["bidCount"] as! Int) //this creates a blank instance where data will be stored internally
+                                                       bidCount: data["bidCount"] as! String) //this creates a blank instance where data will be stored internally
                         
                         pageContent.append(instance)
                         
@@ -67,12 +67,13 @@ class LoadContent: ObservableObject{
     }
     
     
-    func increaseBid(forAd adSummary: AuctionSaleData, editValue: String){
+    func increaseBid(forAd adSummary: AuctionSaleData, editValue: String, bidCount: String){
         
         let bidReference = self.db.collection("LiveDatabase").document("adNo__\(adSummary.adId)")
         
         bidReference.updateData([
-            "adBid": "\(editValue)"
+            "adBid": "\(editValue)",
+            "bidCount": "\(bidCount)"
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")

@@ -21,6 +21,11 @@ struct PlaceBidView: View{
     
     @State var currentBid: String
     @State var editBidValue = 0
+    
+    @State var bidCount: String
+    @State var bidIncrement = 0
+    
+    
     @State var minusButtonDisabled = false
     
     var body: some View{
@@ -65,6 +70,7 @@ struct PlaceBidView: View{
                 .onAppear(){
                     
                     editBidValue = Int(currentBid)!
+                    bidIncrement = Int(bidCount)!
                     
                 }
                 
@@ -77,8 +83,13 @@ struct PlaceBidView: View{
                     
                     
                     DispatchQueue.main.async {
-                        loadContent.increaseBid(forAd: adPreview, editValue: String(editBidValue))
+                        
+                        bidIncrement += 1
+                        
+                        loadContent.increaseBid(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
+                        
                         adPreview.adBid = String(editBidValue)
+                        adPreview.bidCount = String(bidIncrement)
                     }
                     
 

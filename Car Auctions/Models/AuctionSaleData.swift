@@ -23,7 +23,7 @@ struct AuctionSaleData: Hashable, Identifiable{
     var imageLinks: [String?];
     var datePosted: String
     var isDraft: Bool
-    var bidCount: Int
+    var bidCount: String
     
     
 
