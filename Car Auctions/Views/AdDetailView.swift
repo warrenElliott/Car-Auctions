@@ -21,6 +21,7 @@ struct AdDetailView: View{
     @State var nowDate = Date() //grabs actual time when user clicked on the ad to generate the timer
     
     @State var bidView = false
+    @State var notificationView = false
     
     var timer: Timer {
         
@@ -39,7 +40,10 @@ struct AdDetailView: View{
 
             Colours().bgColour.edgesIgnoringSafeArea(.all)
             
-            PlaceBidView(show: self.$bidView, adPreview: $adPreview, currentBid: self.adPreview.adBid, bidCount: String(self.adPreview.bidCount)).zIndex(2)
+            PlaceBidView(show: self.$bidView, showNotification: self.$notificationView, adPreview: $adPreview, currentBid: self.adPreview.adBid, bidCount: String(self.adPreview.bidCount)).zIndex(1)
+                
+            BidSuccessPopUpView(show: self.$notificationView).zIndex(1)
+                //.animation
             
             VStack(spacing: 0){
                 
@@ -237,27 +241,6 @@ struct AdDetailView: View{
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 
         }.navigationBarItems(
-            
-//            leading:
-//            
-//        HStack {
-//            Button(action: {
-//                //self.presentationMode.wrappedValue.dismiss()
-//                
-//                if self.adPreview.isDraft == false{
-//                    
-//                    self.adPreview = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: 0)
-//                    
-//                    //if the ad's been published, empty the binded ad struct which was created in SellPageView
-//                }
-//                
-//            }) {
-//                Text ("Back")
-//                .foregroundColor(.black)
-//                .bold()
-//                    
-//            }
-//        },
                              
         trailing:
             

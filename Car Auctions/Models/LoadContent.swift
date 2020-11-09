@@ -53,7 +53,7 @@ class LoadContent: ObservableObject{
                                                        imageLinks: data["imageURLs"] as? [String] ?? [],
                                                        datePosted: data["adPosted"] as! String,
                                                        isDraft: data["isDraft"] as! Bool,
-                                                       bidCount: data["bidCount"] as! String) //this creates a blank instance where data will be stored internally
+                                                       bidCount: data["bidCount"] as? String ?? "Unavailable")
                         
                         pageContent.append(instance)
                         

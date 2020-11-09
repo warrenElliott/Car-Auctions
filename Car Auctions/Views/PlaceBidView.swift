@@ -17,7 +17,9 @@ struct PlaceBidView: View{
     @ObservedObject var loadContent =  LoadContent()
     
     @Binding var show : Bool
+    @Binding var showNotification: Bool
     @Binding var adPreview: AuctionSaleData
+    //@State var notification = false
     
     @State var currentBid: String
     @State var editBidValue = 0
@@ -72,6 +74,9 @@ struct PlaceBidView: View{
                     editBidValue = Int(currentBid)!
                     bidIncrement = Int(bidCount)!
                     
+                    print (show)
+                    print(showNotification)
+                    
                 }
                 
                 Text("Bid Must be in £25 increments")
@@ -90,10 +95,16 @@ struct PlaceBidView: View{
                         
                         adPreview.adBid = String(editBidValue)
                         adPreview.bidCount = String(bidIncrement)
+                        
                     }
                     
-
+                    
                     show.toggle()
+                    showNotification.toggle()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                         self.showNotification.toggle()
+                     }
                     
                     
                 }, label: {
@@ -110,7 +121,7 @@ struct PlaceBidView: View{
                 Button(action: {
                     
                     show.toggle()
-                    
+
                 }, label: {
                     
                     Text("Cancel")
@@ -126,11 +137,16 @@ struct PlaceBidView: View{
             
         }.frame(width: 300, height: 190)
         .offset(y: show ? 0 : UIScreen.main.bounds.size.width)
-        .animation(.default)
-
+        .animation(.easeInOut)
+        
     }
 
 }
+
+//.onAppear {
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+//        self.show.toggle()
+//    }
 
 //struct PlaceBidView_Previews: PreviewProvider {
 //    static var previews: some View {
