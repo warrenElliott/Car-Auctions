@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AuctionSaleData: Hashable, Identifiable{
     
-    var id = UUID()
+    var id = UUID().uuidString
     var adId: String
     var adName: String
     var adDescription: String

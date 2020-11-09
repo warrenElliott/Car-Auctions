@@ -12,7 +12,7 @@ import Combine
 
 struct FeaturedView: View{
     
-    @Binding var isNavBarHidden : Bool
+    //@Binding var isNavBarHidden : Bool
     @State private var adViewActive: Bool = false //state for ad preview
     @State private var emptyListMessage = "Hmm Nothing Ending Today...Tap on Search to find new auctions!"
     @State private var pageTitle = "Featured"
@@ -37,10 +37,10 @@ struct FeaturedView: View{
             
         }
             .navigationBarTitle("Featured")
-            .navigationBarHidden(self.isNavBarHidden)
+            .navigationBarHidden(false)
             .onAppear() {
 
-                self.isNavBarHidden = false
+                //self.isNavBarHidden = false
 
             }
         }.navigationViewStyle(StackNavigationViewStyle())
@@ -52,7 +52,7 @@ struct FeaturedView: View{
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FeaturedView(isNavBarHidden: .constant(false))
+            FeaturedView()
         }
         
     }

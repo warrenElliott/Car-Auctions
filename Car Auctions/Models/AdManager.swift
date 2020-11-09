@@ -94,22 +94,5 @@ class AdManager{
         
     }
     
-    func increaseBid(_ adID: String, editValue: String){
-        
-        let bidReference = self.db.collection("LiveDatabase").document("adNo__\(adID)")
-        
-        bidReference.updateData([
-            "adBid": "\(editValue)"
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-        
-        
-    }
-    
 }
 

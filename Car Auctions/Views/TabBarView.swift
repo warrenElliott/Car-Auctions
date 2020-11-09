@@ -14,13 +14,13 @@ struct TabBarView: View {
     @State var navBarWillBeHidden = true 
     @State var pageTitle = "Featured"
     @ObservedObject var loadContent = LoadContent()
-    @State var isNavBarHidden = true
+    //@State var isNavBarHidden = true
     
     var body: some View {
             
             TabView(selection: $selectedView) {
                 
-                FeaturedView(isNavBarHidden: $navBarWillBeHidden)
+                FeaturedView()
                     .tabItem {
                         Image(systemName: "car.fill")
                     }.tag(0)
@@ -72,7 +72,7 @@ struct TabBarView: View {
             }
             .onAppear() {
                 
-                self.isNavBarHidden = true
+                //self.isNavBarHidden = true
                 
             }
 
@@ -81,6 +81,6 @@ struct TabBarView: View {
 
 struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView(isNavBarHidden: true)
+        TabBarView()
     }
 }
