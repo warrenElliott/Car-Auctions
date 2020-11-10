@@ -12,7 +12,10 @@ import struct Kingfisher.KFImage
 
 struct AdDetailView: View{
     
-    @State var adPreview : AuctionSaleData //data taken from the SellPageView form the user created
+    @ObservedObject var loadContent = LoadContent()
+    
+    @State var adPreview: AuctionSaleData //data taken from the SellPageView form the user created
+    @State var bidHistory = [BidHistoryData]()
     
     @State var isActive = true //toggles between ad detail and bidding history subviews
     @State var isShowingPlaceBidButton = true
@@ -161,7 +164,6 @@ struct AdDetailView: View{
                         
                         if isActive{
                             
-                            
                             Text(self.adPreview.adName)
                                 .bold()
                                 .padding()
@@ -207,9 +209,36 @@ struct AdDetailView: View{
                             Divider()
                             
                         }
+                        
                         else{
                             
-                            Text("Bidding history will appear here").padding()
+                            if loadContent.history.count == 0{
+                                
+                                Text("Bidding history will appear here").padding()
+                                
+                            }
+                            
+                            else{
+                                
+                                ForEach(loadContent.history, id:\ .self){ entry in
+                                    
+                                    HStack{
+                                        Text(entry.bidder)
+                                        .bold()
+                                        .padding()
+                                        .frame(width: UIScreen.main.bounds.width / 2, alignment: .leading)
+                                        
+                                        
+                                        Text(entry.bidValue)
+                                        .padding()
+                                        .frame(width: UIScreen.main.bounds.width / 2,alignment: .trailing)
+                                    }.frame(width: UIScreen.main.bounds.width, alignment: .leading)
+                                    
+                                }
+                                
+                            }
+                            
+                            
                             
                         }
                     }
@@ -238,7 +267,12 @@ struct AdDetailView: View{
                 
                 Spacer()
                 
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top).onAppear(){
+                
+                loadContent.fetchBidHistory(adId: adPreview.adId)
+                
+                
+            }
 
         }.navigationBarItems(
                              

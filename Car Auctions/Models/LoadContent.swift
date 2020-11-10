@@ -13,8 +13,7 @@ import Combine
 class LoadContent: ObservableObject{
     
     @Published var content = [AuctionSaleData]()
-    @Published var bidHistory = [BidHistoryData]()
-    
+    @Published var history = [BidHistoryData]()
     
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage
@@ -72,8 +71,6 @@ class LoadContent: ObservableObject{
         
         ref.addSnapshotListener { (querySnapshot, error) in
             
-            self.bidHistory = []
-            
             if let e = error{
                 
                 print (e.localizedDescription)
@@ -81,6 +78,9 @@ class LoadContent: ObservableObject{
             }
             
             else{
+                
+                var bidHistoryData = [BidHistoryData]()
+                
                 if let snapshotDocs = querySnapshot?.documents{
                     
                     for doc in snapshotDocs{
@@ -89,13 +89,20 @@ class LoadContent: ObservableObject{
                         
                         var bidHistoryEntry = BidHistoryData(
                             id: data["bidID"] as! String,
-                            bidValue: "bidValue",
-                            bidder: "bidder")
+                            bidValue: data["bidValue"] as! String,
+                            bidder: data["bidder"] as! String)
                         
-                        self.bidHistory.append(bidHistoryEntry)
+                        bidHistoryData.append(bidHistoryEntry)
                     }
+                    
+                    self.history = bidHistoryData
+                    
                 }
+                
             }
+            
         }
+
+        
     }
 }

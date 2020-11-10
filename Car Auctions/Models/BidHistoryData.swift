@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BidHistoryData: Identifiable{
+struct BidHistoryData: Identifiable, Hashable{
     
     let id: String
     let bidValue: String

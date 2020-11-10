@@ -194,7 +194,7 @@ struct SellPageView: View{
                             
                             VStack{
                                 
-                                NavigationLink(destination: AdDetailView(adPreview: self.ad), isActive: self.$previewActive) {
+                                NavigationLink(destination: AdDetailView(adPreview: self.ad, bidHistory: []), isActive: self.$previewActive) {
                                     Text("") //SwiftUI navigator to the ad preview page.
                                 }
                                 
