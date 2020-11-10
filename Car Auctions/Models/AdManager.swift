@@ -94,5 +94,46 @@ class AdManager{
         
     }
     
+    
+    func increaseBid(forAd adSummary: AuctionSaleData, editValue: String, bidCount: String){
+        
+        let bidID = UUID().uuidString
+        
+        let bidReference = self.db.collection("LiveDatabase").document("adNo__\(adSummary.adId)")
+        let bidHistoryReference = self.db.collection("LiveBidHistory").document("adNo__\(adSummary.adId)").collection("bids").document(bidID)
+        
+        let bidHistoryEntry = [
+            
+            "bidID" : UUID().uuidString,
+            "bidder" : UserDefaults.standard.value(forKey: "userEmail"),
+            "bidValue": editValue,
+            "timestamp": Date().timeIntervalSince1970
+            
+        ] as [String : Any]
+        
+        
+        bidReference.updateData([
+            "adBid": "\(editValue)",
+            "bidCount": "\(bidCount)"
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        bidHistoryReference.setData(bidHistoryEntry, completion: { (error) in
+            if let err = error{
+                print (err.localizedDescription)
+            }else{
+                print("saved")
+                
+            }
+        })
+        
+    }
+    
+    
 }
 

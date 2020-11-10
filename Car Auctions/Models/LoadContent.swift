@@ -13,33 +13,33 @@ import Combine
 class LoadContent: ObservableObject{
     
     @Published var content = [AuctionSaleData]()
-
-
+    @Published var bidHistory = [BidHistoryData]()
+    
+    
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage
     
     func fetchData(dataQuery: Query){
         
         dataQuery.addSnapshotListener { (querySnapshot, error) in
-
+            
             if let e = error{
-
+                
                 print (e.localizedDescription)
-
+                
             }
-
+            
             else{
                 
                 var pageContent = [AuctionSaleData]()
                 
-
+                
                 if let snapshotDocs = querySnapshot?.documents{ //tap into the query documents
-
+                    
                     for doc in snapshotDocs{ //for each entry in this document
-
+                        
                         let data = doc.data() //the data present inside each doc
                         let adID = data["adID"] as! String
-                        //self.fetchImageURLs(id: adID)
                         
                         var instance = AuctionSaleData(adId: adID,
                                                        adName: data["adName"] as! String,
@@ -66,51 +66,36 @@ class LoadContent: ObservableObject{
         }
     }
     
-    
-    func increaseBid(forAd adSummary: AuctionSaleData, editValue: String, bidCount: String){
+    func fetchBidHistory(adId: String){
         
-        let bidID = UUID().uuidString
+        let ref = db.collection("LiveBidHistory").document("adNo__\(adId)").collection("bids").order(by: "timestamp")
         
-        let bidReference = self.db.collection("LiveDatabase").document("adNo__\(adSummary.adId)")
-        let bidHistoryReference = self.db.collection("LiveBidHistory").document("adNo__\(adSummary.adId)").collection("bids").document(bidID)
-        
-        let bidHistoryEntry = [
+        ref.addSnapshotListener { (querySnapshot, error) in
             
-            "bidID" : UUID().uuidString,
-            "bidder" : UserDefaults.standard.value(forKey: "userEmail"),
-            "bidValue": editValue,
-            "timestamp": Date().timeIntervalSince1970
+            self.bidHistory = []
             
-        ] as [String : Any]
-        
-        
-        bidReference.updateData([
-            "adBid": "\(editValue)",
-            "bidCount": "\(bidCount)"
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-        
-        bidHistoryReference.setData(bidHistoryEntry, completion: { (error) in
-            if let err = error{
-                print (err.localizedDescription)
-            }else{
-                print("saved")
+            if let e = error{
+                
+                print (e.localizedDescription)
                 
             }
-        })
-        
+            
+            else{
+                if let snapshotDocs = querySnapshot?.documents{
+                    
+                    for doc in snapshotDocs{
+                        
+                        let data = doc.data()
+                        
+                        var bidHistoryEntry = BidHistoryData(
+                            id: data["bidID"] as! String,
+                            bidValue: "bidValue",
+                            bidder: "bidder")
+                        
+                        self.bidHistory.append(bidHistoryEntry)
+                    }
+                }
+            }
+        }
     }
-    
-    
-
-    
-
-    
-    
-    
 }

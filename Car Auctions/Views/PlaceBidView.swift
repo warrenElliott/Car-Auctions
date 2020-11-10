@@ -91,7 +91,7 @@ struct PlaceBidView: View{
                         
                         bidIncrement += 1
                         
-                        loadContent.increaseBid(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
+                        AdManager().increaseBid(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
                         
                         adPreview.adBid = String(editBidValue)
                         adPreview.bidCount = String(bidIncrement)
