@@ -36,8 +36,7 @@ struct AdDetailView: View{
     
     //@Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    var body: some View {
-    
+    @ViewBuilder var body: some View {
         
         ZStack{
 
@@ -220,11 +219,24 @@ struct AdDetailView: View{
                             
                             else{
                                 
+                                HStack{
+                                    
+                                    Text("Bidder")
+                                    .bold()
+                                    .padding()
+                                    .frame(width: UIScreen.main.bounds.width / 2, alignment: .leading)
+                                    
+                                    Text("Bid Value")
+                                    .bold()
+                                    .padding()
+                                    .frame(width: UIScreen.main.bounds.width / 2,alignment: .trailing)
+                                }.frame(width: UIScreen.main.bounds.width, alignment: .leading)
+                                    
+                                
                                 ForEach(loadContent.history, id:\ .self){ entry in
                                     
                                     HStack{
                                         Text(entry.bidder)
-                                        .bold()
                                         .padding()
                                         .frame(width: UIScreen.main.bounds.width / 2, alignment: .leading)
                                         
@@ -267,10 +279,11 @@ struct AdDetailView: View{
                 
                 Spacer()
                 
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top).onAppear(){
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .onAppear(){
                 
                 loadContent.fetchBidHistory(adId: adPreview.adId)
-                
+                print ("AdDetailView Being initialised")
                 
             }
 

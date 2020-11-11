@@ -95,11 +95,3 @@ public class TimeManager{
     
     
 }
-
-
-//        if dayText == "0d "{
-//
-//            output = hourText + minuteText
-//            return output
-//
-//        }else

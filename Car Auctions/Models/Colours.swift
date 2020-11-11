@@ -21,6 +21,4 @@ struct Colours{
     let headerColor = UIColor(red: 0.20, green: 0.29, blue: 0.33, alpha: 1.00)
     let headerColorUI = Color(red: 0.20, green: 0.29, blue: 0.33, opacity: 1.00)
     
-    
-    
 }

@@ -13,6 +13,14 @@ class AdManager{
     
     let db = Firestore.firestore() //init Firebase
     let storage = Storage.storage() //init storage
+    
+    init(){
+        print ("AdManager being initialised")
+    }
+    
+    deinit {
+        print ("AdManager is offline \n")
+    }
 
     
     func uploadDatabaseDestination(_ draft: Bool) -> String{

@@ -18,10 +18,18 @@ class LoadContent: ObservableObject{
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage
     
+    init(){
+        print ("loadcontent being initialised")
+    }
+    
+    deinit {
+        print ("loadcontent is offline \n")
+    }
+    
     func fetchData(dataQuery: Query){
         
         dataQuery.addSnapshotListener { (querySnapshot, error) in
-            
+              
             if let e = error{
                 
                 print (e.localizedDescription)
@@ -60,6 +68,8 @@ class LoadContent: ObservableObject{
                     
                     self.content = pageContent
                     
+                    print ("fetchData being initialised")
+                    
                 }
             }
         }
@@ -96,6 +106,7 @@ class LoadContent: ObservableObject{
                     }
                     
                     self.history = bidHistoryData
+                    print ("fetchBidHistory initialised")
                     
                 }
                 

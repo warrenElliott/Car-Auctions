@@ -15,7 +15,7 @@ struct SearchPageView: View{
     
     @State var pageTitle = "Search Results"
     @State var isNavigationBarHidden: Bool = false
-    @ObservedObject var loadContent = LoadContent()
+    //@ObservedObject var loadContent = LoadContent()
     @State private var adViewActive: Bool = false //state for ad preview false = not showing
     let db = Firestore.firestore()
     let currentDate = Date()
@@ -70,7 +70,8 @@ struct SearchPageView: View{
                 }
             }
 
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
+
     }
     
     private func link<Destination: View>(label: String, destination: Destination, state: Binding<Bool>) -> some View {

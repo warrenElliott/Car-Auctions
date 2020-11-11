@@ -12,21 +12,17 @@ import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
+    //static let loadcontent = LoadContent()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
+            
         let db = Firestore.firestore()
         let storage = Storage.storage()
         
-        print (db)
-        print(storage)
-        
         GMSPlacesClient.provideAPIKey("AIzaSyDnm0pJJLiNu6g2v0WZiJBwwFkvgssmLfM")
-        
         
         return true
     }

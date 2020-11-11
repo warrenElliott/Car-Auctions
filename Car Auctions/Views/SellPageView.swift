@@ -85,7 +85,7 @@ struct SellPageView: View{
                                     }, label: {Image(systemName: "plus")
                                         .resizable()
                                         .frame(width: 50, height: 50)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.black)
                                     })
                                         .sheet(isPresented: $isShowingImagePicker, content: {
                                             ImagePick(isPresented: self.$isShowingImagePicker, ad: self.$ad, counter: self.$counter) //shows image picker Cocoapod
@@ -355,8 +355,7 @@ struct ImagePick: UIViewControllerRepresentable{
             options.isSynchronous = true
             options.isNetworkAccessAllowed = true
 
-            
-            manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: options) { (image, info) in
+            manager.requestImage(for: asset, targetSize: UIScreen.main.bounds.size, contentMode: .aspectFill, options: options) { (image, info) in
                 imageOutput = image ?? UIImage()
             }
             

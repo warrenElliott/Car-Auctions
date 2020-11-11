@@ -129,7 +129,8 @@ struct ContentView: View {
                     
                 }.frame(width: 380, height: 500, alignment: .center)
             }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
+
         
     }
     
