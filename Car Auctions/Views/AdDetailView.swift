@@ -282,7 +282,7 @@ struct AdDetailView: View{
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .onAppear(){
                 
-                loadContent.fetchBidHistory(adId: adPreview.adId)
+                loadContent.fetchBidHistory(adId: adPreview.adId) // fetch bid history as soon as view appears
                 print ("AdDetailView Being initialised")
                 
             }
