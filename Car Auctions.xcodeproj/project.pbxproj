@@ -35,6 +35,7 @@
 		809D1992249CC78700D3D0AE /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809D1991249CC78700D3D0AE /* TabBarView.swift */; };
 		80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA162B24A3AA1900E258E3 /* SearchPageView.swift */; };
 		80D3F92A255DD61E00226ECC /* MyBidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D3F929255DD61E00226ECC /* MyBidsView.swift */; };
+		80D3F92E255EB38000226ECC /* UserBids.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D3F92D255EB38000226ECC /* UserBids.swift */; };
 		80DB5A0E25596128005625D9 /* BidSuccessPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DB5A0D25596128005625D9 /* BidSuccessPopUpView.swift */; };
 		80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */; };
 		80E0C031249E186100559261 /* SellPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C030249E186100559261 /* SellPageView.swift */; };
@@ -75,6 +76,7 @@
 		809D1991249CC78700D3D0AE /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		80AA162B24A3AA1900E258E3 /* SearchPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageView.swift; sourceTree = "<group>"; };
 		80D3F929255DD61E00226ECC /* MyBidsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBidsView.swift; sourceTree = "<group>"; };
+		80D3F92D255EB38000226ECC /* UserBids.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBids.swift; sourceTree = "<group>"; };
 		80DB5A0D25596128005625D9 /* BidSuccessPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidSuccessPopUpView.swift; sourceTree = "<group>"; };
 		80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTimeRemaining.swift; sourceTree = "<group>"; };
 		80E0C030249E186100559261 /* SellPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellPageView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				8095A6EC24B081C000DD59BE /* Colours.swift */,
 				804E2DB224C32F1700891202 /* LoadContent.swift */,
 				808C26A7255B1CA1000EFA30 /* BidHistoryData.swift */,
+				80D3F92D255EB38000226ECC /* UserBids.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80D3F92E255EB38000226ECC /* UserBids.swift in Sources */,
 				80DB5A0E25596128005625D9 /* BidSuccessPopUpView.swift in Sources */,
 				80047DB7253F527600EF78AB /* SearchResultsView.swift in Sources */,
 				80483499249B612D005CACAF /* FeaturedView.swift in Sources */,

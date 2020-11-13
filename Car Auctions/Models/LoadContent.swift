@@ -15,16 +15,10 @@ class LoadContent: ObservableObject{
     @Published var content = [AuctionSaleData]()
     @Published var history = [BidHistoryData]()
     
+    @Published var userBidAds = [UserBids]()
+    
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage
-    
-    init(){
-        print ("loadcontent being initialised")
-    }
-    
-    deinit {
-        print ("loadcontent is offline \n")
-    }
     
     func fetchData(dataQuery: Query){
         
@@ -39,7 +33,6 @@ class LoadContent: ObservableObject{
             else{
                 
                 var pageContent = [AuctionSaleData]()
-                
                 
                 if let snapshotDocs = querySnapshot?.documents{ //tap into the query documents
                     
@@ -67,6 +60,7 @@ class LoadContent: ObservableObject{
                     }
                     
                     self.content = pageContent
+                    print (self.content)
                     
                     print ("fetchData being initialised")
                     
@@ -77,7 +71,7 @@ class LoadContent: ObservableObject{
     
     func fetchBidHistory(adId: String){
         
-        let ref = db.collection("LiveBidHistory").document("adNo__\(adId)").collection("bids").order(by: "timestamp")
+        let ref = db.collection("LiveDatabase").document(adId).collection("bids").order(by: "timestamp")
         
         ref.addSnapshotListener { (querySnapshot, error) in
             
@@ -109,11 +103,7 @@ class LoadContent: ObservableObject{
                     print ("fetchBidHistory initialised")
                     
                 }
-                
             }
-            
         }
-
-        
     }
 }

@@ -40,7 +40,7 @@ struct FeaturedView: View{
             .navigationBarHidden(false)
             .onAppear() {
 
-                //self.isNavBarHidden = false
+                print (UserDefaults.standard.value(forKey: "userEmail"))
 
             }
         }.navigationViewStyle(StackNavigationViewStyle())

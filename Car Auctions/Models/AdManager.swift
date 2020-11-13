@@ -14,15 +14,6 @@ class AdManager{
     let db = Firestore.firestore() //init Firebase
     let storage = Storage.storage() //init storage
     
-    init(){
-        print ("AdManager being initialised")
-    }
-    
-    deinit {
-        print ("AdManager is offline \n")
-    }
-
-    
     func uploadDatabaseDestination(_ draft: Bool) -> String{
         
         let destination = (draft ? "DraftsDatabase" : "LiveDatabase")
@@ -35,7 +26,7 @@ class AdManager{
         let adImagesStorage = self.storage.reference() //reference to the storage on Firebase
         let adImageRef = adImagesStorage.child("UserUploadedImagesDraft/ \(ad.adId)")
         // storage destination in Firebase
-        let detailsReference = self.db.collection(uploadDatabaseDestination(ad.isDraft)).document("adNo__\(ad.adId)")
+        let detailsReference = self.db.collection(uploadDatabaseDestination(ad.isDraft)).document("\(ad.adId)")
         
         //gives the ad an ID in Firebase for reference
         
@@ -107,8 +98,8 @@ class AdManager{
         
         let bidID = UUID().uuidString
         
-        let bidReference = self.db.collection("LiveDatabase").document("adNo__\(adSummary.adId)")
-        let bidHistoryReference = self.db.collection("LiveBidHistory").document("adNo__\(adSummary.adId)").collection("bids").document(bidID)
+        let bidReference = self.db.collection("LiveDatabase").document("\(adSummary.adId)")
+        let bidHistoryReference = self.db.collection("LiveDatabase").document("\(adSummary.adId)").collection("bids").document(bidID)
         
         let bidHistoryEntry = [
             
@@ -140,6 +131,33 @@ class AdManager{
             }
         })
         
+    }
+    
+    func addToUserBids(forAd ad: AuctionSaleData, user: String){
+        
+        let userReference = self.db.collection("Users").document("\(user)").collection("UserBids").document(ad.adId)
+        
+        let detailsData = [
+            "adID" : ad.adId,
+            "adAuthor" : ad.adAuthor,
+            "adName" : ad.adName,
+            "adDescription" : ad.adDescription,
+            "adBid" : ad.adBid,
+            "adEndingDate" : ad.adEndingDate,
+            "adEndingTime" : ad.adEndingTime,
+            "adPosted" : ad.datePosted,
+            "isDraft" : ad.isDraft,
+            "adLocation" : ad.adLocation,
+            "bidCount" : ad.bidCount,
+            "imageURLs" : ad.imageLinks
+            ] as [String : Any] //creates a little data dictionary to dictate how data will be stored in the database
+    
+        userReference.setData(detailsData, completion: { (error) in
+            if let err = error{
+                print (err.localizedDescription)
+            }
+        })
+    
     }
     
     

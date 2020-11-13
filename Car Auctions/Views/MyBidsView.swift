@@ -31,17 +31,20 @@ struct MyBidsView: View{
                 VStack{
                     
                     Divider()
-                
-//                    AdListContentView(adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField(/*to implement*/))))
+                    AdListContentView(
+                        adViewActive: self.$adViewActive,
+                        emptyListMessage: self.$emptyListMessage,
+                        query: .constant(
+                            self.db.collection("Users").document("\(UserDefaults.standard.value(forKey: "userEmail") as! String)").collection("UserBids").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
+                    
                 }
-            
-        }
+                
+            }
             .navigationBarTitle("My Bids")
             .navigationBarHidden(false)
-
+            
         }.navigationViewStyle(StackNavigationViewStyle())
     }
-    
     
 }
 

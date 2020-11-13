@@ -92,6 +92,7 @@ struct PlaceBidView: View{
                         bidIncrement += 1
                         
                         AdManager().increaseBid(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
+                        AdManager().addToUserBids(forAd: adPreview, user: UserDefaults.standard.value(forKey: "userEmail") as! String)
                         
                         adPreview.adBid = String(editBidValue)
                         adPreview.bidCount = String(bidIncrement)
