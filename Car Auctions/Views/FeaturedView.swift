@@ -38,11 +38,11 @@ struct FeaturedView: View{
         }
             .navigationBarTitle("Featured")
             .navigationBarHidden(false)
-            .onAppear() {
-
-                print (UserDefaults.standard.value(forKey: "userEmail"))
-
-            }
+//            .onAppear() {
+//
+//                print (UserDefaults.standard.value(forKey: "userEmail"))
+//
+//            }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     
@@ -56,18 +56,4 @@ struct MainScreen_Previews: PreviewProvider {
         }
         
     }
-}
-
-struct NavigationConfigurator: UIViewControllerRepresentable {
-    var configure: (UINavigationController) -> Void = { _ in }
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<NavigationConfigurator>) -> UIViewController {
-        UIViewController()
-    }
-    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<NavigationConfigurator>) {
-        if let nc = uiViewController.navigationController {
-            self.configure(nc)
-        }
-    }
-    
 }

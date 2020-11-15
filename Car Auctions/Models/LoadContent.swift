@@ -15,7 +15,7 @@ class LoadContent: ObservableObject{
     @Published var content = [AuctionSaleData]()
     @Published var history = [BidHistoryData]()
     
-    @Published var userBidAds = [UserBids]()
+    //@Published var userBidAds = [UserBids]()
     
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage
@@ -60,9 +60,6 @@ class LoadContent: ObservableObject{
                     }
                     
                     self.content = pageContent
-                    print (self.content)
-                    
-                    print ("fetchData being initialised")
                     
                 }
             }
@@ -106,4 +103,46 @@ class LoadContent: ObservableObject{
             }
         }
     }
+    
+    func bidWinningStatus (history: [BidHistoryData]) -> Bool{
+        
+        var bidValues = [String]()
+        var output = Bool()
+        
+        for bid in history{
+            
+            bidValues.append(bid.bidValue)
+            
+        }
+        
+        for bid in history{
+            
+            if bidValues.max() == bid.bidValue{
+                
+                output = true
+                
+            }
+            
+            else{
+                
+                if bid.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String{
+                    
+                    output = true
+                    
+                }
+                
+                else{
+                    
+                    output = false
+                    
+                }
+                
+            }
+            
+        }
+        
+        return output
+        
+    }
+    
 }

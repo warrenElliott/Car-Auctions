@@ -14,8 +14,10 @@ import UIKit
 
 struct AuctionSale: View{
     
+    @ObservedObject var loadContent = LoadContent()
     @State var sale: AuctionSaleData
     @State var nowDate = Date()
+    @State var bidStatus = false
     
     var timer: Timer {
         
@@ -42,9 +44,6 @@ struct AuctionSale: View{
                     .resizable()
                     .frame(width: 170, height: 120, alignment: .leading)
                     .padding(.leading)
-                
-                
-                
             }
             
             VStack(spacing: 5){
@@ -82,6 +81,15 @@ struct AuctionSale: View{
                     .onAppear(perform: {
                         
                         self.timer
+                        loadContent.fetchBidHistory(adId: sale.adId)
+                        self.bidStatus = loadContent.bidWinningStatus(history: loadContent.history)
+                       
+                        if self.bidStatus == true{
+                            print ("true")
+                        }
+                        else{
+                            print (false)
+                        }
                         
                         
                     })
@@ -89,16 +97,11 @@ struct AuctionSale: View{
             }
             .frame(width: 170, height: 110, alignment: .topLeading)
             
-            //Spacer()
-            
         }
-        
-        //.frame(maxWidth: .infinity)
-        
-        
+           
+            
         
     }
-    
 }
 
 struct AuctionSale_Previews: PreviewProvider {

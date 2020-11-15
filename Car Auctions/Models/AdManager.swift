@@ -133,7 +133,7 @@ class AdManager{
         
     }
     
-    func addToUserBids(forAd ad: AuctionSaleData, user: String){
+    func addToUserBids(forAd ad: AuctionSaleData, user: String, userBidValue: String){
         
         let userReference = self.db.collection("Users").document("\(user)").collection("UserBids").document(ad.adId)
         
@@ -149,7 +149,8 @@ class AdManager{
             "isDraft" : ad.isDraft,
             "adLocation" : ad.adLocation,
             "bidCount" : ad.bidCount,
-            "imageURLs" : ad.imageLinks
+            "imageURLs" : ad.imageLinks,
+            "userBidValue" : userBidValue
             ] as [String : Any] //creates a little data dictionary to dictate how data will be stored in the database
     
         userReference.setData(detailsData, completion: { (error) in
@@ -158,6 +159,25 @@ class AdManager{
             }
         })
     
+    }
+    
+    func updateAddToUserBids(forAd adSummary: AuctionSaleData, editValue: String, bidCount: String){
+        
+        let user = UserDefaults.standard.value(forKey: "userEmail") as! String
+        
+        let bidReference = self.db.collection("Users").document("\(user)").collection("UserBids").document(adSummary.adId)
+        
+        bidReference.updateData([
+            "adBid": "\(editValue)",
+            "bidCount": "\(bidCount)"
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
     }
     
     
