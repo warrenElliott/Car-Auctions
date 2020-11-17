@@ -104,43 +104,40 @@ class LoadContent: ObservableObject{
         }
     }
     
-    func bidWinningStatus (history: [BidHistoryData]) -> Bool{
+    func bidWinningStatus (biddingData: [BidHistoryData], bidValues: [String]) -> Int{
         
-        var bidValues = [String]()
-        var output = Bool()
+        var output = Int()
         
-        for bid in history{
+        for bid in biddingData{
             
-            bidValues.append(bid.bidValue)
-            
-        }
-        
-        for bid in history{
-            
-            if bidValues.max() == bid.bidValue{
+            if bidValues.max() == bid.bidValue && bid.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String {
                 
-                output = true
+                output = 1 //winning
+                return output
+
                 
             }
             
             else{
                 
-                if bid.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String{
+                if bidValues.max() != bid.bidValue && bid.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String{
                     
-                    output = true
+                    output = 2 // user is losing
+                    return output
                     
                 }
                 
-                else{
+                else{                        
                     
-                    output = false
-                    
+                    output = 3 //user is not bidding
+
+                    // needs implementation
                 }
                 
             }
             
         }
-        
+        print (output)
         return output
         
     }

@@ -17,15 +17,31 @@ struct AuctionSale: View{
     @ObservedObject var loadContent = LoadContent()
     @State var sale: AuctionSaleData
     @State var nowDate = Date()
-    @State var bidStatus = false
+    @State var bidStatus = Int()
     
     var timer: Timer {
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            
             self.nowDate = Date() //get current time and date and start timer
+            
+        }
+    }
+    
+    var history = { (data: [BidHistoryData]) -> ([String]) in
+        
+        var output = [String]()
+        
+        for entry in data{
+    
+            output.append(entry.bidValue)
+            
         }
         
+        return output
+        
     }
+    
     
     var body: some View {
         
@@ -82,13 +98,17 @@ struct AuctionSale: View{
                         
                         self.timer
                         loadContent.fetchBidHistory(adId: sale.adId)
-                        self.bidStatus = loadContent.bidWinningStatus(history: loadContent.history)
+                        
+                        self.bidStatus = loadContent.bidWinningStatus(biddingData: loadContent.history, bidValues: history(loadContent.history))
                        
-                        if self.bidStatus == true{
-                            print ("true")
+                        if self.bidStatus == 1{
+                            print ("winning")
                         }
-                        else{
-                            print (false)
+                        if self.bidStatus == 2{
+                            print ("losing")
+                        }
+                        if self.bidStatus == 3{
+                            print ("not bidding")
                         }
                         
                         
