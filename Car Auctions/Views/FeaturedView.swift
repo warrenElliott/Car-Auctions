@@ -38,11 +38,6 @@ struct FeaturedView: View{
         }
             .navigationBarTitle("Featured")
             .navigationBarHidden(false)
-//            .onAppear() {
-//
-//                print (UserDefaults.standard.value(forKey: "userEmail"))
-//
-//            }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     

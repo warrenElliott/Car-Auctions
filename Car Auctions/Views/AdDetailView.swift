@@ -34,8 +34,6 @@ struct AdDetailView: View{
         
     }
     
-    //@Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @ViewBuilder var body: some View {
         
         ZStack{

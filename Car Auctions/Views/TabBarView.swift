@@ -14,7 +14,6 @@ struct TabBarView: View {
     @State var navBarWillBeHidden = true 
     @State var pageTitle = "Featured"
     @ObservedObject var loadContent = LoadContent()
-    //@State var isNavBarHidden = true
     
     var body: some View {
             
@@ -70,12 +69,6 @@ struct TabBarView: View {
                     .navigationBarHidden(true)
                 
             }
-            .onAppear() {
-                
-                //self.isNavBarHidden = true
-                
-            }
-
     }
 }
 

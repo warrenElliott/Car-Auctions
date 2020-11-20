@@ -177,13 +177,11 @@ class AdManager{
         let user = UserDefaults.standard.value(forKey: "userEmail") as! String
         
         let bidReference = self.db.collection("Users").document("\(user)").collection("UserBids").document(adSummary.adId)
-        
-        
-        
+
         bidReference.updateData([
             
             "bids": FieldValue.arrayUnion([[
-                "adAuthor": user,
+                "bidAuthor": user,
                 "bidValue": editValue,
                 "timestamp": Date().timeIntervalSince1970
             ]]),

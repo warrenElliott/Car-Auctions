@@ -15,7 +15,6 @@ struct SearchPageView: View{
     
     @State var pageTitle = "Search Results"
     @State var isNavigationBarHidden: Bool = false
-    //@ObservedObject var loadContent = LoadContent()
     @State private var adViewActive: Bool = false //state for ad preview false = not showing
     let db = Firestore.firestore()
     let currentDate = Date()
@@ -65,9 +64,9 @@ struct SearchPageView: View{
                     .navigationBarTitle("Search")
                     .navigationBarHidden(self.isNavigationBarHidden)
                 }
-                else {
-                    // Fallback on earlier versions
-                }
+//                else {
+//                    // Fallback on earlier versions
+//                }
             }
 
         }.navigationViewStyle(StackNavigationViewStyle())
@@ -90,18 +89,3 @@ struct SearchPageView_Previews: PreviewProvider {
         SearchPageView()
     }
 }
-
-
-//                    Text("Search")
-//                        .font(.custom("Arial", size: 40))
-//                        .bold()
-//                        .foregroundColor(.white)
-//                        .frame(width: 350, alignment: .bottomLeading)
-//                        .padding(.top, 25)
-//                        .padding(.bottom, -25)
-
-//            .onAppear {
-//
-//                self.isNavigationBarHidden = true
-//
-//            }

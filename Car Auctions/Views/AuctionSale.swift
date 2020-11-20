@@ -14,7 +14,6 @@ import UIKit
 
 struct AuctionSale: View{
     
-    @ObservedObject var loadContent = LoadContent()
     @State var sale: AuctionSaleData
     @State var nowDate = Date()
     @State var bidStatus: Int
@@ -27,21 +26,6 @@ struct AuctionSale: View{
             
         }
     }
-    
-    var history = { (data: [BidHistoryData]) -> ([String]) in
-        
-        var output = [String]()
-        
-        for entry in data{
-    
-            output.append(entry.bidValue)
-            
-        }
-        
-        return output
-        
-    }
-    
     
     var body: some View {
         

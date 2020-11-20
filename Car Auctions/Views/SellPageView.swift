@@ -425,12 +425,3 @@ struct SellPageView_Previews: PreviewProvider {
         SellPageView()
     }
 }
-
-
-//                    Text("Sell Your Car")
-//                        .font(.custom("Arial", size: 40))
-//                        .bold()
-//                        .foregroundColor(.white)
-//                        .frame(width: 350, alignment: .bottomLeading)
-//                        .padding(.top, 25)
-//                        .padding(.bottom, -25)

@@ -14,7 +14,6 @@ class LoadContent: ObservableObject{
     
     @Published var content = [AuctionSaleData]()
     @Published var history = [BidHistoryData]()
-    @Published var bidsHistory = [BidHistoryData]()
     
     //@Published var userBidAds = [UserBids]()
     
@@ -68,10 +67,7 @@ class LoadContent: ObservableObject{
                                                        isDraft: data["isDraft"] as! Bool,
                                                        bidCount: data["bidCount"] as? String ?? "Unavailable",
                                                        bidHistory: output)
-                        
-                        
 
-                        
                         pageContent.append(instance)
                         
                     }
