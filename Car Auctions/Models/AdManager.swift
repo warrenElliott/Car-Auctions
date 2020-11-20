@@ -27,6 +27,8 @@ class AdManager{
         let adImageRef = adImagesStorage.child("UserUploadedImagesDraft/ \(ad.adId)")
         // storage destination in Firebase
         let detailsReference = self.db.collection(uploadDatabaseDestination(ad.isDraft)).document("\(ad.adId)")
+        let bidDetailsReference = self.db.collection(uploadDatabaseDestination(ad.isDraft)).document("\(ad.adId)")
+        
         
         //gives the ad an ID in Firebase for reference
         
@@ -41,7 +43,7 @@ class AdManager{
             "adPosted" : ad.datePosted,
             "isDraft" : ad.isDraft,
             "adLocation" : ad.adLocation,
-            "bidCount" : ad.bidCount
+            "bidCount" : ad.bidCount,
             ] as [String : Any] //creates a little data dictionary to dictate how data will be stored in the database
     
         detailsReference.setData(detailsData, completion: { (error) in
@@ -112,6 +114,12 @@ class AdManager{
         
         
         bidReference.updateData([
+            
+            "bids": FieldValue.arrayUnion([[
+                "bidAuthor": UserDefaults.standard.value(forKey: "userEmail"),
+                "bidValue": editValue,
+                "timestamp": Date().timeIntervalSince1970
+            ]]),
             "adBid": "\(editValue)",
             "bidCount": "\(bidCount)"
         ]) { err in
@@ -121,6 +129,7 @@ class AdManager{
                 print("Document successfully updated")
             }
         }
+        
         
         bidHistoryReference.setData(bidHistoryEntry, completion: { (error) in
             if let err = error{
@@ -134,6 +143,7 @@ class AdManager{
     }
     
     func addToUserBids(forAd ad: AuctionSaleData, user: String, userBidValue: String){
+    
         
         let userReference = self.db.collection("Users").document("\(user)").collection("UserBids").document(ad.adId)
         
@@ -150,7 +160,7 @@ class AdManager{
             "adLocation" : ad.adLocation,
             "bidCount" : ad.bidCount,
             "imageURLs" : ad.imageLinks,
-            "userBidValue" : userBidValue
+            "userBidValue" : userBidValue,
             ] as [String : Any] //creates a little data dictionary to dictate how data will be stored in the database
     
         userReference.setData(detailsData, completion: { (error) in
@@ -161,13 +171,22 @@ class AdManager{
     
     }
     
+    
     func updateAddToUserBids(forAd adSummary: AuctionSaleData, editValue: String, bidCount: String){
         
         let user = UserDefaults.standard.value(forKey: "userEmail") as! String
         
         let bidReference = self.db.collection("Users").document("\(user)").collection("UserBids").document(adSummary.adId)
         
+        
+        
         bidReference.updateData([
+            
+            "bids": FieldValue.arrayUnion([[
+                "adAuthor": user,
+                "bidValue": editValue,
+                "timestamp": Date().timeIntervalSince1970
+            ]]),
             "adBid": "\(editValue)",
             "bidCount": "\(bidCount)"
         ]) { err in

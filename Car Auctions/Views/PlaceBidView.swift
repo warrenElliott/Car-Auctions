@@ -91,10 +91,22 @@ struct PlaceBidView: View{
                         
                         bidIncrement += 1
                         
-                        AdManager().increaseBid(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
-                        AdManager().addToUserBids(forAd: adPreview, user: UserDefaults.standard.value(forKey: "userEmail") as! String, userBidValue: String(editBidValue))
-                        AdManager().updateAddToUserBids(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
+                        if adPreview.bidCount == "0"{
+                            
+                            
+                            AdManager().addToUserBids(forAd: adPreview, user: UserDefaults.standard.value(forKey: "userEmail") as! String, userBidValue: String(editBidValue))
+                            AdManager().updateAddToUserBids(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))                            
+                            
+                        }
                         
+                        else{
+                            
+                            AdManager().updateAddToUserBids(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
+                            
+                        }
+                        
+                        AdManager().increaseBid(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
+
                         adPreview.adBid = String(editBidValue)
                         adPreview.bidCount = String(bidIncrement)
                         

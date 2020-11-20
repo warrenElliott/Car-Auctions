@@ -14,6 +14,7 @@ class LoadContent: ObservableObject{
     
     @Published var content = [AuctionSaleData]()
     @Published var history = [BidHistoryData]()
+    @Published var bidsHistory = [BidHistoryData]()
     
     //@Published var userBidAds = [UserBids]()
     
@@ -33,13 +34,25 @@ class LoadContent: ObservableObject{
             else{
                 
                 var pageContent = [AuctionSaleData]()
+                var queryAdHistory = [BidHistoryData]()
                 
-                if let snapshotDocs = querySnapshot?.documents{ //tap into the query documents
+                if let snapshotDocs = querySnapshot?.documents{
                     
-                    for doc in snapshotDocs{ //for each entry in this document
+                    for doc in snapshotDocs{
                         
-                        let data = doc.data() //the data present inside each doc
+                        var output = [BidHistoryData]()
+                        let data = doc.data()
                         let adID = data["adID"] as! String
+                        var adBidHistory = data["bids"] as? [[String: Any]]
+                        
+                        
+                        for instance in adBidHistory ?? []{ // returning nil and crashign when uploading ad
+                            
+                            let instanceOutput = BidHistoryData(id: adID, bidValue: instance["bidValue"] as? String ?? "", bidder: instance["bidAuthor"] as? String ?? "")
+                            
+                            output.append(instanceOutput)
+                            
+                        }
                         
                         var instance = AuctionSaleData(adId: adID,
                                                        adName: data["adName"] as! String,
@@ -53,13 +66,19 @@ class LoadContent: ObservableObject{
                                                        imageLinks: data["imageURLs"] as? [String] ?? [],
                                                        datePosted: data["adPosted"] as! String,
                                                        isDraft: data["isDraft"] as! Bool,
-                                                       bidCount: data["bidCount"] as? String ?? "Unavailable")
+                                                       bidCount: data["bidCount"] as? String ?? "Unavailable",
+                                                       bidHistory: output)
+                        
+                        
+
                         
                         pageContent.append(instance)
                         
                     }
-                    
+                    self.history = queryAdHistory
                     self.content = pageContent
+                    
+                    print (self.content)
                     
                 }
             }
@@ -112,9 +131,8 @@ class LoadContent: ObservableObject{
             
             if bidValues.max() == bid.bidValue && bid.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String {
                 
-                output = 1 //winning
-                return output
-
+                return 1 //winning
+                
                 
             }
             
@@ -123,11 +141,10 @@ class LoadContent: ObservableObject{
                 if bidValues.max() != bid.bidValue && bid.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String{
                     
                     output = 2 // user is losing
-                    return output
                     
                 }
                 
-                else{                        
+                if bidValues.max() != bid.bidValue && bid.bidder != UserDefaults.standard.value(forKey: "userEmail") as! String{
                     
                     output = 3 //user is not bidding
 
@@ -137,9 +154,7 @@ class LoadContent: ObservableObject{
             }
             
         }
-        print (output)
         return output
-        
     }
     
 }

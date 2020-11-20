@@ -24,7 +24,7 @@ struct AuctionSaleData: Hashable, Identifiable{
     var datePosted: String
     var isDraft: Bool
     var bidCount: String
-    
+    var bidHistory: [BidHistoryData]
     
 
 }

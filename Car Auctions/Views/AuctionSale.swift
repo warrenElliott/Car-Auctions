@@ -17,7 +17,7 @@ struct AuctionSale: View{
     @ObservedObject var loadContent = LoadContent()
     @State var sale: AuctionSaleData
     @State var nowDate = Date()
-    @State var bidStatus = Int()
+    @State var bidStatus: Int
     
     var timer: Timer {
         
@@ -88,32 +88,48 @@ struct AuctionSale: View{
                     .frame(width: 170, alignment: .topLeading)
                     .font(.custom("Arial", size: 12))
                 
-                
-                Text(
-                    TimeManager().countDownDate(date: sale.adEndingDate, time: sale.adEndingTime, nowDate))
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.custom("Arial", size: 14))
-                    .onAppear(perform: {
+                HStack{
+                    
+                    Text(
+                        TimeManager().countDownDate(date: sale.adEndingDate, time: sale.adEndingTime, nowDate))
+                        .bold()
+                        .frame(maxWidth: 70, alignment: .leading)
+                        .font(.custom("Arial", size: 14))
+                        .onAppear(perform: {
+                            
+                            self.timer
+                            
+                            
+                        })
+                    
+                    Divider()
+                        .padding(.leading, 30)
+                    
+                    if bidStatus == 1{
                         
-                        self.timer
-                        loadContent.fetchBidHistory(adId: sale.adId)
+                        Text("Winning")
+                            .bold()
+                            .font(.custom("Arial", size: 14))
+                            .frame(maxWidth: 70, alignment: .center)
+                            .foregroundColor(.white)
+                            .background(Color.green)
                         
-                        self.bidStatus = loadContent.bidWinningStatus(biddingData: loadContent.history, bidValues: history(loadContent.history))
-                       
-                        if self.bidStatus == 1{
-                            print ("winning")
-                        }
-                        if self.bidStatus == 2{
-                            print ("losing")
-                        }
-                        if self.bidStatus == 3{
-                            print ("not bidding")
-                        }
+                    }
+                    
+                    if bidStatus == 2{
                         
+                        Text("Losing")
+                            .bold()
+                            .font(.custom("Arial", size: 14))
+                            .frame(maxWidth: 70, alignment: .center)
+                            .foregroundColor(.white)
+                            .background(Color.red)
                         
-                    })
-                
+                    }
+                    
+
+                    
+                }.frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(width: 170, height: 110, alignment: .topLeading)
             
@@ -126,6 +142,6 @@ struct AuctionSale: View{
 
 struct AuctionSale_Previews: PreviewProvider {
     static var previews: some View {
-        AuctionSale(sale: saleData[0])
+        AuctionSale(sale: saleData[0], bidStatus: 0)
     }
 }
