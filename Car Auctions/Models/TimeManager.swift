@@ -55,7 +55,7 @@ public class TimeManager{
         let outputDateComponents = calendar.dateComponents([.day, .hour, .minute, .second], from: nowdate, to: deadlineDate)
 
         
-        if deadlineDate > nowdate{
+        if deadlineDate > nowdate{ //needs revision
             
             let dayText = String(describing: outputDateComponents.day!) + "d "
             let hourText = String(describing: outputDateComponents.hour!) + "h "
@@ -74,7 +74,7 @@ public class TimeManager{
                 
             }else if dayText == "0d " && hourText == "0h " && minuteText == "0m " && secondsText == "0s "{
                 
-                output = "Auction Finished"
+                output = "Ended"
                 return output
                 
             }else{

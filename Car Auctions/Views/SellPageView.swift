@@ -355,7 +355,7 @@ struct ImagePick: UIViewControllerRepresentable{
             options.isSynchronous = true
             options.isNetworkAccessAllowed = true
 
-            manager.requestImage(for: asset, targetSize: UIScreen.main.bounds.size, contentMode: .aspectFill, options: options) { (image, info) in
+            manager.requestImage(for: asset, targetSize: CGSize(width: UIScreen.main.bounds.width, height: 100), contentMode: .aspectFill, options: options) { (image, info) in
                 imageOutput = image ?? UIImage()
             }
             
