@@ -13,11 +13,11 @@ import Combine
 
 struct SearchPageView: View{
     
-    @State var pageTitle = "Search Results"
-    @State var isNavigationBarHidden: Bool = false
+    @State private var pageTitle = "Search Results"
+    @State private var isNavigationBarHidden: Bool = false
     @State private var adViewActive: Bool = false //state for ad preview false = not showing
-    let db = Firestore.firestore()
-    let currentDate = Date()
+    private let db = Firestore.firestore()
+    private let currentDate = Date()
     
     @State var searchText = ""
     
@@ -29,7 +29,7 @@ struct SearchPageView: View{
                 
                 Colours().bgColour
                 
-                if #available(iOS 14.0, *) {
+                //if #available(iOS 14.0, *) {
                     VStack{
                                                 
                         Divider()
@@ -42,7 +42,7 @@ struct SearchPageView: View{
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .cornerRadius(10)
                             .overlay(RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.black, lineWidth: 3))
+                            .stroke(Color.black, lineWidth: 3))
                             .frame(width: 350, height: nil, alignment: .center)
                             .padding()
                         
@@ -61,27 +61,23 @@ struct SearchPageView: View{
                             
                         }
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                    .navigationBarTitle("Search")
+                    .navigationBarTitle(self.pageTitle)
                     .navigationBarHidden(self.isNavigationBarHidden)
-                }
+                //}
 //                else {
 //                    // Fallback on earlier versions
 //                }
             }
-
         }.navigationViewStyle(StackNavigationViewStyle())
-
     }
     
     private func link<Destination: View>(label: String, destination: Destination, state: Binding<Bool>) -> some View {
         return NavigationLink(destination: destination, isActive: state, label: {
                         HStack {
                 Text(label)
-                
             }
         })
     }
-    
 }
 
 struct SearchPageView_Previews: PreviewProvider {

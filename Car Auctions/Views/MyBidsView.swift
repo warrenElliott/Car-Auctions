@@ -31,6 +31,7 @@ struct MyBidsView: View{
                 VStack{
                     
                     Divider()
+                    
                     AdListContentView(
                         adViewActive: self.$adViewActive,
                         emptyListMessage: self.$emptyListMessage,
@@ -38,9 +39,8 @@ struct MyBidsView: View{
                             self.db.collection("Users").document("\(UserDefaults.standard.value(forKey: "userEmail") as! String)").collection("UserBids").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
                     
                 }
-                
             }
-            .navigationBarTitle("My Bids")
+            .navigationBarTitle(self.emptyListMessage)
             .navigationBarHidden(false)
             
         }.navigationViewStyle(StackNavigationViewStyle())

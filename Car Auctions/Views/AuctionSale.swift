@@ -15,15 +15,13 @@ import UIKit
 struct AuctionSale: View{
     
     @State var sale: AuctionSaleData
-    @State var nowDate = Date()
     @State var bidStatus: Int
+    @State private var nowDate = Date()
     
     var timer: Timer {
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            
             self.nowDate = Date() //get current time and date and start timer
-            
         }
     }
     
@@ -32,14 +30,11 @@ struct AuctionSale: View{
         HStack {
             
             if sale.imageLinks == []{
-                
                 Image("StockAdPhoto")
                     .resizable()
                     .frame(width: 170, height: 120, alignment: .leading)
                     .padding(.leading)
-                
             }else{
-                
                 KFImage(URL(string: sale.imageLinks[0]!))
                     .resizable()
                     .frame(width: 170, height: 120, alignment: .leading)
@@ -49,7 +44,7 @@ struct AuctionSale: View{
             VStack(spacing: 5){
                 
                 HStack{
-                    
+
                     Text(sale.adName)
                         .bold()
                         .font(.custom("Arial", size: 16))
@@ -80,47 +75,33 @@ struct AuctionSale: View{
                         .frame(maxWidth: 70, alignment: .leading)
                         .font(.custom("Arial", size: 14))
                         .onAppear(perform: {
-                            
                             self.timer
-                            
-                            
                         })
                     
                     Divider()
                         .padding(.leading, 30)
                     
                     if bidStatus == 1{
-                        
                         Text("Winning")
                             .bold()
                             .font(.custom("Arial", size: 14))
                             .frame(maxWidth: 70, alignment: .center)
                             .foregroundColor(.white)
                             .background(Color.green)
-                        
                     }
                     
                     if bidStatus == 2{
-                        
                         Text("Losing")
                             .bold()
                             .font(.custom("Arial", size: 14))
                             .frame(maxWidth: 70, alignment: .center)
                             .foregroundColor(.white)
                             .background(Color.red)
-                        
                     }
-                    
-
-                    
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(width: 170, height: 110, alignment: .topLeading)
-            
         }
-           
-            
-        
     }
 }
 

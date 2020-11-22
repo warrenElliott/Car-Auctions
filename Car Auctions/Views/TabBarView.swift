@@ -27,7 +27,6 @@ struct TabBarView: View {
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 
-
                 SearchPageView()
                     .tabItem{
                         Image(systemName: "magnifyingglass.circle.fill")
@@ -36,9 +35,7 @@ struct TabBarView: View {
                     .navigationBarTitle("", displayMode: .inline)
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
-                
-                
-                
+        
                 SellPageView()
                     .tabItem{
                         Image(systemName: "plus.circle.fill")
@@ -57,8 +54,7 @@ struct TabBarView: View {
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 
-                
-                
+
                 Text("Second View")
                     .tabItem {
                         Image(systemName: "person.fill")
@@ -67,7 +63,6 @@ struct TabBarView: View {
                     .navigationBarTitle("")
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
-                
             }
     }
 }

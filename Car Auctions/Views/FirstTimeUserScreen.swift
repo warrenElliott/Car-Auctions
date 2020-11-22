@@ -30,7 +30,7 @@ struct ContentView: View {
         
         appearance.backgroundColor = Colours().headerColor
         
-        //apply the customisation across the app
+        //applies the customisation across the app
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().tintColor = .white
@@ -72,16 +72,14 @@ struct ContentView: View {
                         TextField("Email Address", text: $userEmail)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 300, height: nil)
-                            //.cornerRadius(5)
                             .overlay(Rectangle()
-                                        .stroke(Color.black, lineWidth: 1))
+                            .stroke(Color.black, lineWidth: 1))
                         
                         SecureField("Enter a password", text: $userPassword)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 300, height: nil)
-                            //.cornerRadius(5)
                             .overlay(Rectangle()
-                                        .stroke(Color.black, lineWidth: 1))
+                            .stroke(Color.black, lineWidth: 1))
                         
                     }
                     
@@ -123,27 +121,19 @@ struct ContentView: View {
                                 .foregroundColor(Color.white)
                                 .frame(width: 280, height: 40)
                         }
-                        
-                        
                     }
-                    
                 }.frame(width: 380, height: 500, alignment: .center)
             }
         }.navigationViewStyle(StackNavigationViewStyle())
-
-        
     }
     
     private func link<Destination: View>(label: String, destination: Destination, state: Binding<Bool>) -> some View {
         return NavigationLink(destination: destination, isActive: state, label: {
             HStack {
                 Text(label)
-                
             }
         })
     }
-    
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -157,17 +147,11 @@ extension ContentView{
     func registerUser(email: String, password: String){
         
         if email == "" {
-            
             print ("Enter a valid email")
-            
         }
-        
         if password == "" {
-            
             print ("Enter a valid password")
-            
         }
-        
         else{
             if email.contains("@"){
                 Auth.auth().createUser(withEmail: self.userEmail, password: self.userPassword) { authResult, error in
@@ -178,29 +162,21 @@ extension ContentView{
                         self.signInSuccess = true
                     }
                 }
-                
             }
             else{
                 print("Enter a valid email")
             }
-            
         }
     }
     
     func signInUser(email: String, password: String){
         
         if email == "" {
-            
             print ("Enter a valid email")
-            
         }
-        
         if password == "" {
-            
             print ("Enter a valid password")
-            
         }
-        
         else{
             if email.contains("@"){
                 Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
@@ -212,12 +188,9 @@ extension ContentView{
                     }
                 }
             }
-            
             else{
                 print("Enter a valid email")
             }
-            
         }
     }
-    
 }

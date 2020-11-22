@@ -12,9 +12,8 @@ import Combine
 
 struct FeaturedView: View{
     
-    //@Binding var isNavBarHidden : Bool
     @State private var adViewActive: Bool = false //state for ad preview
-    @State private var emptyListMessage = "Hmm Nothing Ending Today...Tap on Search to find new auctions!"
+    @State private var emptyListMessage = "Nothing Ending Today...Tap on Search to find other auctions!"
     @State private var pageTitle = "Featured"
     
     let db = Firestore.firestore()
@@ -34,14 +33,11 @@ struct FeaturedView: View{
                 
                     AdListContentView(adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
                 }
-            
         }
-            .navigationBarTitle("Featured")
+            .navigationBarTitle(self.pageTitle)
             .navigationBarHidden(false)
         }.navigationViewStyle(StackNavigationViewStyle())
     }
-    
-    
 }
 
 struct MainScreen_Previews: PreviewProvider {

@@ -65,13 +65,10 @@ struct AdDetailView: View{
                                 PagingView(index: $index.animation(), maxIndex: adPreview.imageLinks.count - 1) {
                                     
                                     ForEach(self.adPreview.imageLinks.indices, id: \.self) { link in
-                                        
                                         KFImage(URL(string: self.adPreview.imageLinks[link]!))
                                             .resizable()
                                             .scaledToFill()
-                                        
                                     }
-                                    
                                 }.frame(width: UIScreen.main.bounds.width, height: 250)
                             }
                                 
@@ -104,27 +101,25 @@ struct AdDetailView: View{
                                 
                             }
                             
-                            
                             VStack(alignment: .leading){
+                                
                                 Text("Current Bid")
                                     .foregroundColor(.white)
                                 
                                 Text("£ \(self.adPreview.adBid)")
                                     .bold()
                                     .foregroundColor(.white)
-                                
                             }
                             
                             VStack(alignment: .leading){
+                                
                                 Text("Total Bids")
                                     .foregroundColor(.white)
                                 
                                 Text(self.adPreview.bidCount)
                                     .bold()
                                     .foregroundColor(.white)
-                                
                             }
-                            
                             
                         }.frame(width: UIScreen.main.bounds.width, height: 55, alignment: .center)
                             .background(Colours().grey)
@@ -210,9 +205,7 @@ struct AdDetailView: View{
                         else{
                             
                             if loadContent.history.count == 0{
-                                
                                 Text("Bidding history will appear here").padding()
-                                
                             }
                             
                             else{
@@ -247,9 +240,6 @@ struct AdDetailView: View{
                                 }
                                 
                             }
-                            
-                            
-                            
                         }
                     }
                 }
@@ -321,9 +311,7 @@ struct AdDetailView: View{
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(false)
-        
 
-        
     }
 }
 

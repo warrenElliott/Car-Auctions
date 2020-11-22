@@ -15,15 +15,13 @@ import GooglePlaces
 
 struct SellPageView: View{
     
-    @State var isShowingImagePicker = false
-    @State var isShowingSuggestions = false
-    @State var ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: "0", bidHistory: []) //blank ad struct where the ad will be stored before being placed on the database
-    @State var isEditing = false
-    @State var counter = 6 //max images that can be uploaded
-    @State var dateForAd = Date() //gives today's date
-    @State var showAlert = false
+    @State private var isShowingImagePicker = false
+    @State private var isShowingLocationSuggestions = false
+    @State var ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: "0", bidHistory: []) //blank ad struct where the ad will be stored before being placed on the database
+    @State private var counter = 6 //max images that can be uploaded
+    @State private var dateForAd = Date() //gives today's date
+    @State private var showAlert = false
     @State private var previewActive: Bool = false //state for ad preview
-    
     
     var dateFormatter: String {
         let formatter = DateFormatter()
@@ -34,13 +32,11 @@ struct SellPageView: View{
     } //converts date to the selected format yyyy-mm-dd
     
     var timeFormatter: String{
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
         formatter.timeZone = TimeZone.current
         let output = formatter.string(from: dateForAd)
         return output
-        
     } //converts time to the selected format hhmmss
     
     var visualFormatter: DateFormatter {
@@ -115,9 +111,7 @@ struct SellPageView: View{
                                                 })
                                                     .offset(x: 40, y: -40))
                                     }
-
                                 }
-                                
                             }
                             
                             //form creator below
@@ -169,9 +163,9 @@ struct SellPageView: View{
                             
                             TextField("Enter your ad location here", text: $ad.adLocation)
                                 .simultaneousGesture(TapGesture().onEnded {
-                                    self.isShowingSuggestions.toggle()
+                                    self.isShowingLocationSuggestions.toggle()
                                 })
-                                .sheet(isPresented: $isShowingSuggestions, content: {
+                                .sheet(isPresented: $isShowingLocationSuggestions, content: {
                                     PlacePicker(address: self.$ad.adLocation)
                                 }) //place picker powered by Google API
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -240,7 +234,7 @@ struct SellPageView: View{
                                     self.ad.adEndingDate = self.timeFormatter
                                     AdManager().uploadAd(self.ad)
                                     
-                                    self.ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: "" /*(UserDefaults.standard.value(forKey: "userEmail") as? String)!*/, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: "0", bidHistory: [])
+                                    self.ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: "0", bidHistory: [])
                                     
                                 }) {
                                     
@@ -309,27 +303,20 @@ struct ImagePick: UIViewControllerRepresentable{
         
         func imagePicker(_ imagePicker: ImagePickerController, didSelectAsset asset: PHAsset) {
             
-            
-            
         }
 
         func imagePicker(_ imagePicker: ImagePickerController, didDeselectAsset asset: PHAsset) {
-            
-            
             
         }
 
         func imagePicker(_ imagePicker: ImagePickerController, didFinishWithAssets assets: [PHAsset]) {
 
             for asset in assets{
-
                 self.parent.ad.adImages.append(phAssetToImageConverter(asset: asset))
                 self.parent.counter -= 1
-
             }
             
             print (self.parent.ad.adImages)
-            
             self.parent.isPresented = false
 
         }
@@ -350,7 +337,7 @@ struct ImagePick: UIViewControllerRepresentable{
             
             let manager = PHImageManager.default()
             var imageOutput = UIImage()
-            
+            //image options
             let options = PHImageRequestOptions()
             options.isSynchronous = true
             options.isNetworkAccessAllowed = true
@@ -415,7 +402,6 @@ struct TextView: UIViewRepresentable {
             
             self.parent.text = textView.text
         }
-        
     }
 }
 

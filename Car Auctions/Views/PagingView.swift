@@ -40,10 +40,10 @@ struct PagingView<Content>: View where Content: View {
                 .frame(width: geometry.size.width, alignment: .leading)
                 .gesture(
                     DragGesture()
-//                        .onChanged { value in
-//                        self.dragging = true
-//                        self.offset = -CGFloat(self.index) * geometry.size.width + value.translation.width
-//                    }
+                        .onChanged { value in
+                        self.dragging = true
+                        self.offset = -CGFloat(self.index) * geometry.size.width + value.translation.width
+                    }
                     .onEnded { value in
                         
                         self.dragging = true
