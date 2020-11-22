@@ -27,7 +27,6 @@ struct PlaceBidView: View{
     @State var bidCount: String
     @State var bidIncrement = 0
     
-    
     @State var minusButtonDisabled = false
     
     var body: some View{
@@ -48,7 +47,6 @@ struct PlaceBidView: View{
                         }else{
                             editBidValue -= 25
                         }
-                        
                         
                     }, label: {Image(systemName: "minus.circle")
                         .font(.system(size: 35))
@@ -92,26 +90,18 @@ struct PlaceBidView: View{
                         bidIncrement += 1
                         
                         if adPreview.bidCount == "0"{
-                            
-                            
                             AdManager().addToUserBids(forAd: adPreview, user: UserDefaults.standard.value(forKey: "userEmail") as! String, userBidValue: String(editBidValue))
-                            AdManager().updateAddToUserBids(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))                            
-                            
-                        }
-                        
-                        else{
-                            
                             AdManager().updateAddToUserBids(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
-                            
+                        }
+                        else{
+                            AdManager().updateAddToUserBids(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
                         }
                         
                         AdManager().increaseBid(forAd: adPreview, editValue: String(editBidValue), bidCount: String(bidIncrement))
-
                         adPreview.adBid = String(editBidValue)
                         adPreview.bidCount = String(bidIncrement)
                         
                     }
-                    
                     
                     show.toggle()
                     showNotification.toggle()
@@ -154,18 +144,4 @@ struct PlaceBidView: View{
         .animation(.easeInOut)
         
     }
-
 }
-
-//.onAppear {
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-//        self.show.toggle()
-//    }
-
-//struct PlaceBidView_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        PlaceBidView(loadContent: LoadContent(), show: .constant(true), adPreview: .constant(saleData[0]), currentBid: "5000")
-//
-//    }
-//}

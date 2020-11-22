@@ -192,7 +192,6 @@ struct AdDetailView: View{
                                 }
                                 .padding(.leading).frame(width: UIScreen.main.bounds.width / 2, alignment: .leading)
                                 
-                                
                                 Text(/*self.adPreview.adLocation*/ "More Info")
                                 .padding().frame(width: UIScreen.main.bounds.width / 2, alignment: .trailing)
                                 
@@ -204,7 +203,7 @@ struct AdDetailView: View{
                         
                         else{
                             
-                            if loadContent.history.count == 0{
+                            if self.adPreview.bidHistory.count == 0{
                                 Text("Bidding history will appear here").padding()
                             }
                             
@@ -224,7 +223,7 @@ struct AdDetailView: View{
                                 }.frame(width: UIScreen.main.bounds.width, alignment: .leading)
                                     
                                 
-                                ForEach(loadContent.history, id:\ .self){ entry in
+                                ForEach(self.adPreview.bidHistory, id:\ .self){ entry in
                                     
                                     HStack{
                                         Text(entry.bidder)
@@ -238,7 +237,6 @@ struct AdDetailView: View{
                                     }.frame(width: UIScreen.main.bounds.width, alignment: .leading)
                                     
                                 }
-                                
                             }
                         }
                     }
@@ -270,8 +268,8 @@ struct AdDetailView: View{
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .onAppear(){
                 
-                loadContent.fetchBidHistory(adId: adPreview.adId) // fetch bid history as soon as view appear
-                print ("AdDetailView Being initialised")
+                //loadContent.fetchBidHistory(adId: adPreview.adId) // fetch bid history as soon as view appear
+                //print ("AdDetailView Being initialised")
                 
             }
 

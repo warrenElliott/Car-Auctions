@@ -29,7 +29,6 @@ class AdManager{
         let detailsReference = self.db.collection(uploadDatabaseDestination(ad.isDraft)).document("\(ad.adId)")
         let bidDetailsReference = self.db.collection(uploadDatabaseDestination(ad.isDraft)).document("\(ad.adId)")
         
-        
         //gives the ad an ID in Firebase for reference
         
         let detailsData = [
@@ -95,22 +94,22 @@ class AdManager{
         
     }
     
-    
     func increaseBid(forAd adSummary: AuctionSaleData, editValue: String, bidCount: String){
         
         let bidID = UUID().uuidString
         
         let bidReference = self.db.collection("LiveDatabase").document("\(adSummary.adId)")
-        let bidHistoryReference = self.db.collection("LiveDatabase").document("\(adSummary.adId)").collection("bids").document(bidID)
         
-        let bidHistoryEntry = [
-            
-            "bidID" : UUID().uuidString,
-            "bidder" : UserDefaults.standard.value(forKey: "userEmail"),
-            "bidValue": editValue,
-            "timestamp": Date().timeIntervalSince1970
-            
-        ] as [String : Any]
+//        let bidHistoryReference = self.db.collection("LiveDatabase").document("\(adSummary.adId)").collection("bids").document(bidID)
+//
+//        let bidHistoryEntry = [
+//
+//            "bidID" : UUID().uuidString,
+//            "bidder" : UserDefaults.standard.value(forKey: "userEmail"),
+//            "bidValue": editValue,
+//            "timestamp": Date().timeIntervalSince1970
+//
+//        ] as [String : Any]
         
         
         bidReference.updateData([
@@ -131,14 +130,14 @@ class AdManager{
         }
         
         
-        bidHistoryReference.setData(bidHistoryEntry, completion: { (error) in
-            if let err = error{
-                print (err.localizedDescription)
-            }else{
-                print("saved")
-                
-            }
-        })
+//        bidHistoryReference.setData(bidHistoryEntry, completion: { (error) in
+//            if let err = error{
+//                print (err.localizedDescription)
+//            }else{
+//                print("saved")
+//
+//            }
+//        })
         
     }
     
@@ -171,7 +170,6 @@ class AdManager{
     
     }
     
-    
     func updateAddToUserBids(forAd adSummary: AuctionSaleData, editValue: String, bidCount: String){
         
         let user = UserDefaults.standard.value(forKey: "userEmail") as! String
@@ -194,9 +192,7 @@ class AdManager{
                 print("Document successfully updated")
             }
         }
-        
     }
-    
     
 }
 

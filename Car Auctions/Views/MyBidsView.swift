@@ -40,7 +40,7 @@ struct MyBidsView: View{
                     
                 }
             }
-            .navigationBarTitle(self.emptyListMessage)
+            .navigationBarTitle(self.pageTitle)
             .navigationBarHidden(false)
             
         }.navigationViewStyle(StackNavigationViewStyle())
