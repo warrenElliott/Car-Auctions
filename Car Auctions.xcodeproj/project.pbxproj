@@ -28,6 +28,7 @@
 		804B19DB24B4B1B200EA8ED7 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804B19DA24B4B1B200EA8ED7 /* PagingView.swift */; };
 		804E2DB124BF74F000891202 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E2DB024BF74F000891202 /* LocationTextField.swift */; };
 		804E2DB324C32F1700891202 /* LoadContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E2DB224C32F1700891202 /* LoadContent.swift */; };
+		808BAE57256AD48800055B85 /* UserAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808BAE56256AD48800055B85 /* UserAccountView.swift */; };
 		808C26A8255B1CA1000EFA30 /* BidHistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808C26A7255B1CA1000EFA30 /* BidHistoryData.swift */; };
 		8090B75825495095009C2E61 /* PlaceBidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8090B75725495095009C2E61 /* PlaceBidView.swift */; };
 		8095A6EB24AF5CFB00DD59BE /* AdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */; };
@@ -69,6 +70,7 @@
 		804B19DA24B4B1B200EA8ED7 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		804E2DB024BF74F000891202 /* LocationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTextField.swift; sourceTree = "<group>"; };
 		804E2DB224C32F1700891202 /* LoadContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadContent.swift; sourceTree = "<group>"; };
+		808BAE56256AD48800055B85 /* UserAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountView.swift; sourceTree = "<group>"; };
 		808C26A7255B1CA1000EFA30 /* BidHistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidHistoryData.swift; sourceTree = "<group>"; };
 		8090B75725495095009C2E61 /* PlaceBidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceBidView.swift; sourceTree = "<group>"; };
 		8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDetailView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				80047DB6253F527600EF78AB /* SearchResultsView.swift */,
 				80E0C030249E186100559261 /* SellPageView.swift */,
 				80D3F929255DD61E00226ECC /* MyBidsView.swift */,
+				808BAE56256AD48800055B85 /* UserAccountView.swift */,
 				8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */,
 				804E2DB024BF74F000891202 /* LocationTextField.swift */,
 				804B19DA24B4B1B200EA8ED7 /* PagingView.swift */,
@@ -352,6 +355,7 @@
 				8095A6EB24AF5CFB00DD59BE /* AdDetailView.swift in Sources */,
 				804E2DB124BF74F000891202 /* LocationTextField.swift in Sources */,
 				804451F324AF25FD00CFFEB4 /* StoreUserDetails.swift in Sources */,
+				808BAE57256AD48800055B85 /* UserAccountView.swift in Sources */,
 				804B19DB24B4B1B200EA8ED7 /* PagingView.swift in Sources */,
 				80D3F92A255DD61E00226ECC /* MyBidsView.swift in Sources */,
 				8090B75825495095009C2E61 /* PlaceBidView.swift in Sources */,

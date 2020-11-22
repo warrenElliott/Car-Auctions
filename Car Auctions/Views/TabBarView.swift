@@ -55,7 +55,7 @@ struct TabBarView: View {
                     .navigationBarHidden(true)
                 
 
-                Text("Second View")
+                UserAccountView()
                     .tabItem {
                         Image(systemName: "person.fill")
                         Text("My Account")
