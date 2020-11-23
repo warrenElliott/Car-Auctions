@@ -16,7 +16,7 @@ struct UserAccountView: View{
     @State private var emptyListMessage = "You currently have no bids placed"
     @State private var pageTitle = "My Account"
     
-    @State private var listContents = ["My Drafts", "Watch List", "My Ads", "Auctions Won", "Auctions Lost"]
+    @State private var listContents = ["My Drafts", "Watch List", "My Ads", "Auctions Won", "Auctions Lost"] //create a struct for this
     
     let db = Firestore.firestore()
     let currentDate = Date()
@@ -44,11 +44,12 @@ struct UserAccountView: View{
                             
                             ForEach(listContents, id: \.self){ content in
                                 
-                                
-                                Text(content)
-                                    .listRowBackground(Color(Colours().backgroundColor))
-                                    
+                                NavigationLink(destination: ContentView()){
+                                    Text(content)
+                                        .listRowBackground(Color(Colours().backgroundColor))
+                                }
                                 Divider()
+
                                 
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
                         }.padding(.bottom, 10)
