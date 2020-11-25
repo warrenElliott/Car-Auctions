@@ -17,7 +17,7 @@ struct UserAccountView: View{
     @State private var pageTitle = "My Account"
     
     @State private var listContents = ["My Drafts", "Watch List", "My Ads", "Auctions Won", "Auctions Lost"] //create a struct for this
-    
+
     let db = Firestore.firestore()
     let currentDate = Date()
     
@@ -41,19 +41,39 @@ struct UserAccountView: View{
                         
                         VStack{
                             
-                            
-                            ForEach(listContents, id: \.self){ content in
-                                
-                                NavigationLink(destination: ContentView()){
-                                    Text(content)
-                                        .listRowBackground(Color(Colours().backgroundColor))
-                                }
-                                Divider()
-
-                                
+                            NavigationLink(destination: ContentView()){
+                                Text("My Drafts")
+                                    .listRowBackground(Color(Colours().backgroundColor))
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
+                            Divider()
+                            
+                            NavigationLink(destination: ContentView()){
+                                Text("Watch List")
+                                    .listRowBackground(Color(Colours().backgroundColor))
+                            }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
+                            Divider()
+                            
+                            NavigationLink(destination: ContentView()){
+                                Text("My Ads")
+                                    .listRowBackground(Color(Colours().backgroundColor))
+                            }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
+                            Divider()
+                            
+                            NavigationLink(destination: ContentView()){
+                                Text("Auctions Won")
+                                    .listRowBackground(Color(Colours().backgroundColor))
+                            }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
+                            Divider()
+                            
+                            NavigationLink(destination: ContentView()){
+                                Text("Auctions Lost")
+                                    .listRowBackground(Color(Colours().backgroundColor))
+                            }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
+                            Divider()
+                            
                         }.padding(.bottom, 10)
                         .padding(.top, 10)
+                        .frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
                         
                         Button(action: {
                         }) {
@@ -74,10 +94,7 @@ struct UserAccountView: View{
                 .navigationBarTitle(self.pageTitle)
                 .navigationBarHidden(false)
                 
-            
-            
 
-            
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     
