@@ -13,9 +13,9 @@ import Combine
 
 struct MyBidsView: View{
     
-    @State private var adViewActive: Bool = false
+//    @State private var adViewActive: Bool = false
     @State private var emptyListMessage = "You currently have no bids placed"
-    @State private var pageTitle = "Featured"
+    @State private var pageTitle = "My bids"
     
     let db = Firestore.firestore()
     let currentDate = Date()
@@ -33,7 +33,6 @@ struct MyBidsView: View{
                     Divider()
                     
                     AdListContentView(
-                        adViewActive: self.$adViewActive,
                         emptyListMessage: self.$emptyListMessage,
                         query: .constant(
                             self.db.collection("Users").document("\(UserDefaults.standard.value(forKey: "userEmail") as! String)").collection("UserBids").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))

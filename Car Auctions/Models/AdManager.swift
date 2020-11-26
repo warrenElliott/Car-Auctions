@@ -27,7 +27,6 @@ class AdManager{
         let adImageRef = adImagesStorage.child("UserUploadedImagesDraft/ \(ad.adId)")
         // storage destination in Firebase
         let detailsReference = self.db.collection(uploadDatabaseDestination(ad.isDraft)).document("\(ad.adId)")
-        let bidDetailsReference = self.db.collection(uploadDatabaseDestination(ad.isDraft)).document("\(ad.adId)")
         
         //gives the ad an ID in Firebase for reference
         

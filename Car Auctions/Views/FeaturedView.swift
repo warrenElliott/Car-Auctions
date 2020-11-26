@@ -12,7 +12,7 @@ import Combine
 
 struct FeaturedView: View{
     
-    @State private var adViewActive: Bool = false //state for ad preview
+    //@State private var adViewActive: Bool = true //state for ad preview
     @State private var emptyListMessage = "Nothing Ending Today...Tap on Search to find other auctions!"
     @State private var pageTitle = "Featured"
     
@@ -31,7 +31,7 @@ struct FeaturedView: View{
                     
                     Divider()
                 
-                    AdListContentView(adViewActive: self.$adViewActive, emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
+                    AdListContentView(emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
                 }
         }
             .navigationBarTitle(self.pageTitle)
