@@ -15,8 +15,7 @@ struct UserAccountView: View{
     @State private var adViewActive: Bool = false
     @State private var emptyListMessage = "You currently have no bids placed"
     @State private var pageTitle = "My Account"
-    
-    @State private var listContents = ["My Drafts", "Watch List", "My Ads", "Auctions Won", "Auctions Lost"] //create a struct for this
+
 
     let db = Firestore.firestore()
     let currentDate = Date()
@@ -25,7 +24,6 @@ struct UserAccountView: View{
         
         NavigationView{
             
-                
                 ZStack{
                     
                     Colours().bgColour
@@ -39,33 +37,33 @@ struct UserAccountView: View{
                         //Text(UserDefaults.standard.value(forKey: "userEmail") as! String)
                         Text("email@email.com") //placeholder
                         
-                        VStack{
+                        VStack{ 
                             
-                            NavigationLink(destination: ContentView()){
+                            NavigationLink(destination: UserContentView(pageTitle: Text("My Drafts"), query: .constant(db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: "")), isNavigationBarHidden: .constant(false))){
                                 Text("My Drafts")
                                     .listRowBackground(Color(Colours().backgroundColor))
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
                             Divider()
                             
-                            NavigationLink(destination: ContentView()){
+                            NavigationLink(destination: UserContentView(pageTitle: Text("Watch List"), query: .constant(db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: "")), isNavigationBarHidden: .constant(false))){
                                 Text("Watch List")
                                     .listRowBackground(Color(Colours().backgroundColor))
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
                             Divider()
                             
-                            NavigationLink(destination: ContentView()){
+                            NavigationLink(destination: UserContentView(pageTitle: Text("My Ads"), query: .constant(db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: "")), isNavigationBarHidden: .constant(false))){
                                 Text("My Ads")
                                     .listRowBackground(Color(Colours().backgroundColor))
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
                             Divider()
                             
-                            NavigationLink(destination: ContentView()){
+                            NavigationLink(destination: UserContentView(pageTitle: Text("Auctions Won"), query: .constant(db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: "")), isNavigationBarHidden: .constant(false))){
                                 Text("Auctions Won")
                                     .listRowBackground(Color(Colours().backgroundColor))
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
                             Divider()
                             
-                            NavigationLink(destination: ContentView()){
+                            NavigationLink(destination: UserContentView(pageTitle: Text("Auctions Lost"), query: .constant(db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: "")), isNavigationBarHidden: .constant(false))){
                                 Text("Auctions Lost")
                                     .listRowBackground(Color(Colours().backgroundColor))
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
