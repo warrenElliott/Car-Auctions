@@ -88,7 +88,7 @@ public class TimeManager{
         }
         
         else{
-            output = "Auction Finished"
+            output = "Auction Finished" // 
             return output
         }
     }

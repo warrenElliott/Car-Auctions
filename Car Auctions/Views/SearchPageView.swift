@@ -29,7 +29,6 @@ struct SearchPageView: View{
                 
                 Colours().bgColour
                 
-                //if #available(iOS 14.0, *) {
                     VStack{
                                                 
                         Divider()
@@ -63,10 +62,6 @@ struct SearchPageView: View{
                     }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     .navigationBarTitle(self.pageTitle)
                     .navigationBarHidden(self.isNavigationBarHidden)
-                //}
-//                else {
-//                    // Fallback on earlier versions
-//                }
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }

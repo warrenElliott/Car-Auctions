@@ -81,44 +81,6 @@ class LoadContent: ObservableObject{
         }
     }
     
-//    func fetchBidHistory(adId: String){
-//
-//        let ref = db.collection("LiveDatabase").document(adId).collection("bids").order(by: "timestamp")
-//
-//        ref.addSnapshotListener { (querySnapshot, error) in
-//
-//            if let e = error{
-//
-//                print (e.localizedDescription)
-//
-//            }
-//
-//            else{
-//
-//                var bidHistoryData = [BidHistoryData]()
-//
-//                if let snapshotDocs = querySnapshot?.documents{
-//
-//                    for doc in snapshotDocs{
-//
-//                        let data = doc.data()
-//
-//                        var bidHistoryEntry = BidHistoryData(
-//                            id: data["bidID"] as! String,
-//                            bidValue: data["bidValue"] as! String,
-//                            bidder: data["bidder"] as! String)
-//
-//                        bidHistoryData.append(bidHistoryEntry)
-//                    }
-//
-//                    self.history = bidHistoryData
-//                    print ("fetchBidHistory initialised")
-//                    
-//                }
-//            }
-//        }
-//    }
-    
     func bidWinningStatus (biddingData: [BidHistoryData], bidValues: [String]) -> Int{
         
         var output = Int()

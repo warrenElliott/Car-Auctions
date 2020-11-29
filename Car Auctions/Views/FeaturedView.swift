@@ -12,9 +12,8 @@ import Combine
 
 struct FeaturedView: View{
     
-    //@State private var adViewActive: Bool = true //state for ad preview
     @State private var emptyListMessage = "Nothing Ending Today...Tap on Search to find other auctions!"
-    @State private var pageTitle = "Featured"
+    @State private var pageTitle = "Ending Today"
     
     let db = Firestore.firestore()
     let currentDate = Date()
