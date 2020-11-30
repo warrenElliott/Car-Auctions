@@ -57,7 +57,7 @@ struct AdDetailView: View{
                                 .resizable()
                                 .frame(width: UIScreen.main.bounds.width, height: 250)
                                 .clipped()
-                            
+
                         }else{
                             
                             if self.adPreview.imageLinks.count > 0 && self.adPreview.adImages.count == 0{

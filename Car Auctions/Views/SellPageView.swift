@@ -73,6 +73,7 @@ struct SellPageView: View{
                                 HStack(){ //shows uploaded images
                                     Image(uiImage: UIImage())
                                     Button(action: {
+                                        self.counter = 6 - self.ad.imageLinks.count
                                         if self.ad.adImages.count < 6{
                                             self.isShowingImagePicker.toggle() //toggles the state of the image picker (true if showing)
                                         }else{
@@ -100,7 +101,6 @@ struct SellPageView: View{
                                             .overlay(
                                                 Button(action: {
                                                     AdManager().removeImage(from: self.ad.imageLinks[link] ?? "")
-                                                    self.counter = self.counter - self.ad.imageLinks.count
                                                     self.ad.imageLinks.remove(at: link) //remove where pointed
                                                     self.counter += 1 //when removed, increase the counter of pictures that can be uploaded by 1
                                                 }, label: {
