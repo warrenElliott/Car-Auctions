@@ -14,7 +14,7 @@ struct UserContentView: View {
     
     @State var pageTitle: Text
     @Binding var query: Query
-//    @State private var adViewActive: Bool = false //state for ad preview
+    @Binding  var isShowingDrafts: Bool //state for ad preview
     @Binding var emptyListMessage: String
     
     let db = Firestore.firestore()
@@ -32,7 +32,7 @@ struct UserContentView: View {
                 
                 AdListContentView(
                     emptyListMessage: self.$emptyListMessage,
-                    query: .constant(self.query))
+                    query: .constant(self.query), isShowingDraft: self.$isShowingDrafts)
                 
             }
         }
@@ -49,6 +49,6 @@ struct UserBidsView_Previews: PreviewProvider {
         
         let db = Firestore.firestore()
 
-        UserContentView(pageTitle: Text(verbatim: ""), query: .constant(db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: "")), emptyListMessage: .constant("nothing found!"), isNavigationBarHidden: .constant(true))
+        UserContentView(pageTitle: Text(verbatim: ""), query: .constant(db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: "")), isShowingDrafts: .constant(false), emptyListMessage: .constant("nothing found!"), isNavigationBarHidden: .constant(true))
     }
 }

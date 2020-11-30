@@ -12,12 +12,13 @@ import BSImagePicker
 import Photos
 import Firebase
 import GooglePlaces
+import struct Kingfisher.KFImage
 
 struct SellPageView: View{
     
     @State private var isShowingImagePicker = false
     @State private var isShowingLocationSuggestions = false
-    @State var ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: "0", bidHistory: []) //blank ad struct where the ad will be stored before being placed on the database
+    @State var ad = AuctionSaleData(adId: UUID().uuidString, adName: "", adDescription: "Enter your ad details here", adBid: "100", adEndingTime: "", adEndingDate: "", adAuthor: (UserDefaults.standard.value(forKey: "userEmail") as? String)!, adLocation: "", adImages: [], imageLinks: [], datePosted: "", isDraft: true, bidCount: "0", bidHistory: [])
     @State private var counter = 6 //max images that can be uploaded
     @State private var dateForAd = Date() //gives today's date
     @State private var showAlert = false
@@ -65,7 +66,6 @@ struct SellPageView: View{
                                 .padding(.bottom)
                                 .frame(width: 350, alignment: .center)
                             
-                            
                             Text ("1. Select up to 6 images")
                                 .frame(width: 350, alignment: .leading)
                             
@@ -89,6 +89,29 @@ struct SellPageView: View{
                                         .frame(width: 110, height: 110)
                                         .border(Color.black, width: 3)
                                     
+                                    ForEach (ad.imageLinks.indices, id: \.self){ link in
+                                        
+                                        KFImage(URL(string: self.ad.imageLinks[link]!))
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 110, height: 110)
+                                            .border(Color.black, width: 1)
+                                            .clipped()
+                                            .overlay(
+                                                Button(action: {
+                                                    AdManager().removeImage(from: self.ad.imageLinks[link] ?? "")
+                                                    self.counter = self.counter - self.ad.imageLinks.count
+                                                    self.ad.imageLinks.remove(at: link) //remove where pointed
+                                                    self.counter += 1 //when removed, increase the counter of pictures that can be uploaded by 1
+                                                }, label: {
+                                                    Image(systemName: "minus.circle.fill")
+                                                        .resizable()
+                                                        .frame(width: 20, height: 20)
+                                                        .foregroundColor(.red)
+                                                })
+                                                    .offset(x: 40, y: -40))
+                                        
+                                    }
                                     
                                     ForEach (ad.adImages.indices, id: \.self){ i in // 'i' points to each image
                                         

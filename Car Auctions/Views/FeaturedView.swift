@@ -30,7 +30,7 @@ struct FeaturedView: View{
                     
                     Divider()
                 
-                    AdListContentView(emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))))
+                    AdListContentView(emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))), isShowingDraft: .constant(false))
                 }
         }
             .navigationBarTitle(self.pageTitle)

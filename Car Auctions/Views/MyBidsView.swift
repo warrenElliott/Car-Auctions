@@ -35,7 +35,7 @@ struct MyBidsView: View{
                     AdListContentView(
                         emptyListMessage: self.$emptyListMessage,
                         query: .constant(
-                            self.db.collection("Users").document("\(UserDefaults.standard.value(forKey: "userEmail") as! String)").collection("UserBids")))
+                            self.db.collection("Users").document("\(UserDefaults.standard.value(forKey: "userEmail") as! String)").collection("UserBids")), isShowingDraft: .constant(false))
                     
                 }
             }

@@ -41,6 +41,7 @@ class AdManager{
             "adPosted" : ad.datePosted,
             "isDraft" : ad.isDraft,
             "adLocation" : ad.adLocation,
+            "imageURLs" : ad.imageLinks,
             "bidCount" : ad.bidCount,
             ] as [String : Any] //creates a little data dictionary to dictate how data will be stored in the database
     
@@ -99,18 +100,6 @@ class AdManager{
         
         let bidReference = self.db.collection("LiveDatabase").document("\(adSummary.adId)")
         
-//        let bidHistoryReference = self.db.collection("LiveDatabase").document("\(adSummary.adId)").collection("bids").document(bidID)
-//
-//        let bidHistoryEntry = [
-//
-//            "bidID" : UUID().uuidString,
-//            "bidder" : UserDefaults.standard.value(forKey: "userEmail"),
-//            "bidValue": editValue,
-//            "timestamp": Date().timeIntervalSince1970
-//
-//        ] as [String : Any]
-        
-        
         bidReference.updateData([
             
             "bids": FieldValue.arrayUnion([[
@@ -127,22 +116,10 @@ class AdManager{
                 print("Document successfully updated")
             }
         }
-        
-        
-//        bidHistoryReference.setData(bidHistoryEntry, completion: { (error) in
-//            if let err = error{
-//                print (err.localizedDescription)
-//            }else{
-//                print("saved")
-//
-//            }
-//        })
-        
     }
     
     func addToUserBids(forAd ad: AuctionSaleData, user: String, userBidValue: String){
     
-        
         let userReference = self.db.collection("Users").document("\(user)").collection("UserBids").document(ad.adId)
         
         let detailsData = [
@@ -154,7 +131,6 @@ class AdManager{
             "adEndingDate" : ad.adEndingDate,
             "adEndingTime" : ad.adEndingTime,
             "adPosted" : ad.datePosted,
-            "isDraft" : ad.isDraft,
             "adLocation" : ad.adLocation,
             "bidCount" : ad.bidCount,
             "imageURLs" : ad.imageLinks,
@@ -191,6 +167,20 @@ class AdManager{
                 print("Document successfully updated")
             }
         }
+    }
+    
+    func removeImage(from link: String){
+        
+        let storageRef = self.storage.reference(forURL: link) //reference to the storage on Firebase
+        
+        storageRef.delete(completion: { (error) in
+            
+            if let err = error{
+                print (err.localizedDescription)
+            }
+            
+        })
+        
     }
     
 }

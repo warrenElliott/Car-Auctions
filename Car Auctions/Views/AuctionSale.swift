@@ -16,6 +16,7 @@ struct AuctionSale: View{
     
     @State var sale: AuctionSaleData
     @State var bidStatus: Int
+    
     @State private var nowDate = Date()
     
     var timer: Timer {
