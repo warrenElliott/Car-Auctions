@@ -15,6 +15,7 @@ class LoadContent: ObservableObject{
     @Published var content = [AuctionSaleData]()
     @Published var history = [BidHistoryData]()
     
+    
     //@Published var userBidAds = [UserBids]()
     
     let db = Firestore.firestore() //reference to the database
@@ -64,7 +65,7 @@ class LoadContent: ObservableObject{
                                                        adImages: [],
                                                        imageLinks: data["imageURLs"] as? [String] ?? [],
                                                        datePosted: data["adPosted"] as! String,
-                                                       isDraft: data["isDraft"] as! Bool,
+                                                       isDraft: data["isDraft"] as? Bool ?? false,
                                                        bidCount: data["bidCount"] as? String ?? "Unavailable",
                                                        bidHistory: output)
 
@@ -73,8 +74,6 @@ class LoadContent: ObservableObject{
                     }
                     self.history = queryAdHistory
                     self.content = pageContent
-                    
-                    print (self.content)
                     
                 }
             }
@@ -90,7 +89,6 @@ class LoadContent: ObservableObject{
             if bidValues.max() == bid.bidValue && bid.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String {
                 
                 return 1 //winning
-                
                 
             }
             

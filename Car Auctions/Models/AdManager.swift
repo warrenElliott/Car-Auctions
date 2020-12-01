@@ -133,8 +133,7 @@ class AdManager{
             "adPosted" : ad.datePosted,
             "adLocation" : ad.adLocation,
             "bidCount" : ad.bidCount,
-            "imageURLs" : ad.imageLinks,
-            "userBidValue" : userBidValue,
+            "imageURLs" : ad.imageLinks
             ] as [String : Any] //creates a little data dictionary to dictate how data will be stored in the database
     
         userReference.setData(detailsData, completion: { (error) in
@@ -168,6 +167,84 @@ class AdManager{
             }
         }
     }
+    
+    func addToFavourites(forAd ad: AuctionSaleData, user: String){
+        
+        let userReference = self.db.collection("Users").document("\(user)").collection("Favourites").document(ad.adId)
+        
+        let detailsData = [
+            "adID" : ad.adId,
+            "adAuthor" : ad.adAuthor,
+            "adName" : ad.adName,
+            "adDescription" : ad.adDescription,
+            "adBid" : ad.adBid,
+            "adEndingDate" : ad.adEndingDate,
+            "adEndingTime" : ad.adEndingTime,
+            "adPosted" : ad.datePosted,
+            "adLocation" : ad.adLocation,
+            "bidCount" : ad.bidCount,
+            "imageURLs" : ad.imageLinks,
+            ] as [String : Any] //creates a little data dictionary to dictate how data will be stored in the database
+    
+        userReference.setData(detailsData, completion: { (error) in
+            if let err = error{
+                print (err.localizedDescription)
+            }
+        })
+        
+        for bid in ad.bidHistory{
+            
+            userReference.updateData([
+                
+                "bids" : FieldValue.arrayUnion([[
+                                            
+                    "bidAuthor": bid.bidder,
+                    "bidValue": bid.bidValue,
+                    "timestamp": bid.id
+                                            
+                    ]])
+            ])
+            }
+        
+    }
+    
+    func updateFavourites(_ ad: AuctionSaleData, editValue: String, bidCount: String){
+        
+        let user = UserDefaults.standard.value(forKey: "userEmail") as! String
+        
+        let userReference = self.db.collection("Users").document("\(user)").collection("Favourites").document(ad.adId)
+
+        userReference.updateData([
+            
+            "bids": FieldValue.arrayUnion([[
+                "bidAuthor": user,
+                "bidValue": editValue,
+                "timestamp": Date().timeIntervalSince1970
+            ]]),
+            "adBid": "\(editValue)",
+            "bidCount": "\(bidCount)"
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    func removeAdFromUserData(_ ad: AuctionSaleData, user: String, destination: String){
+        
+        let userReference = self.db.collection("Users").document(user).collection(destination).document(ad.adId)
+        
+        userReference.delete(){ (error) in
+            if let err = error{
+                print (err.localizedDescription)
+            }
+            
+        }
+        
+    }
+
     
     func removeImage(from link: String){
         

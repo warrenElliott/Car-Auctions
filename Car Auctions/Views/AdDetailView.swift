@@ -22,9 +22,9 @@ struct AdDetailView: View{
     @State var showPublishAlert = false
     @State var index = 0
     @State var nowDate = Date() //grabs actual time when user clicked on the ad to generate the timer
-    
     @State var bidView = false
     @State var notificationView = false
+    @State var userFavourites = Favourites()
     
     var timer: Timer {
         
@@ -266,12 +266,7 @@ struct AdDetailView: View{
                 Spacer()
                 
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .onAppear(){
-                
-                //loadContent.fetchBidHistory(adId: adPreview.adId) // fetch bid history as soon as view appear
-                //print ("AdDetailView Being initialised")
-                
-            }
+
 
         }.navigationBarItems(
                              
@@ -303,6 +298,21 @@ struct AdDetailView: View{
                         
                     })
                 }
+            }
+            
+            else{
+                
+                Button(action: {
+                    
+                    print (self.userFavourites.loadContent.content)
+                    self.userFavourites.contains(self.adPreview) ? self.userFavourites.remove(self.adPreview) : self.userFavourites.add(self.adPreview)
+                    
+                }) {
+                    Text(self.userFavourites.contains(self.adPreview) ? "Remove from Favourites" : "Add to Favourites")
+                        .foregroundColor(.black)
+                        .bold()
+                }
+                
             }
 
             })
