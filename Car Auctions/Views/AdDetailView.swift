@@ -290,7 +290,6 @@ struct AdDetailView: View{
                     
                 }) {
                     Text("Publish")
-                        
                         .foregroundColor(.black)
                         .bold()
                         .alert(isPresented: self.$showPublishAlert, content: {
@@ -301,21 +300,16 @@ struct AdDetailView: View{
             }
             
             else{
-                
-                Button(action: {
-                    
-                    print (self.userFavourites.loadContent.content)
-                    self.userFavourites.contains(self.adPreview) ? self.userFavourites.remove(self.adPreview) : self.userFavourites.add(self.adPreview)
-                    
-                }) {
-                    Text(self.userFavourites.contains(self.adPreview) ? "Remove from Favourites" : "Add to Favourites")
-                        .foregroundColor(.black)
-                        .bold()
-                }
-                
+                    Button(action: {
+                        self.userFavourites.contains(self.adPreview) ? self.userFavourites.remove(self.adPreview) : self.userFavourites.add(self.adPreview)
+                    }) {
+                        Text(self.userFavourites.contains(self.adPreview) ? "Unwatch" : "Watch")
+                            .frame(width: UIScreen.main.bounds.width / 1.5, alignment: .trailing)
+                            .foregroundColor(.white)
+                    }
             }
-
             })
+        
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(false)

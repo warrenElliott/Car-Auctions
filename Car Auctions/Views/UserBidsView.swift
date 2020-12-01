@@ -11,9 +11,8 @@ import SwiftUI
 import Firebase
 import Combine
 
-struct MyBidsView: View{
-    
-//    @State private var adViewActive: Bool = false
+struct UserBidsView: View{
+
     @State private var emptyListMessage = "You currently have no bids placed"
     @State private var pageTitle = "My bids"
     
@@ -50,7 +49,7 @@ struct MyBidsView: View{
 struct MyBidsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MyBidsView()
+            UserBidsView()
         }
         
     }

@@ -45,7 +45,7 @@ struct TabBarView: View {
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 
-                MyBidsView()
+                UserBidsView()
                     .tabItem{
                         Image(systemName: "sterlingsign.circle.fill")
                         Text("My Bids")
