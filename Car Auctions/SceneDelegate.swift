@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         
         let contentView = ContentView()
-        //let contentView = PlaceBidView(show: .constant(true), currentBid: .constant("5000"))
+        let tabBarView = TabBarView()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             else{
 
-                window.rootViewController = UIHostingController(rootView: TabBarView())
+                window.rootViewController = UIHostingController(rootView: tabBarView)
 
             }
             self.window = window

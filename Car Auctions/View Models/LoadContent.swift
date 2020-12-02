@@ -12,14 +12,11 @@ import Combine
 
 class LoadContent: ObservableObject{
     
-    @Published var content = [AuctionSaleData]()
-    @Published var history = [BidHistoryData]()
-    
-    
-    //@Published var userBidAds = [UserBids]()
-    
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage
+    
+    @Published var content = [AuctionSaleData]()
+    @Published var history = [BidHistoryData]()
     
     func fetchData(dataQuery: Query){
         

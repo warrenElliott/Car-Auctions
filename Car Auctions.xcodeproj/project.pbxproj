@@ -38,7 +38,6 @@
 		80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AA162B24A3AA1900E258E3 /* SearchPageView.swift */; };
 		80D3F92A255DD61E00226ECC /* UserBidsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D3F929255DD61E00226ECC /* UserBidsView.swift */; };
 		80DB5A0E25596128005625D9 /* BidSuccessPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DB5A0D25596128005625D9 /* BidSuccessPopUpView.swift */; };
-		80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */; };
 		80E0C031249E186100559261 /* SellPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C030249E186100559261 /* SellPageView.swift */; };
 		80F417A72576583300182346 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F417A62576583300182346 /* Favourites.swift */; };
 		BC2512E0619610D194765827 /* Pods_Car_Auctions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144FFB826B1372E3A9830BFF /* Pods_Car_Auctions.framework */; };
@@ -81,7 +80,6 @@
 		80AA162B24A3AA1900E258E3 /* SearchPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageView.swift; sourceTree = "<group>"; };
 		80D3F929255DD61E00226ECC /* UserBidsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBidsView.swift; sourceTree = "<group>"; };
 		80DB5A0D25596128005625D9 /* BidSuccessPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidSuccessPopUpView.swift; sourceTree = "<group>"; };
-		80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTimeRemaining.swift; sourceTree = "<group>"; };
 		80E0C030249E186100559261 /* SellPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellPageView.swift; sourceTree = "<group>"; };
 		80F417A62576583300182346 /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				804834A1249BB07D005CACAF /* Views */,
+				80F417AC2577EA7500182346 /* View Models */,
 				8048349C249B8F30005CACAF /* Models */,
 				80330A6A249A21C40074E23E /* AppDelegate.swift */,
 				80330A6C249A21C40074E23E /* SceneDelegate.swift */,
@@ -162,16 +161,11 @@
 		8048349C249B8F30005CACAF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				80F417A62576583300182346 /* Favourites.swift */,
-				8048349F249B938B005CACAF /* SaleData.swift */,
-				8048349D249B8F41005CACAF /* AuctionSaleData.swift */,
-				80E0C02E249CF68F00559261 /* AdTimeRemaining.swift */,
-				804451EE24ADF7D000CFFEB4 /* TimeManager.swift */,
 				804451F024AE829300CFFEB4 /* AdManager.swift */,
-				804451F224AF25FD00CFFEB4 /* StoreUserDetails.swift */,
-				8095A6EC24B081C000DD59BE /* Colours.swift */,
-				804E2DB224C32F1700891202 /* LoadContent.swift */,
+				8048349D249B8F41005CACAF /* AuctionSaleData.swift */,
 				808C26A7255B1CA1000EFA30 /* BidHistoryData.swift */,
+				8095A6EC24B081C000DD59BE /* Colours.swift */,
+				8048349F249B938B005CACAF /* SaleData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,13 +184,24 @@
 				808BAE56256AD48800055B85 /* UserAccountView.swift */,
 				8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */,
 				804E2DB024BF74F000891202 /* LocationTextField.swift */,
-				804B19DA24B4B1B200EA8ED7 /* PagingView.swift */,
 				80047DB82540C8A100EF78AB /* AdListContentView.swift */,
 				8090B75725495095009C2E61 /* PlaceBidView.swift */,
 				80DB5A0D25596128005625D9 /* BidSuccessPopUpView.swift */,
 				808BAE60256F0A5500055B85 /* UserContentView.swift */,
+				804B19DA24B4B1B200EA8ED7 /* PagingView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		80F417AC2577EA7500182346 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				804E2DB224C32F1700891202 /* LoadContent.swift */,
+				80F417A62576583300182346 /* Favourites.swift */,
+				804451EE24ADF7D000CFFEB4 /* TimeManager.swift */,
+				804451F224AF25FD00CFFEB4 /* StoreUserDetails.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		C86A602677F8A51BF6ECC24D /* Frameworks */ = {
@@ -364,7 +369,6 @@
 				80D3F92A255DD61E00226ECC /* UserBidsView.swift in Sources */,
 				8090B75825495095009C2E61 /* PlaceBidView.swift in Sources */,
 				804451EF24ADF7D000CFFEB4 /* TimeManager.swift in Sources */,
-				80E0C02F249CF68F00559261 /* AdTimeRemaining.swift in Sources */,
 				808C26A8255B1CA1000EFA30 /* BidHistoryData.swift in Sources */,
 				80AA162C24A3AA1900E258E3 /* SearchPageView.swift in Sources */,
 				8048349E249B8F41005CACAF /* AuctionSaleData.swift in Sources */,
