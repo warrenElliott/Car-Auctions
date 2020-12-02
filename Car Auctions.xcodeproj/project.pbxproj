@@ -40,6 +40,7 @@
 		80DB5A0E25596128005625D9 /* BidSuccessPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DB5A0D25596128005625D9 /* BidSuccessPopUpView.swift */; };
 		80E0C031249E186100559261 /* SellPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C030249E186100559261 /* SellPageView.swift */; };
 		80F417A72576583300182346 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F417A62576583300182346 /* Favourites.swift */; };
+		80F417B8257818FB00182346 /* UserAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F417B7257818FB00182346 /* UserAuthenticator.swift */; };
 		BC2512E0619610D194765827 /* Pods_Car_Auctions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144FFB826B1372E3A9830BFF /* Pods_Car_Auctions.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		80DB5A0D25596128005625D9 /* BidSuccessPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidSuccessPopUpView.swift; sourceTree = "<group>"; };
 		80E0C030249E186100559261 /* SellPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellPageView.swift; sourceTree = "<group>"; };
 		80F417A62576583300182346 /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
+		80F417B7257818FB00182346 /* UserAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthenticator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				804E2DB224C32F1700891202 /* LoadContent.swift */,
+				80F417B7257818FB00182346 /* UserAuthenticator.swift */,
 				80F417A62576583300182346 /* Favourites.swift */,
 				804451EE24ADF7D000CFFEB4 /* TimeManager.swift */,
 				804451F224AF25FD00CFFEB4 /* StoreUserDetails.swift */,
@@ -348,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F417B8257818FB00182346 /* UserAuthenticator.swift in Sources */,
 				80DB5A0E25596128005625D9 /* BidSuccessPopUpView.swift in Sources */,
 				80047DB7253F527600EF78AB /* SearchResultsView.swift in Sources */,
 				80483499249B612D005CACAF /* FeaturedView.swift in Sources */,
