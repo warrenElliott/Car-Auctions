@@ -49,6 +49,3 @@ struct ActionView_Previews: PreviewProvider {
         SearchResultsView(isNavigationBarHidden: .constant(true), searchText: .constant("Test"))
     }
 }
-
-//view not updating
-//another test this is another test 
