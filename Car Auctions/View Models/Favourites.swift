@@ -13,7 +13,7 @@ import Firebase
 public class Favourites: ObservableObject{
     
     let db = Firestore.firestore()
-    @ObservedObject var loadContent = LoadContent()
+    @ObservedObject var loadContent = ContentLoader()
     private let manageAd = AdManager()
     private let user = UserDefaults.standard.value(forKey: "userEmail") as! String
     private let destination = "Favourites"

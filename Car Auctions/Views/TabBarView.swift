@@ -13,7 +13,7 @@ struct TabBarView: View {
     @State var selectedView = 1 //init ial View
     @State var navBarWillBeHidden = true 
     @State var pageTitle = "Featured"
-    @ObservedObject var loadContent = LoadContent()
+    @ObservedObject var loadContent = ContentLoader()
     
     var body: some View {
             

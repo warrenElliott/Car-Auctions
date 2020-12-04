@@ -30,7 +30,7 @@ struct UserContentView: View {
             
             VStack{
                 
-                AdListContentView(
+                RowView(
                     emptyListMessage: self.$emptyListMessage,
                     query: .constant(self.query), isShowingDraft: self.$isShowingDrafts)
                 

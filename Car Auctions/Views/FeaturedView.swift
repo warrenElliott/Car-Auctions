@@ -15,8 +15,7 @@ struct FeaturedView: View{
     @State private var emptyListMessage = "Nothing Ending Today...Tap on Search to find other auctions!"
     @State private var pageTitle = "Ending Today"
     
-    let db = Firestore.firestore()
-    let currentDate = Date()
+    let dbQuery = FirebaseQueries()
     
     var body: some View {
         
@@ -30,7 +29,7 @@ struct FeaturedView: View{
                     
                     Divider()
                 
-                    AdListContentView(emptyListMessage: self.$emptyListMessage, query: .constant(self.db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: TimeManager().dateToIsoString(self.currentDate))), isShowingDraft: .constant(false))
+                    RowView(emptyListMessage: self.$emptyListMessage, query: .constant(self.dbQuery.endingToday), isShowingDraft: .constant(false))
                 }
         }
             .navigationBarTitle(self.pageTitle)

@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import Combine
 
-class LoadContent: ObservableObject{
+class ContentLoader: ObservableObject{
     
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage

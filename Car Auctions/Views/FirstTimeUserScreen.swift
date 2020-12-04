@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseFirestore
 
-struct ContentView: View {
+struct LogInView: View {
     
     @State private var userEmail = ""
     @State private var userPassword = ""
@@ -102,9 +102,11 @@ struct ContentView: View {
                         }
                         
                         Button(action: {
+                            
                             self.signInSuccess = userAuthenticator.signInUser(email: self.userEmail, password: self.userPassword)
         
                             StoreUserDetails.save(self.userEmail, self.userPassword)
+                            
                         }) {
                             Text("Sign In")
                                 .foregroundColor(Color.white)
@@ -138,6 +140,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LogInView()
     }
 }

@@ -14,7 +14,7 @@ struct PlaceBidView: View{
     let db = Firestore.firestore() //reference to the database
     let storage = Storage.storage() //reference to the storage
     
-    @ObservedObject var loadContent =  LoadContent()
+    @ObservedObject var loadContent =  ContentLoader()
     
     @Binding var show : Bool
     @Binding var showNotification: Bool

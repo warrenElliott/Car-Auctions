@@ -12,7 +12,7 @@ import struct Kingfisher.KFImage
 
 struct AdDetailView: View{
     
-    @ObservedObject var loadContent = LoadContent()
+    @ObservedObject var loadContent = ContentLoader()
     
     @State var adPreview: AuctionSaleData //data taken from the SellPageView form the user created
     @State var bidHistory = [BidHistoryData]()

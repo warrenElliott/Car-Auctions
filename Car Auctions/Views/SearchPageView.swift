@@ -13,7 +13,7 @@ import Combine
 
 struct SearchPageView: View{
     
-    @State private var pageTitle = "Search Results"
+    @State private var pageTitle = "Search"
     @State private var isNavigationBarHidden: Bool = false
     @State private var adViewActive: Bool = false //state for ad preview false = not showing
     private let db = Firestore.firestore()
