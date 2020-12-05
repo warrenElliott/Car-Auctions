@@ -25,7 +25,6 @@
 		804834A0249B938B005CACAF /* SaleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8048349F249B938B005CACAF /* SaleData.swift */; };
 		804834A3249BB34A005CACAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 804834A2249BB34A005CACAF /* GoogleService-Info.plist */; };
 		804B19DB24B4B1B200EA8ED7 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804B19DA24B4B1B200EA8ED7 /* PagingView.swift */; };
-		804E2DB124BF74F000891202 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E2DB024BF74F000891202 /* LocationTextField.swift */; };
 		804E2DB324C32F1700891202 /* ContentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E2DB224C32F1700891202 /* ContentLoader.swift */; };
 		808BAE57256AD48800055B85 /* UserAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808BAE56256AD48800055B85 /* UserAccountView.swift */; };
 		808BAE61256F0A5500055B85 /* NavigationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808BAE60256F0A5500055B85 /* NavigationContentView.swift */; };
@@ -40,6 +39,7 @@
 		80E0C031249E186100559261 /* SellPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E0C030249E186100559261 /* SellPageView.swift */; };
 		80E1668C25794A9C00D980A5 /* FirebaseQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E1668B25794A9C00D980A5 /* FirebaseQueries.swift */; };
 		80E16693257AF71600D980A5 /* StatusChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E16692257AF71600D980A5 /* StatusChecker.swift */; };
+		80E1669B257BDE8100D980A5 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E1669A257BDE8100D980A5 /* LocationTextField.swift */; };
 		80F417A72576583300182346 /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F417A62576583300182346 /* Favourites.swift */; };
 		80F417B8257818FB00182346 /* UserAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F417B7257818FB00182346 /* UserAuthenticator.swift */; };
 		BC2512E0619610D194765827 /* Pods_Car_Auctions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144FFB826B1372E3A9830BFF /* Pods_Car_Auctions.framework */; };
@@ -69,7 +69,6 @@
 		8048349F249B938B005CACAF /* SaleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleData.swift; sourceTree = "<group>"; };
 		804834A2249BB34A005CACAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		804B19DA24B4B1B200EA8ED7 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
-		804E2DB024BF74F000891202 /* LocationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTextField.swift; sourceTree = "<group>"; };
 		804E2DB224C32F1700891202 /* ContentLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLoader.swift; sourceTree = "<group>"; };
 		808BAE56256AD48800055B85 /* UserAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountView.swift; sourceTree = "<group>"; };
 		808BAE60256F0A5500055B85 /* NavigationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		80E0C030249E186100559261 /* SellPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellPageView.swift; sourceTree = "<group>"; };
 		80E1668B25794A9C00D980A5 /* FirebaseQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseQueries.swift; sourceTree = "<group>"; };
 		80E16692257AF71600D980A5 /* StatusChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusChecker.swift; sourceTree = "<group>"; };
+		80E1669A257BDE8100D980A5 /* LocationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTextField.swift; sourceTree = "<group>"; };
 		80F417A62576583300182346 /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		80F417B7257818FB00182346 /* UserAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthenticator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,11 +184,11 @@
 				80D3F929255DD61E00226ECC /* UserBidsView.swift */,
 				808BAE56256AD48800055B85 /* UserAccountView.swift */,
 				8095A6EA24AF5CFB00DD59BE /* AdDetailView.swift */,
-				804E2DB024BF74F000891202 /* LocationTextField.swift */,
 				80047DB82540C8A100EF78AB /* RowContent.swift */,
 				8090B75725495095009C2E61 /* PlaceBidView.swift */,
 				80DB5A0D25596128005625D9 /* BidSuccessPopUpView.swift */,
 				804B19DA24B4B1B200EA8ED7 /* PagingView.swift */,
+				80E1669A257BDE8100D980A5 /* LocationTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -375,9 +375,9 @@
 				804E2DB324C32F1700891202 /* ContentLoader.swift in Sources */,
 				8095A6EB24AF5CFB00DD59BE /* AdDetailView.swift in Sources */,
 				80E1668C25794A9C00D980A5 /* FirebaseQueries.swift in Sources */,
-				804E2DB124BF74F000891202 /* LocationTextField.swift in Sources */,
 				804451F324AF25FD00CFFEB4 /* StoreUserDetails.swift in Sources */,
 				808BAE57256AD48800055B85 /* UserAccountView.swift in Sources */,
+				80E1669B257BDE8100D980A5 /* LocationTextField.swift in Sources */,
 				80F417A72576583300182346 /* Favourites.swift in Sources */,
 				804B19DB24B4B1B200EA8ED7 /* PagingView.swift in Sources */,
 				808BAE61256F0A5500055B85 /* NavigationContentView.swift in Sources */,
