@@ -10,7 +10,9 @@ import SwiftUI
 import Firebase
 import Combine
 
-struct RowView: View {
+struct RowContent: View {
+    
+    let bidStatus = StatusChecker()
 
     @ObservedObject var loadContent = ContentLoader()
     @Binding var emptyListMessage: String
@@ -32,7 +34,7 @@ struct RowView: View {
                                 
                             NavigationLink(destination: (self.isShowingDraft ? AnyView(SellPageView(ad: item)) : AnyView(AdDetailView(adPreview: item)))){
                                     
-                                    AuctionSale(sale: item, bidStatus: statusChecker(item: item))
+                                AuctionSale(sale: item, bidStatus: bidStatus.statusCheck(item: item))
                                     
                                 }
                                 .buttonStyle(PlainButtonStyle())
@@ -63,35 +65,5 @@ struct RowView: View {
 
             }
         }
-    }
-    
-    func statusChecker (item: AuctionSaleData) -> Int{
-        
-        var output = Int()
-        
-        for entry in item.bidHistory{
-            
-            if item.bidHistory.last?.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String{
-                return 1
-            }
-            
-            else if item.bidHistory.last?.bidder != UserDefaults.standard.value(forKey: "userEmail") as! String{
-                return 2
-            }
-            
-            else{
-                
-                
-                if entry.bidder != UserDefaults.standard.value(forKey: "userEmail") as! String{
-                    
-                    output = 3
-                    
-                }
-                
-            }
-            
-        }
-        
-        return output
     }
 }

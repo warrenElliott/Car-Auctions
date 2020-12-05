@@ -16,6 +16,8 @@ struct SearchPageView: View{
     @State private var pageTitle = "Search"
     @State private var isNavigationBarHidden: Bool = false
     @State private var adViewActive: Bool = false //state for ad preview false = not showing
+    @State private var navBarMode: Bool = true
+    
     private let db = Firestore.firestore()
     private let currentDate = Date()
     
@@ -44,8 +46,11 @@ struct SearchPageView: View{
                             .stroke(Color.black, lineWidth: 3))
                             .frame(width: 350, height: nil, alignment: .center)
                             .padding()
-                        
-                        link(label: "", destination: SearchResultsView(isNavigationBarHidden: self.$isNavigationBarHidden, searchText: self.$searchText), state: self.$adViewActive)
+                                                
+                        link(
+                            label: "",
+                            destination: NavigationContentView(pageTitle: .constant(Text("Search Results")), emptyListMessage: .constant("Nothing Found!"), isShowingDrafts: .constant(false), isNavigationBarHidden: .constant(false), query: .constant(FirebaseQueries().fetchSearchResults(text: self.searchText)), dispInLine: self.$navBarMode),
+                            state: self.$adViewActive)
                         
                         Button(action: {
                             

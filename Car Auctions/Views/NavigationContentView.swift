@@ -10,17 +10,14 @@ import SwiftUI
 import Firebase
 import Combine
 
-struct UserContentView: View {
+struct NavigationContentView: View {
     
-    @State var pageTitle: Text
-    @Binding var query: Query
-    @Binding  var isShowingDrafts: Bool //state for ad preview
+    @Binding var pageTitle: Text
     @Binding var emptyListMessage: String
-    
-    let db = Firestore.firestore()
-    let currentDate = Date()
-    
+    @Binding var isShowingDrafts: Bool
     @Binding var isNavigationBarHidden: Bool
+    @Binding var query: Query
+    @Binding var dispInLine: Bool
     
     var body: some View {
         
@@ -30,13 +27,13 @@ struct UserContentView: View {
             
             VStack{
                 
-                RowView(
+                RowContent(
                     emptyListMessage: self.$emptyListMessage,
                     query: .constant(self.query), isShowingDraft: self.$isShowingDrafts)
                 
             }
         }
-        .navigationBarTitle(self.pageTitle, displayMode: .inline)
+        .navigationBarTitle(self.pageTitle, displayMode: dispInLine ? .inline : .large)
         .navigationBarHidden(self.isNavigationBarHidden)
         .onAppear {
             self.isNavigationBarHidden = false
@@ -44,11 +41,11 @@ struct UserContentView: View {
     }
 }
 
-struct UserBidsView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let db = Firestore.firestore()
-
-        UserContentView(pageTitle: Text(verbatim: ""), query: .constant(db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: "")), isShowingDrafts: .constant(false), emptyListMessage: .constant("nothing found!"), isNavigationBarHidden: .constant(true))
-    }
-}
+//struct UserBidsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        let db = Firestore.firestore()
+//
+//        NavigationContentView(pageTitle: Text(verbatim: ""), query: .constant(db.collection("LiveDatabase").whereField("adEndingDate", isEqualTo: "")), isShowingDrafts: .constant(false), emptyListMessage: .constant("nothing found!"), isNavigationBarHidden: .constant(true))
+//    }
+//}

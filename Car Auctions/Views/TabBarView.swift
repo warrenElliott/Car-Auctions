@@ -10,20 +10,25 @@ import SwiftUI
 
 struct TabBarView: View {
     
-    @State var selectedView = 1 //init ial View
+    let firebaseQueries = FirebaseQueries()
+    
+    @State var selectedView = 1 //initial View
     @State var navBarWillBeHidden = true 
     @State var pageTitle = "Featured"
     @ObservedObject var loadContent = ContentLoader()
-    
+        
     var body: some View {
             
             TabView(selection: $selectedView) {
                 
-                FeaturedView()
+                ContentView(
+                    pageTitle: .constant(Text("Ending Today")),
+                    emptyListMessage: .constant("Nothing Ending Today...Tap on Search to find other auctions!"),
+                    isShowingDrafts: .constant(false), isNavigationBarHidden: .constant(false), query: .constant(firebaseQueries.fetchEndingToday()))
                     .tabItem {
                         Image(systemName: "car.fill")
                     }.tag(0)
-                    .navigationBarTitle("Featured", displayMode: .inline)
+                    .navigationBarTitle("Ending Today", displayMode: .inline)
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 
@@ -45,12 +50,15 @@ struct TabBarView: View {
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 
-                UserBidsView()
-                    .tabItem{
+                ContentView(
+                    pageTitle: .constant(Text("My bids")),
+                    emptyListMessage: .constant("You currently have no bids placed"),
+                    isShowingDrafts: .constant(false), isNavigationBarHidden: .constant(false),  query: .constant(firebaseQueries.fetchUserBids()))
+                    .tabItem {
                         Image(systemName: "sterlingsign.circle.fill")
                         Text("My Bids")
-                }.tag(3)
-                    .navigationBarTitle("")
+                    }.tag(3)
+                    .navigationBarTitle("My bids", displayMode: .inline)
                     .navigationBarBackButtonHidden(true)
                     .navigationBarHidden(true)
                 

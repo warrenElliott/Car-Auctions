@@ -16,8 +16,9 @@ struct UserAccountView: View{
     @State private var emptyListMessage = "You currently have no bids placed"
     @State private var pageTitle = "My Account"
     @State var user = UserDefaults.standard.value(forKey: "userEmail") as! String
-
-
+    @State private var navBarMode: Bool = true
+    
+    let queries = FirebaseQueries()
     let db = Firestore.firestore()
     let currentDate = Date()
     
@@ -38,21 +39,21 @@ struct UserAccountView: View{
                         Text(user)
                         //Text("email@email.com") //placeholder
                         
-                        VStack{ 
+                        VStack{
                             
-                            NavigationLink(destination: UserContentView(pageTitle: Text("My Drafts"), query: .constant(db.collection("DraftsDatabase").whereField("adAuthor", isEqualTo: user)), isShowingDrafts: .constant(true), emptyListMessage: .constant("You have no drafts yet"), isNavigationBarHidden: .constant(false))){
+                            NavigationLink(destination: NavigationContentView(pageTitle: .constant(Text("My Drafts")), emptyListMessage: .constant("You have no drafts yet"), isShowingDrafts: .constant(true), isNavigationBarHidden: .constant(false), query: .constant(queries.fetchDrafts()), dispInLine: self.$navBarMode)){
                                 Text("My Drafts")
                                     .listRowBackground(Color(Colours().backgroundColor))
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
                             Divider()
                             
-                            NavigationLink(destination: UserContentView(pageTitle: Text("Watch List"), query: .constant(db.collection("Users").document(user).collection("Favourites")), isShowingDrafts: .constant(false), emptyListMessage: .constant("You are currently not watching ads"), isNavigationBarHidden: .constant(false))){
+                            NavigationLink(destination: NavigationContentView(pageTitle: .constant(Text("Watch List")), emptyListMessage: .constant("You are currently not watching ads"), isShowingDrafts: .constant(false), isNavigationBarHidden: .constant(false), query: .constant(queries.fetchFavourites()), dispInLine: self.$navBarMode)){
                                 Text("Watch List")
                                     .listRowBackground(Color(Colours().backgroundColor))
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)
                             Divider()
                             
-                            NavigationLink(destination: UserContentView(pageTitle: Text("My Ads"), query: .constant(db.collection("LiveDatabase").whereField("adAuthor", isEqualTo: user)), isShowingDrafts: .constant(false), emptyListMessage: .constant("You currently do not have any live ads"), isNavigationBarHidden: .constant(false))){
+                            NavigationLink(destination: NavigationContentView(pageTitle: .constant(Text("My Ads")), emptyListMessage: .constant("You currently do not have any live ads"), isShowingDrafts: .constant(false), isNavigationBarHidden: .constant(false), query: .constant(queries.fetchUserAds()), dispInLine: self.$navBarMode)){
                                 Text("My Ads")
                                     .listRowBackground(Color(Colours().backgroundColor))
                             }.frame(width: UIScreen.main.bounds.width - 10, alignment: .leading)

@@ -76,37 +76,4 @@ class ContentLoader: ObservableObject{
             }
         }
     }
-    
-    func bidWinningStatus (biddingData: [BidHistoryData], bidValues: [String]) -> Int{
-        
-        var output = Int()
-        
-        for bid in biddingData{
-            
-            if bidValues.max() == bid.bidValue && bid.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String {
-                
-                return 1 //winning
-                
-            }
-            
-            else{
-                
-                if bidValues.max() != bid.bidValue && bid.bidder == UserDefaults.standard.value(forKey: "userEmail") as! String{
-                    
-                    output = 2 // user is losing
-                    
-                }
-                
-                if bidValues.max() != bid.bidValue && bid.bidder != UserDefaults.standard.value(forKey: "userEmail") as! String{
-                    
-                    output = 3 //user is not bidding
-
-                }
-                
-            }
-            
-        }
-        return output
-    }
-    
 }

@@ -36,6 +36,7 @@ struct AuctionSale: View{
                     .frame(width: 170, height: 120, alignment: .leading)
                     .padding(.leading)
             }else{
+                
                 KFImage(URL(string: sale.imageLinks[0]!))
                     .resizable()
                     .frame(width: 170, height: 120, alignment: .leading)
