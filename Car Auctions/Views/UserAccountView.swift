@@ -28,7 +28,7 @@ struct UserAccountView: View{
             
                 ZStack{
                     
-                    Colours().bgColour
+                    Colours().bgColour 
                     
                     VStack{
                         Image(systemName: "person.circle")
